@@ -4,7 +4,20 @@ body {
 	padding-bottom: 50px;
 }
 
+.container {
+	TEXT-ALIGN: center;
+}
+
+.container-fluid {
+	TEXT-ALIGN: center;
+}
+
+.ABP-Unit {
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+}
+
 .jumbotron {
 	margin-top: 20px;
-	margin-botton: 20px;
+	margin-bottom: 20px;
 }
