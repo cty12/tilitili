@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+body {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.jumbotron {
+	margin-top: 20px;
+	margin-botton: 20px;
+}
