@@ -5,14 +5,19 @@ body {
 }
 
 .container {
-	TEXT-ALIGN: center;
+	/*TEXT-ALIGN: center;*/
 }
 
 .container-fluid {
 	TEXT-ALIGN: center;
 }
-
-.ABP-Unit {
+/*
+#player {
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+}
+*/
+.page-header {
     MARGIN-RIGHT: auto;
     MARGIN-LEFT: auto;
 }
