@@ -28,11 +28,11 @@
 				<div class="col-md-6 col-md-offset-1" align="left">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href=""><font face="微软雅黑"> 首页 </font></a></li>
-						<li><a href="news.jsp"><font face="微软雅黑"> 新闻 </font></a></li>
-						<li><a href="study.jsp"><font face="微软雅黑"> 学习 </font></a></li>
-						<li><a href="life.jsp"><font face="微软雅黑"> 生活 </font></a></li>
-						<li><a href="entertainment.jsp"><font face="微软雅黑"> 娱乐 </font></a></li>
-						<li><a href="others.jsp"><font face="微软雅黑"> 其他 </font></a></li>
+						<li><a href="section/news.jsp"><font face="微软雅黑"> 新闻 </font></a></li>
+						<li><a href="section/study.jsp"><font face="微软雅黑"> 学习 </font></a></li>
+						<li><a href="section/life.jsp"><font face="微软雅黑"> 生活 </font></a></li>
+						<li><a href="section/entertainment.jsp"><font face="微软雅黑"> 娱乐 </font></a></li>
+						<li><a href="section/others.jsp"><font face="微软雅黑"> 其他 </font></a></li>
 					</ul>
 				</div>
 				<div class="col-md-4" align="left">
