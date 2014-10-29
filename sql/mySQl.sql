@@ -10,19 +10,26 @@ create table video (
     path char(200) not null,
     icon char(200) not null,
     type enum('others', 'news', 'study', 'life', 'entertainment') not null,
+    time datetime not null,
+    recent datetime not null,
     introduction char(200),
-    INDEX(type)
+    INDEX(type),
+    INDEX(recent)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table admin (
-	int num primary key
+	num int unsigned primary key
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table comment(
 	id int unsigned primary key,
-	int unsigned seq not null,
+	seq int unsigned not null,
 	content char(200) not null,
 	INDEX(seq)
-)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into video (title, path, icon, type) values ('测试', '/test/test.flv', '/test/test.jpg', 'entertainment');
+insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test1.flv', 'test/test1.jpg', 'entertainment', '2014-09-01 20:00', '2014-09-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test2.flv', 'test/test2.jpg', 'news', '2014-09-02 20:00', '2014-10-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test3.flv', 'test/test3.jpg', 'study', '2014-09-03 20:00', '2014-09-04 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test4.flv', 'test/test4.jpg', 'entertainment', '2014-09-04 21:00', '2014-11-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test5.flv', 'test/test5.jpg', 'life', '2014-09-05 20:00', '2014-10-02 20:00');

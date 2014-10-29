@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+body {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+.file-upload {
+	margin-left: 100px;
+	margin-right: 100px;
+}
