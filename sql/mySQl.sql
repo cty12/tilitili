@@ -28,8 +28,8 @@ create table comment(
 	INDEX(seq)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test1.flv', 'test/test1.jpg', 'entertainment', '2014-09-01 20:00', '2014-09-02 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test2.flv', 'test/test2.jpg', 'news', '2014-09-02 20:00', '2014-10-02 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test3.flv', 'test/test3.jpg', 'study', '2014-09-03 20:00', '2014-09-04 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test4.flv', 'test/test4.jpg', 'entertainment', '2014-09-04 21:00', '2014-11-02 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试', 'test/test5.flv', 'test/test5.jpg', 'life', '2014-09-05 20:00', '2014-10-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试1', 'test/test1.flv', 'test/test1.jpeg', 'entertainment', '2014-09-01 20:00', '2014-09-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试2', 'test/test2.flv', 'test/test2.jpeg', 'news', '2014-09-02 20:00', '2014-10-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试3', 'test/test3.flv', 'test/test3.jpeg', 'study', '2014-09-03 20:00', '2014-09-04 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试4', 'test/test4.flv', 'test/test4.jpeg', 'entertainment', '2014-09-04 21:00', '2014-11-02 20:00');
+insert into video (title, path, icon, type, time, recent) values ('测试5', 'test/test5.flv', 'test/test5.jpeg', 'life', '2014-09-05 20:00', '2014-10-02 20:00');
