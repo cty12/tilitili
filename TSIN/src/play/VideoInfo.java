@@ -70,16 +70,12 @@ public class VideoInfo {
 	 * @param key 关键字
 	 * @return 标题含有该关键字的ResultSet
 	 */
-	public ResultSet findVideoByKey(String key) {
+	public ResultSet findVideoByKey(String keys) {
 		try {
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			ResultSet rs = stmt.executeQuery("select * from video");
-			while (rs.next()) {
-				System.out.println(rs.getString("title"));
-				if (!rs.getString("title").toLowerCase().contains(key.toLowerCase()))
-					rs.deleteRow();;
-			}
-			if (rs.first())
+			String reg = String.join("|", keys.split("[ \t]+"));
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from video where title regexp '" + reg + "'");
+			if (rs.next())
 				return rs;
 			else
 				return null;

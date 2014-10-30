@@ -50,13 +50,14 @@
 		        }],
 		        width: "100%",
 		        aspectratio: "16:9",
-		        skin: "Video/skins/five.xml"/*,
+		        skin: "Player/skins/five.xml"/*,
 		        listbar: {
 		            position: 'right',
 		            size: 320
 		        }*/
 		    });
 		</script>
+
 	</div>
 </body>
 </html>
