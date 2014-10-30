@@ -23,6 +23,7 @@
 	}
 	String key = request.getParameter("content");
 	ResultSet vlist = videoInfo.findVideoByKey(key);
+	int resultNum = vlist != null && vlist.last() ? vlist.getRow() : 0; //得到当前行号，也就是记录数 
 %>
 <body>
 		<div class="row" align="left">
@@ -54,17 +55,16 @@
 		</div>
 		<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-		<% if (!key.equals("") && vlist != null) { 
-			vlist.last();
-			int resultNum = vlist.getRow(); //得到当前行号，也就是记录数  
-			vlist.beforeFirst();
+		<%
+		if (!key.equals("")) {
 		%>
 		<h5><small>搜索 </small><%= key %>   <small>    为您找到<%= resultNum %>个结果</small></h5>
 		<hr>
 		<h4>相关视频</h4>
 		<%
-			vlist.beforeFirst();
-			while (vlist.next()) {
+			if (resultNum != 0) {
+				vlist.beforeFirst();
+				while (vlist.next()) {
 		%>
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -80,10 +80,9 @@
 				</li>
 			</div>
 		</div>
-		<%	}
-		   } else if (!key.equals("") && vlist == null) { %>
-		<center>未搜索到相关视频</center>
-		<% } %>
+		<%		}
+			}
+		} %>
 		</div>
 		</div>
 		<%@ include file="topbar.jsp" %>
