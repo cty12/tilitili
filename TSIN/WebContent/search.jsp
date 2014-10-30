@@ -69,7 +69,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<li class="media">
-					<a class="pull-left" href="#">
+					<a class="pull-left" href="video.jsp?id=<%= vlist.getString("id") %>">
 						<img class="media-object" src=<%= "\"" + vlist.getString("icon") + "\"" %> alt="..." height="120px" width="160px">
 					</a>
 					<div class="media-body">
