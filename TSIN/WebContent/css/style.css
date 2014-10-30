@@ -8,6 +8,7 @@ body {
 }
 
 .file-upload {
-	margin-left: 100px;
-	margin-right: 100px;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
 }

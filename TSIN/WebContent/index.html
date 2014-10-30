@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>File Uploader</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<h2 align="center">测试文件上传</h2>
+	<br>
+	<div class="panel panel-default file-upload">
+		<div class="panel-heading">上传文件</div>
+		<div class="panel-body">
+			选择文件来上传
+			<br><br>
+			<form action="UploadFile.jsp" method="post" enctype="multipart/form-data">
+				<input type="file" name="file" size="50" />
+				<br />
+				<!-- <input type="submit" value="Upload File" /> -->
+				<button class="btn btn-success" type="submit" align="left">上传</button>
+			</form>
+		</div>
+	</div>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
