@@ -27,38 +27,42 @@
 	ResultSet vlist = videoInfo.findVideoByKey(key);
 %>
 <body>
-	<div class="container-fluid">
+	<div class="container" id="search_container">
 		<div class="page-header">
 			<h1>Tilitili Video Search <small>Demo</small></h1>
 		</div>
-		<center>
+		<center></center>
 		<form class="form-inline" role="form" action="search.jsp" method="get">
 			<div class="form-group">
 				<label for="search" class="sr-only">关键词</label>
 				<input type="text" class="form-control" id="search" name="content" <%= key.equals("") ? "" : ("value=\"" + key + "\"") %> placeholder="在此输入要搜索的内容">
 			</div>
 			<button type="submit" class="btn btn-default">搜索</button>
-		</form>
-		</center>
+		</form><br>
 		
+
 		<% if (!key.equals("") && vlist != null) { %>
-		<div class="media">
 		<%
 			vlist.beforeFirst();
 			while (vlist.next()) {
 		%>
-			<a class="pull-left" href="#">
-				<img class="media-object" src=<%= "\"" + vlist.getString("icon") + "\"" %> alt="...">
-			</a>
-			<div class="media-body">
-			<a href="video.jsp?id=<%= vlist.getString("id") %>"><h4 class="media-heading"><%= vlist.getString("title") %></h4></a>
-			<%= vlist.getString("introduction") %>
-			</div>
-		<% } %>
-		</div>
-		<% } else if (!key.equals("") && vlist == null) { %>
+		<div class="panel panel-default"><div class="panel-body">
+			<li class="media">
+				<a class="pull-left" href="#">
+					<img class="media-object" src=<%= "\"" + vlist.getString("icon") + "\"" %> alt="..." height="120px" width="160px">
+				</a>
+				<div class="media-body">
+				<a href="video.jsp?id=<%= vlist.getString("id") %>"><h4 class="media-heading"><%= vlist.getString("title") %></h4></a>
+				<h6>上传时间：<%= vlist.getString("time") %></h6>
+				<h5><%= vlist.getString("introduction") %></h5>
+				</div>
+			</li>
+		</div></div>
+		<%	}
+		   } else if (!key.equals("") && vlist == null) { %>
 		<center>未搜索到相关视频</center>
 		<% } %>
+
 
 	</div>
 </body>

@@ -13,8 +13,9 @@ body {
 	margin-right: auto;
 }
 
-.container-fluid {
-	TEXT-ALIGN: center;
+#search_container {
+	width: 960px;
+	margin: 0 auto;
 }
 
 .page-header {
@@ -22,8 +23,4 @@ body {
     MARGIN-LEFT: auto;
 }
 
-.jumbotron {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
 
