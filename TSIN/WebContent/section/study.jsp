@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>TiliTili视频网</title>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
 
@@ -36,9 +35,11 @@
 					</ul>
 				</div>
 				<div class="col-md-4" align="left">
-					<form class="navbar-form navbar-right" role="search" action="search.jsp" method="get">
-						<input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
-						<button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
+					<form class="navbar-form navbar-left" role="search" action="../search.jsp" method="get">
+					    <div class="form-group">
+					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+					    </div>
+					    <button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
 					</form>
 				</div>
 			</nav>
@@ -52,5 +53,4 @@
 <%
 	videoDisplay.release();
 %>
-</html>
 </html>

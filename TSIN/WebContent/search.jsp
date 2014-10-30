@@ -9,7 +9,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>搜索结果</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/lavish-bootstrap.css" rel="stylesheet">
 </head>
@@ -23,7 +22,6 @@
 	}
 	String key = request.getParameter("content");
 	ResultSet vlist = videoInfo.findVideoByKey(key);
-	int resultNum = vlist != null && vlist.last() ? vlist.getRow() : 0; //得到当前行号，也就是记录数 
 %>
 <body>
 		<div class="row" align="left">
@@ -45,45 +43,84 @@
 						</ul>
 					</div>
 					<div class="col-md-4" align="left">
-						<form class="navbar-form navbar-right" role="search" action="search.jsp" method="get">
-							<input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
-							<button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
+						<form class="navbar-form navbar-left" role="search" action="search.jsp" method="get">
+						    <div class="form-group">
+						        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+						    </div>
+						    <button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
 						</form>
 					</div>
 				</nav>
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-		<%
-		if (!key.equals("")) {
-		%>
-		<h5><small>搜索 </small><%= key %>   <small>    为您找到<%= resultNum %>个结果</small></h5>
-		<hr>
-		<h4>相关视频</h4>
-		<%
-			if (resultNum != 0) {
-				vlist.beforeFirst();
-				while (vlist.next()) {
-		%>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<li class="media">
-					<a class="pull-left" href="video.jsp?id=<%= vlist.getString("id") %>">
-						<img class="media-object" src=<%= "\"" + vlist.getString("icon") + "\"" %> alt="..." height="120px" width="160px">
-					</a>
-					<div class="media-body">
-					<a href="video.jsp?id=<%= vlist.getString("id") %>"><h4 class="media-heading"><%= vlist.getString("title") %></h4></a>
-					<h6>上传时间：<%= vlist.getString("time") %></h6>
-					<h5><small><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></small></h5>
+			<div class="col-md-10 col-md-offset-1">
+				<% if (!key.equals("") && vlist != null) { 
+					vlist.last();
+					int resultNum = vlist.getRow(); //得到当前行号，也就是记录数  
+					vlist.beforeFirst();
+				%>
+				<h5><small>搜索 </small><%= key %>   <small>    为您找到<%= resultNum %>个结果</small></h5>
+				<hr>
+				<h4>相关视频</h4>
+				<%
+					vlist.beforeFirst();
+					while (vlist.next()) {
+				%>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<a class="pull-left" href="video.jsp?id=<%= vlist.getString("id") %>" target="_blank">
+							<img class="media-object" src=<%= "\"" + vlist.getString("icon") + "\"" %> alt="..." height="120px" width="160px">
+						</a>
+						<div class="media-body">
+							<div class="row">
+								<div class="col-md-10">
+									<div class="col-md-12">
+										<h5><span class="label label-primary">
+										<%
+											if (vlist.getString("type").equals("others"))
+												out.print("其他");
+											else if (vlist.getString("type").equals("news"))
+												out.print("新闻");
+											else if (vlist.getString("type").equals("study"))
+												out.print("学习");
+											else if (vlist.getString("type").equals("entertainment"))
+												out.print("娱乐");
+											else if (vlist.getString("type").equals("life"))
+												out.print("生活");
+										%>
+										</span><a href="video.jsp?id=<%= vlist.getString("id") %>" target="_blank">  &nbsp&nbsp<%= vlist.getString("title") %></h5></a>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-10">
+									<h6><small>
+										<div class="col-md-2"><%= vlist.getString("click") %>次播放</div> 
+										<div class="col-md-2"><%= vlist.getString("praise") %>次赞</div>
+										<div class="col-md-4"><%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vlist.getTimestamp("time")))%></div>
+									</small></h6>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-10">
+									<div class="col-md-12">
+										<h6><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></h6>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</li>
+				</div>
+				<%	}
+				   } else if (!key.equals("") && vlist == null) { %>
+				<center>
+					<h4>
+						<small>未搜索到与</small>&nbsp<%=key%>&nbsp<small>相关的视频</small>
+					</h4>
+				</center>
+				<% } %>
 			</div>
-		</div>
-		<%		}
-			}
-		} %>
-		</div>
 		</div>
 		<%@ include file="topbar.jsp" %>
 		<script src="js/jquery-1.11.1.min.js"></script>

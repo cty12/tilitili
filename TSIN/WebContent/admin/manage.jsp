@@ -9,7 +9,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理视频</title>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 </head>
