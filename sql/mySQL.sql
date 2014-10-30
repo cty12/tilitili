@@ -1,3 +1,4 @@
+drop database tilitili;
 create database tilitili;
 use tilitili;
 SET NAMES 'utf8';
@@ -7,8 +8,8 @@ SET character_set_server='utf8';
 create table video (
     id int unsigned auto_increment primary key,
     title char(20) not null,
-    path char(200) not null,
-    icon char(200) not null,
+    videoname char(200) not null,
+    covername char(200) not null,
     type enum('others', 'news', 'study', 'life', 'entertainment') not null,
     time datetime not null,
     recent datetime not null,
@@ -28,8 +29,11 @@ create table comment(
 	INDEX(seq)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into video (title, path, icon, type, time, recent) values ('测试1', 'test/test1.flv', 'test/test1.jpeg', 'entertainment', '2014-09-01 20:00', '2014-09-02 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试2', 'test/test2.flv', 'test/test2.jpeg', 'news', '2014-09-02 20:00', '2014-10-02 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试3', 'test/test3.flv', 'test/test3.jpeg', 'study', '2014-09-03 20:00', '2014-09-04 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试4', 'test/test4.flv', 'test/test4.jpeg', 'entertainment', '2014-09-04 21:00', '2014-11-02 20:00');
-insert into video (title, path, icon, type, time, recent) values ('测试5', 'test/test5.flv', 'test/test5.jpeg', 'life', '2014-09-05 20:00', '2014-10-02 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试1', 'testvideo/1.flv', 'testimg/1.jpeg', 'entertainment', '2014-09-01 20:00', '2014-09-02 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试2', 'testvideo/2.flv', 'testimg/2.jpeg', 'news', '2014-09-02 20:00', '2014-10-02 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试3', 'testvideo/3.flv', 'testimg/3.jpeg', 'study', '2014-09-03 20:00', '2014-09-04 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试4', 'testvideo/4.flv', 'testimg/4.jpeg', 'entertainment', '2014-09-04 21:00', '2014-11-02 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试5', 'testvideo/5.flv', 'testimg/5.jpeg', 'life', '2014-09-05 20:00', '2014-10-02 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试6', 'testvideo/6.flv', 'testimg/6.jpeg', 'others', '2014-09-06 20:00', '2014-10-04 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试7', 'testvideo/7.flv', 'testimg/7.jpeg', 'entertainment', '2014-09-07 20:00', '2014-10-07 20:00');
+insert into video (title, videoname, covername, type, time, recent) values ('测试8', 'testvideo/8.flv', 'testimg/8.jpeg', 'entertainment', '2014-09-08 20:00', '2014-10-12 20:00');
