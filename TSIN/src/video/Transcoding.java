@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.Path;
+
 public class Transcoding {
     
     private static String inputPath = "";    
@@ -11,20 +13,22 @@ public class Transcoding {
     private static String ffmpegPath = "";
     
     public static void main(String[] args) {
-    	transcode("/Users/xuan/Documents/workspace/TSIN/test.mp4","/Users/xuan/Documents/workspace/TSIN/","out");
+    	transcode("test.mp4", "1");
     }
     
     /** 外部调用，用于转码的函数 */
-    public static void transcode(String inPath, String outPath, String name) {
-    	getPath(inPath, outPath, name);
+    public static boolean transcode(String inputName, String outputName) {
+    	getPath(Path.ORIGINFILEPATH + inputName, Path.TRANSFILEPATH, outputName);
 
         if (!checkfile(inputPath)) {
             System.out.println(inputPath + " is not file");
-            return;
+            return false;
         }
-        if (process()) {
-            System.out.println("ok");
+        if (!process()) {
+            return false;
         }
+        System.out.println("ok");
+        return true;
     }
     
     /** 获取使用到的路径 */

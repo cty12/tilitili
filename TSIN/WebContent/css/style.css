@@ -12,3 +12,18 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.container-fluid {
+	TEXT-ALIGN: center;
+}
+
+.page-header {
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+}
+
+.jumbotron {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+

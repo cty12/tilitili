@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="video.Display" %>
 
@@ -9,24 +9,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理视频</title>
-<link href="/TSIN/css/bootstrap.min.css" rel="stylesheet">
-<link href="/TSIN/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="/TSIN/css/style.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/lavish-bootstrap.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 </head>
 
-<style type="text/css">
-	body {
-		background: url(/TSIN/resources/background/illustration01.jpeg);
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-	}
-</style>
-
 <body>
+	<div class="row" align="left">
+		<div class="col-md-12" >
+			<img src="../img/logo.jpg" alt="tilitili" height="100%" width="100%" />
+		</div>
+	</div>
+	<div class="panel panel-default">
+   	<div class="panel-body">
+   	<div align="center">
+   		<h1>管理视频</h1>
+   	</div>
+   	<div class="row">
+   	<div class="col-md-10 col-md-offset-1">
+   	<hr>
 	<form name="selectVideo" action="manage" method="post" onsubmit="return verify();">
 	<p>
-		<button class="btn btn-danger" id="delete" type="submit">删除所选</button>
+		<button class="btn btn-warning" id="delete" type="submit">删除所选</button>
 	</p>
 	<br>
 	<table class="table table-condensed table-hover">
@@ -67,8 +71,13 @@
 		</tbody>
 	</table>
 	</form>
-	<br>
+	<hr>
 	<button class="btn btn-primary" id="add" onclick="window.open('upload.jsp');">新增</button>
+	<hr>
+	</div>
+	</div>
+	</div>
+	</div>
 	
 	<script language="javascript">
 		function verify() {
@@ -88,7 +97,9 @@
 			}
 		}
 	</script>
-	<script src="/TSIN/js/jquery-1.11.1.min.js"></script>
-	<script src="/TSIN/js/bootstrap.min.js"></script>
+	
+	<%@ include file="../topbar.jsp" %>
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -15,6 +15,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import common.Path;
+
 public class UploadFile extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -27,8 +29,8 @@ public class UploadFile extends HttpServlet {
 		File file;
 		int maxFileSize = 5000000 * 1024;
 		int maxMemSize = 50000 * 1024;
-		String filePath = "/Users/cty/Documents/coding/resources/media/";
-		String coverPath = "/Users/cty/Documents/coding/resources/covers/";
+		String filePath = new String(Path.ORIGINFILEPATH);
+		String coverPath = new String(Path.COVERPATH);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 
@@ -41,7 +43,7 @@ public class UploadFile extends HttpServlet {
 			// 设置内存中存储文件的最大值
 			factory.setSizeThreshold(maxMemSize);
 			// 本地存储的数据大于 maxMemSize.
-			factory.setRepository(new File("/Users/cty/Documents/coding/resources/temp/"));
+			factory.setRepository(new File(Path.REPOSITORY));
 
 			// 创建一个新的文件上传处理程序
 			ServletFileUpload upload = new ServletFileUpload(factory);

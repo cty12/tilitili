@@ -1,23 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>上传视频</title>
-<link href="/TSIN/css/bootstrap.min.css" rel="stylesheet">
-<link href="/TSIN/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="/TSIN/css/style.css" rel="stylesheet">
-</head>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/lavish-bootstrap.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 
-<style type="text/css">
-	body {
-		background: url(/TSIN/resources/background/illustration01.jpeg);
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-	}
-</style>
+</head>
 
 <body>
 	<div class="panel panel-default file-upload">
@@ -89,7 +81,7 @@
 				
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
-						<button class="btn btn-success btn-block btn-sm" id="upload" type="submit">上传</button>
+						<button class="btn btn-primary btn-block btn-sm" id="upload" type="submit">上传</button>
 					</div>
 				</div>
 			</form>
@@ -101,7 +93,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="/TSIN/js/jquery-1.11.1.min.js"></script>
-	<script src="/TSIN/js/bootstrap.min.js"></script>
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

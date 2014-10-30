@@ -45,11 +45,12 @@
 		</div>
 	</div>
 	
-
+	<%@ include file="../topbar.jsp" %>
 	<script src="../js/jquery-1.11.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>
 <%
 	videoDisplay.release();
 %>
+</html>
 </html>

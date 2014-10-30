@@ -57,7 +57,7 @@
 				{
 			%>
 			<div class="col-md-2" align="center">
-				<a href="<%= "video?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
+				<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
 					<img class="img-thumbnail img-sm" src="<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示">
 				</a>
 				<div class="row" align="center"><small><b><font face="微软雅黑"><%= videoDisplay.getRs().getString(2) %></font></b></small></div>
@@ -68,6 +68,7 @@
 		</div>
 	</div>
 
+	<%@ include file="topbar.jsp" %>
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
