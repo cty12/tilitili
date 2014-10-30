@@ -20,9 +20,6 @@
 </style>
 
 <body>
-	<h1 align="center">文件上传</h1>
-	<br>
-	<br>
 	<div class="panel panel-default file-upload">
 		<div class="panel-heading">上传文件</div>
 		<div class="panel-body">
@@ -31,9 +28,48 @@
 			<form action="../upload" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-2">
+						<p>标题: </p>
+					</div>
+					<div class="col-md-10">
+						<input name="title" type="text" class="form-control" placeholder="标题" requied autofocus/>
+					</div>
+				</div>
+				
+				<br>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<p>类别: </p>
+					</div>
+					<div class="col-md-10">
+						<select name="section" class="form-control">
+							<option value="others">其它</option>
+							<option value="news">新闻</option>
+							<option value="study">学习</option>
+							<option value="life">生活</option>
+							<option value="entertainment">娱乐</option>
+						</select>
+					</div>
+				</div>
+				
+				<br>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<p>简介: </p>
+					</div>
+					<div class="col-md-10">
+						<textarea name="introduction" class="form-control" rows="2" required></textarea>
+					</div>
+				</div>
+				
+				<br>
+				
+				<div class="row">
+					<div class="col-md-2">
 						<p>视频: </p>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-5 col-md-offset-1">
 						<input type="file" id="uploadFile" name="file" size="50" required />
 					</div>
 				</div>
@@ -44,7 +80,7 @@
 					<div class="col-md-2">
 						<p>封面: </p>
 					</div>
-					<div class="col-md-5">	
+					<div class="col-md-5 col-md-offset-1">	
 						<input type="file" id="uploadCover" name="cover" size="50" requied />
 					</div>
 				</div>
@@ -58,7 +94,7 @@
 				</div>
 			</form>
 			<br>
-			<div class="progress">
+			<div class="progress" id="progressBar" style="visibility:hidden;">
 				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 					60%
 				</div>
