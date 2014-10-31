@@ -12,7 +12,8 @@
 
 <link href="css/style.css" rel="stylesheet">
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
-
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	
@@ -70,8 +71,6 @@
 	</div>
 
 	<%@ include file="topbar.jsp" %>
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 </body>
 <%
 	videoDisplay.release();

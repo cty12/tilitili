@@ -22,17 +22,17 @@ public class ProgressServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		if (session == null) {
-			out.println("Sorry, session is null"); // just to be safe
+			out.print("session is null"); // just to be safe
 			return;
 		}
 
 		UploadProgressListener uploadProgressListener = (UploadProgressListener) session.getAttribute("uploadProgressListener");
 		if (uploadProgressListener == null) {
-			out.println("Progress listener is null");
+			out.print("没有上传");
 			return;
 		}
 
-		out.println(uploadProgressListener.getMessage());
+		out.print(uploadProgressListener.getMessage());
 
 	}
 }

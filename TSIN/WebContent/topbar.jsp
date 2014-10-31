@@ -18,8 +18,6 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li data-toggle="modal" data-target="#loginBox"><a href="#">登录</a></li>
-							<li class="divider"></li>
-							<li><a href="/InfoPlatform/register.jsp">注册</a></li>
 						</ul>
 					</li>
 					<%} else { %>
@@ -37,7 +35,7 @@
 		</div>
 	</nav>
 	
-	<!-- Modal -->
+	<!-- Modal Login -->
 	<div class="modal fade" id="loginBox" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
 		<div class="modal-dialog">
     		<div class="modal-content">
@@ -47,21 +45,17 @@
 				</div>
 
 				<div class="modal-body">
-						<form class="form-signin" role="form" action="/InfoPlatform/login.jsp" method="post">
-							<input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
-							<input name="password" type="password" class="form-control" placeholder="Password" required>
+						<form class="form-signin" role="form" action="/login" method="post">
+							<input name="studentid" type="number" class="form-control" placeholder="学号" required autofocus>
+							<input name="password" type="password" class="form-control" placeholder="密码" required>
 							<button class="btn btn-lg btn-primary btn-block" type="submit">登录！</button>
 						</form>
 				</div>
-				<!--
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Login</button>
-				</div>
-				-->
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal Signup -->
 
 </body>
 </html>

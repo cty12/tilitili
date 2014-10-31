@@ -33,11 +33,10 @@ public class UploadProgressListener implements ProgressListener {
 
 	public String getMessage() {
 		if (theContentLength == -1) {
-			return "" + theBytesRead + " of Unknown-Total bytes have been read.";
+			return "" + theBytesRead + " of Unknown-Total bytes read.";
 		} else {
-			return "" + theBytesRead + " of " + theContentLength + " bytes have been read (" + percentDone + "% done).";
+			return "" + theBytesRead + " of " + theContentLength + " bytes read (" + percentDone + "% done).";
 		}
-
 	}
 
 	public long getNum100Ks() {

@@ -42,4 +42,4 @@ insert into video (title, path, icon, type, time, recent, click, praise, comment
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试5', 'testvideo/5.flv', 'testimg/5.jpeg', 'life', '2014-09-05 20:00', '2014-10-02 20:00', 600, 7, 0, 1);
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试6', 'testvideo/6.flv', 'testimg/6.jpeg', 'others', '2014-09-06 20:00', '2014-10-04 20:00', 9000, 56, 0, 1);
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试7', 'testvideo/7.flv', 'testimg/7.jpeg', 'entertainment', '2014-09-07 20:00', '2014-10-07 20:00', 15000, 410, 0, 1);
-insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试8', 'testvideo/8.flv', 'testimg/8.jpeg', 'entertainment', '2014-09-08 20:00', '2014-10-12 20:00', 750, 76, 0, 1s);
+insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试8', 'testvideo/8.flv', 'testimg/8.jpeg', 'entertainment', '2014-09-08 20:00', '2014-10-12 20:00', 750, 76, 0, 1);

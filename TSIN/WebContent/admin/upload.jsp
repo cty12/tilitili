@@ -7,7 +7,8 @@
 <title>上传视频</title>
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
-
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -16,13 +17,13 @@
 		<div class="panel-body">
 			<h5>选择文件来上传</h5>
 			<br>
-			<form action="../upload" method="post" enctype="multipart/form-data">
+			<form action="servlet/servletUpload.jsp" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-2">
 						<p>标题: </p>
 					</div>
 					<div class="col-md-10">
-						<input name="title" type="text" class="form-control" placeholder="标题" requied autofocus/>
+						<input name="title" type="text" class="form-control" placeholder="标题" required autofocus/>
 					</div>
 				</div>
 				
@@ -72,7 +73,7 @@
 						<p>封面: </p>
 					</div>
 					<div class="col-md-5 col-md-offset-1">	
-						<input type="file" id="uploadCover" name="cover" size="50" requied />
+						<input type="file" id="uploadCover" name="cover" size="50" required />
 					</div>
 				</div>
 				
@@ -85,14 +86,23 @@
 				</div>
 			</form>
 			<br>
-			<div class="progress" id="progressBar" style="visibility:hidden;">
-				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+			<p>上传进度: </p>
+			<textarea class="form-control" rows="1" id="source" readonly></textarea>
+			<div class="progress" id="progress" style="visibility:hidden;">
+				<div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 					60%
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="../js/jquery-1.11.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		(function getSource() {
+			$("#source").load("../progress");
+			setTimeout(getSource, 500);
+		}).call()
+		
+	</script>
+	
 </body>
 </html>
