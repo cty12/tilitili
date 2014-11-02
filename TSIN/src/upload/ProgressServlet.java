@@ -28,7 +28,7 @@ public class ProgressServlet extends HttpServlet {
 
 		UploadProgressListener uploadProgressListener = (UploadProgressListener) session.getAttribute("uploadProgressListener");
 		if (uploadProgressListener == null) {
-			out.print("没有上传");
+			out.print("listener is null");
 			return;
 		}
 

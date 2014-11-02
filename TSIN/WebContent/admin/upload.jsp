@@ -11,13 +11,22 @@
 <script src="../js/bootstrap.min.js"></script>
 </head>
 
+<style type=text/css>
+	body {
+		background: url(../resources/background/illustration01_0.jpeg);
+		background-size: auto;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+	}
+</style>
+
 <body>
 	<div class="panel panel-default file-upload">
 		<div class="panel-heading">上传文件</div>
 		<div class="panel-body">
 			<h5>选择文件来上传</h5>
 			<br>
-			<form action="servlet/servletUpload.jsp" method="post" enctype="multipart/form-data">
+			<form action="servlet/servletUpload.jsp" method="post" enctype="multipart/form-data" onsubmit="getSource();">
 				<div class="row">
 					<div class="col-md-2">
 						<p>标题: </p>
@@ -87,7 +96,7 @@
 			</form>
 			<br>
 			<p>上传进度: </p>
-			<textarea class="form-control" rows="1" id="source" readonly></textarea>
+			<textarea class="form-control" rows="1" id="source" readonly>没有上传</textarea>
 			<div class="progress" id="progress" style="visibility:hidden;">
 				<div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 					60%
@@ -97,10 +106,13 @@
 	</div>
 
 	<script type="text/javascript">
-		(function getSource() {
+		function verify() {
+			
+		}
+		function getSource() {
 			$("#source").load("../progress");
 			setTimeout(getSource, 500);
-		}).call()
+		}
 		
 	</script>
 	
