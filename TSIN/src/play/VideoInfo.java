@@ -66,15 +66,39 @@ public class VideoInfo {
 	}
 	
 	/**
-	 * 通过关键词搜索视频
-	 * @param key 关键字
+	 * 通过关键词搜索全部类型视频，默认按创建时间排序
+	 * @param keys 关键字
 	 * @return 标题含有该关键字的ResultSet
 	 */
 	public ResultSet findVideoByKey(String keys) {
 		try {
 			String reg = String.join("|", keys.split("[ \t]+"));
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from video where title regexp '" + reg + "'");
+			ResultSet rs = stmt.executeQuery("select * from video where title regexp '" + reg + "' order by time desc");
+			if (rs.next())
+				return rs;
+			else
+				return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 通过关键词搜索指定类型视频，按指定方式排序
+	 * @param keys 关键字
+	 * @param type 类型
+	 * @param order 排序方式
+	 * @return
+	 */
+	public ResultSet findVideoByKey(String keys, String type, String order) {
+		try {
+			String reg = String.join("|", keys.split("[ \t]+"));
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+				"select * from video where title regexp '" + reg + "' and type='" + type + "' order by " + order + " desc"
+			);
 			if (rs.next())
 				return rs;
 			else
