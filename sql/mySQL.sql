@@ -29,7 +29,8 @@ create table admin (
 create table user (
     num int unsigned primary key,
     nickname char(8) not null,
-    INDEX(nickname)
+    INDEX(nickname),
+    mail char(30)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table comment(
@@ -54,5 +55,5 @@ insert into admin (num) values (2012011333);
 insert into admin (num) values (2012011348);
 insert into admin (num) values (2012011338);
 insert into user (num, nickname) values (2012011333, '俞寒轩');
-insert into user (num, nickname) values (2012011348, '陈天昱'); 
+insert into user (num, nickname, mail) values (2012011348, '陈天昱', 'chentianyu@outlook.com'); 
 insert into user (num, nickname) values (2012011338, '李心田');  
