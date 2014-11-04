@@ -16,7 +16,7 @@ public class Login {
 		String result = "";
 		try {
 			URL loginUrl = new URL("http://student.tsinghua.edu.cn/practiceLogin.do");
-			String param = "userName=" + studentid + "&password=" + pwd;
+			String param = "userName=" + java.net.URLEncoder.encode(studentid) + "&password=" + java.net.URLEncoder.encode(pwd);
 			// 打开和URL之间的连接
 			URLConnection conn = loginUrl.openConnection();
 			// 设置通用的请求属性
