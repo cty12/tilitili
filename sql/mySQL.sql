@@ -26,11 +26,17 @@ create table admin (
 	num int unsigned primary key
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+create table user (
+    num int unsigned primary key,
+    nickname char(8) not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 create table comment(
 	id int unsigned not null,
 	seq int unsigned not null,
 	content char(200) not null,
     time datetime not null,
+    authorid int unsigned not null,
 	INDEX(seq),
     INDEX(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -43,3 +49,9 @@ insert into video (title, path, icon, type, time, recent, click, praise, comment
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试6', 'testvideo/6.flv', 'testimg/6.jpeg', 'others', '2014-09-06 20:00', '2014-10-04 20:00', 9000, 56, 0, 1);
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试7', 'testvideo/7.flv', 'testimg/7.jpeg', 'entertainment', '2014-09-07 20:00', '2014-10-07 20:00', 15000, 410, 0, 1);
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试8', 'testvideo/8.flv', 'testimg/8.jpeg', 'entertainment', '2014-09-08 20:00', '2014-10-12 20:00', 750, 76, 0, 1);
+insert into admin (num) values (2012011333);
+insert into admin (num) values (2012011348);
+insert into admin (num) values (2012011338);
+insert into user (num, nickname) values (2012011333, '俞寒轩');
+insert into user (num, nickname) values (2012011348, '陈天昱'); 
+insert into user (num, nickname) values (2012011338, '李心田');  
