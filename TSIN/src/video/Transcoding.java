@@ -11,20 +11,21 @@ public class Transcoding {
     private static String inputPath = "";    
     private static String outputPath = "";    
     private static String ffmpegPath = "";
+    private static String coverPath ="";
     
     public static void main(String[] args) {
-    	transcode("test.mp4", "1");
+    	transcode("test.mp4", "test", false);
     }
     
     /** 外部调用，用于转码的函数 */
-    public static boolean transcode(String inputName, String outputName) {
-    	getPath(Path.ORIGINFILEPATH + inputName, Path.TRANSFILEPATH, outputName);
+    public static boolean transcode(String inputName, String outputName, boolean hasCover) {
+    	getPath(Path.ORIGINFILEPATH + inputName, Path.TRANSFILEPATH, Path.COVERPATH, outputName);
 
         if (!checkfile(inputPath)) {
             System.out.println(inputPath + " is not file");
             return false;
         }
-        if (!process()) {
+        if (!process(hasCover)) {
             return false;
         }
         System.out.println("ok");
@@ -32,7 +33,7 @@ public class Transcoding {
     }
     
     /** 获取使用到的路径 */
-    private static void getPath(String inPath, String outPath, String name) { 
+    private static void getPath(String inPath, String outPath, String cPath,String name) { 
     	// 先获取当前项目路径，在获得源文件、目标文件、转换器的路径
         File diretory = new File("");
         try {
@@ -44,6 +45,12 @@ public class Transcoding {
             else {
             	outputPath = outPath + File.separator + name + ".flv";
             }
+            if (coverPath.endsWith(File.separator)) {
+            	coverPath = cPath + name + ".jpg";
+            }
+            else {
+            	coverPath = cPath + File.separator + name + ".jpg";
+            }
             ffmpegPath = currPath + File.separator + "bin" + File.separator + "ffmpeg";
         }
         catch (Exception e) {
@@ -52,14 +59,20 @@ public class Transcoding {
     }
     
     /** 进入转码进程*/
-    private static boolean process() {
+    private static boolean process(boolean hasCover) {
         int type = checkContentType();
         boolean status = false;
         if (type == 0) {
             status = processFLV();// 直接转成flv格式
+            if (!status) {
+            	return false;
+            }
         } else if (type == 1) {
             return false;// 上传格式错误
         }
+        if (!hasCover) {
+        	status = processCover();// 视频截图
+        } 
         return status;
     }
     
@@ -126,6 +139,38 @@ public class Transcoding {
         try {
             Process videoProcess = new ProcessBuilder(command).redirectErrorStream(true).start();           
             videoProcess.waitFor();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    /** 取视频第一帧为截图 */
+    private static boolean processCover() {
+        
+        List<String> command = new ArrayList<String>();
+        command.add(ffmpegPath);
+        command.add("-y");
+        command.add("-i");
+        command.add(outputPath);
+        command.add("-vframes");
+        command.add("1");
+        command.add("-r");
+        command.add("1");
+        command.add("-ac");
+        command.add("1");
+        command.add("-ab");
+        command.add("2");
+        command.add("-s");
+        command.add("160*120");
+        command.add("-f");
+        command.add("image2");
+        command.add(coverPath);
+
+        try {
+            Process coverProcess = new ProcessBuilder(command).redirectErrorStream(true).start();           
+            coverProcess.waitFor();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
