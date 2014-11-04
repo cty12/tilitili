@@ -13,20 +13,20 @@
 					<li><a href="/TSIN/admin/manage.jsp">管理视频</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<%if(session.getAttribute("email") == null) { %>
+					<%if(session.getAttribute("studentid") == null) { %>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li data-toggle="modal" data-target="#loginBox"><a href="#">登录</a></li>
 						</ul>
 					</li>
 					<%} else { %>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=session.getAttribute("username").toString() %><span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=session.getAttribute("studentid").toString() %><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/InfoPlatform/userinfo.jsp">个人信息</a>
+							<li><a href="#">个人信息</a>
 							<li class="divider"></li>
-							<li><a href="/InfoPlatform/logout.jsp">注销</a></li>
+							<li><a href="user/sendLogout.jsp">注销</a></li>
 						</ul>
 					</li>
 					<%} %>
@@ -45,7 +45,7 @@
 				</div>
 
 				<div class="modal-body">
-						<form class="form-signin" role="form" action="/login" method="post">
+						<form class="form-signin" role="form" action="user/sendLogin.jsp" method="post">
 							<input name="studentid" type="number" class="form-control" placeholder="学号" required autofocus>
 							<input name="password" type="password" class="form-control" placeholder="密码" required>
 							<button class="btn btn-lg btn-primary btn-block" type="submit">登录！</button>
@@ -54,8 +54,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Modal Signup -->
 
 </body>
 </html>
