@@ -44,7 +44,7 @@ create table comment(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试1', 'testvideo/1.flv', 'testimg/1.jpeg', 'entertainment', '2014-09-01 20:00', '2014-09-02 20:00', 10, 0, 0, 1);
-insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试2', 'testvideo/2.flv', 'testimg/2.jpeg', 'news', '2014-09-02 20:00', '2014-10-02 20:00', 50, 1, 0, 1);
+insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment, introduction) values ('测试2', 'testvideo/2.flv', 'testimg/2.jpeg', 'news', '2014-09-02 20:00', '2014-10-02 20:00', 50, 1, 0, 1, '自制 这次用日常参加TIM就是为了贯彻下真爱，尽管是去跑个龙套但是还是很满足了；日常动画完结已经好一阵子了，虽然很期待第二季但是八成是没戏了，总之希望看过的不要淡忘，没看过的一定要去补；最后希望各位去看看内帮大触的狂欢，虽然已经完事了。');
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试3', 'testvideo/3.flv', 'testimg/3.jpeg', 'study', '2014-09-03 20:00', '2014-09-04 20:00', 1000, 13, 0, 1);
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试4', 'testvideo/4.flv', 'testimg/4.jpeg', 'entertainment', '2014-09-04 21:00', '2014-11-02 20:00', 100, 3, 0, 1);
 insert into video (title, path, icon, type, time, recent, click, praise, comment, nextcomment) values ('测试5', 'testvideo/5.flv', 'testimg/5.jpeg', 'life', '2014-09-05 20:00', '2014-10-02 20:00', 600, 7, 0, 1);
@@ -54,6 +54,6 @@ insert into video (title, path, icon, type, time, recent, click, praise, comment
 insert into admin (num) values (2012011333);
 insert into admin (num) values (2012011348);
 insert into admin (num) values (2012011338);
-insert into user (num, nickname) values (2012011333, '俞寒轩');
+insert into user (num, nickname, mail) values (2012011333, '俞寒轩', 'yuhx402@gmail.com');
 insert into user (num, nickname, mail) values (2012011348, '陈天昱', 'chentianyu@outlook.com'); 
 insert into user (num, nickname) values (2012011338, '李心田');  

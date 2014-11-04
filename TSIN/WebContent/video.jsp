@@ -60,61 +60,113 @@
 	<!-- <center></center> -->
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<h1><%= vInfo == null ? "该视频不存在" : vInfo.getString("title") %></h1><hr>
+			<h2><%= vInfo == null ? "该视频不存在" : vInfo.getString("title") %></h2>
+			<div class="row">
+				<div class="col-md-7">
+					<h4><small>
+						<strong>
+						<div class="col-md-2 text-primary">
+							<%
+							if (vInfo.getString("type").equals("others"))
+								out.print("其他类");
+							else if (vInfo.getString("type").equals("news"))
+								out.print("新闻类");
+							else if (vInfo.getString("type").equals("study"))
+								out.print("学习类");
+							else if (vInfo.getString("type").equals("entertainment"))
+								out.print("娱乐类");
+							else if (vInfo.getString("type").equals("life"))
+								out.print("生活类");
+							%>
+						</div>
+						</strong>
+					</small></h4>
+					<h6><small>
+						<div class="col-md-3">
+							<%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%>
+						</div>
+						<div class="col-md-3">
+							<%= vInfo.getString("click") %>次播放					
+						</div>
+						<div class="col-md-3">
+							<%= vInfo.getString("praise") %>次赞
+						</div>	
+					</small></h6>
+				</div>
+			</div>
+			<hr>
 			<div id="player">Loading the player...</div>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-	<hr>
-	<form role="form" method="post" action="user/newComment.jsp?id=<%= videoId%>">
-		<div class="form-group">
-				<label for="title">发表评论</label>
-	   		<textarea class="form-control" rows="4" name="content" placeholder="评论限制在200字以内"></textarea>
-		</div>
-		<div class="form-group">
-		    <div class="col-md-2 col-md-offset-10" >
-	       		<button type="submit" class="btn btn-primary btn-block"><font face="微软雅黑">发表</font></button>
-	    	</div>
-		</div>
-	</form>
-	<hr><hr>
-	
-	<table class="table table-condensed table-striped table-hover">
-		<%
-			comment.getCommentById(videoId);
-			while(comment.getRs().next())
-			{
-		%>
-		<tr>
-			<td width="15%">
-				<br>
-				<div class="row" align="center">
-					<img src="img/user.png" id="user_img" alt="icon" />
+		<div class="col-md-7 col-md-offset-1">
+			<br>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="col-md-9" align="left">
+						<h5>视频简介</h5>
+					</div>
+					<div class="col-md-3" align="right">
+						<form class="form" role="praise" action="praise.jsp?<%= videoId%>" method="post">
+							<button type="submit" class="btn btn-default btn-sm"><font face="微软雅黑">点赞</font></button>
+						</form>
+					</div>
+					<div class="col-md-10" align="left">
+							<h6><small>
+								<%= vInfo.getString("introduction") == null? "这家伙什么也没说" : vInfo.getString("introduction") %>
+							</small></h6>
+					</div>
 				</div>
-				<div class="row" align="center">
-					<h5><small><%=
-						comment.getNameByStuNum(comment.getRs().getString("authorid"))
-					%></small></h5>
+			</div>
+			<hr>
+			<form role="form" method="post" action="user/newComment.jsp?id=<%= videoId%>">
+				<div class="form-group">
+						<label for="title">发表评论</label>
+			   		<textarea class="form-control" rows="4" name="content" placeholder="评论限制在200字以内"></textarea>
 				</div>
-			</td>
-			<td width="65%">
-				<small><br></small>
-				<font face="微软雅黑" ><%out.print(comment.getRs().getString("content"));%></font>
-			</td>
-			<td width="20%">
-							<h5><small>
-							<%out.print(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(comment.getRs().getTimestamp("time")));%>
-							<%out.print("  " + comment.getRs().getString("seq")+"楼");%>
-							</small></h5>				
-			</td>
-		</tr>
-		<%	
-			}
-		%>
-	</table>
-	</div>
+				<div class="form-group">
+				    <div class="col-md-2 col-md-offset-10" >
+			       		<button type="submit" class="btn btn-primary btn-block"><font face="微软雅黑">发表</font></button>
+			    	</div>
+				</div>
+			</form>
+			<hr><hr>
+			
+			<table class="table table-condensed table-striped table-hover" frame=void>
+				<%
+					comment.getCommentById(videoId);
+					while(comment.getRs().next())
+					{
+				%>
+				<tr>
+					<td width="15%">
+						<br>
+						<div class="row" align="center">
+							<img src="img/user.png" id="user_img" alt="icon" />
+						</div>
+						<div class="row" align="center">
+							<h5><small><%=
+								comment.getNameByStuNum(comment.getRs().getString("authorid"))
+							%></small></h5>
+						</div>
+					</td>
+					<td width="60%">
+						<small><br></small>
+						<font face="微软雅黑" ><%out.print(comment.getRs().getString("content"));%></font>
+					</td>
+					<td width="25%">
+									<h5><small>
+									<%out.print(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(comment.getRs().getTimestamp("time")));%>
+									<%out.print("  " + comment.getRs().getString("seq")+"楼");%>
+									</small></h5>				
+					</td>
+				</tr>
+				<%	
+					}
+				%>
+			</table>
+		</div>
 	</div>
 	
 	<script type="text/javascript">
