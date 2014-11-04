@@ -15,7 +15,7 @@
 		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
 		java.util.Date currentTime = new java.util.Date();
 		String date = formatter.format(currentTime);
-		comment.newComment(id, date, content);
+		comment.newComment(id, date, content, session.getAttribute("studentid").toString());
 		comment.release();
 		response.sendRedirect("../video.jsp?id=" + id);
 	%>

@@ -28,7 +28,8 @@ create table admin (
 
 create table user (
     num int unsigned primary key,
-    nickname char(8) not null
+    nickname char(8) not null,
+    INDEX(nickname)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table comment(

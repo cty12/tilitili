@@ -26,7 +26,7 @@ public class Display {
 		execute(sql);
 	}
 	
-	/*
+	/**
 	 * 用于得到所有的视频列表
 	 */
 	public void getAll() {

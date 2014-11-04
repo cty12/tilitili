@@ -48,7 +48,7 @@
 						<form class="form-signin" role="form" action="user/sendLogin.jsp" method="post">
 							<input name="studentid" type="number" class="form-control" placeholder="学号" required autofocus>
 							<input name="password" type="password" class="form-control" placeholder="密码" required>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">登录！</button>
+							<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
 						</form>
 				</div>
 			</div>

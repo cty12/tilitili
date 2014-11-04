@@ -89,8 +89,14 @@
 		%>
 		<tr>
 			<td width="15%">
+				<br>
 				<div class="row" align="center">
 					<img src="img/user.png" id="user_img" alt="icon" />
+				</div>
+				<div class="row" align="center">
+					<h5><small><%=
+						comment.getNameByStuNum(comment.getRs().getString("authorid"))
+					%></small></h5>
 				</div>
 			</td>
 			<td width="65%">
@@ -101,8 +107,7 @@
 							<h5><small>
 							<%out.print(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(comment.getRs().getTimestamp("time")));%>
 							<%out.print("  " + comment.getRs().getString("seq")+"楼");%>
-							</small></h5>
-						
+							</small></h5>				
 			</td>
 		</tr>
 		<%	

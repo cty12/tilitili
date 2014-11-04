@@ -21,7 +21,7 @@ public class Comment {
 	}
 	
 	/**发表新评论*/
-	public void newComment(String id, String date, String comment)
+	public void newComment(String id, String date, String comment, String authorID)
 	{
 		try
 		{
@@ -29,11 +29,12 @@ public class Comment {
 			execute(sql);
 			rs.next();
 			int seq = rs.getInt("nextcomment");
-			PreparedStatement pstmt1 = conn.prepareStatement("insert into comment (id, seq, content, time) values (?,?,?,?)"); 
+			PreparedStatement pstmt1 = conn.prepareStatement("insert into comment (id, seq, content, time, authorid) values (?,?,?,?,?)"); 
 			pstmt1.setString(1, id);
 			pstmt1.setInt(2, seq);
 			pstmt1.setString(3, comment);
 			pstmt1.setString(4, date);
+			pstmt1.setString(5, authorID);
 			pstmt1.executeUpdate();
 			pstmt1.close();
 			seq ++;
@@ -51,16 +52,33 @@ public class Comment {
 		}
 	}
 	
+	public String getNameByStuNum(String num)
+	{
+		String sql = "select * from user where num=" + num;
+		ResultSet ns = null;
+		try {
+			stm = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ns = stm.executeQuery(sql);
+			if (ns.next())
+			{
+				return ns.getString("nickname");
+			}
+		} catch(SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				ns.close();
+			} catch(SQLException e) {
+				System.out.println(e);
+			}
+		}
+		return "";
+	}
+	
 	public void getCommentById(String id)
 	{
 		String sql = "select * from comment where id=" + id + " order by seq desc";
-		try 
-		{
-			stm = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			rs = stm.executeQuery(sql);
-		} catch(SQLException e) {
-			System.out.println(e);
-		}
+		execute(sql);
 	}
 	
 	/**得到结果集合*/
