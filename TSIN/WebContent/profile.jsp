@@ -34,16 +34,26 @@
 			<%=studentid %>的个人资料
 		</div>
 		<div class="panel-body">
+			<form role="form" action="user/updateProfile.jsp" method="post">
 				<h5>学号: </h5>
 				<input name="studentid" class="form-control" type="number" value=<%=studentid %> readonly required>
 				<h5>昵称: </h5>
-				<input name="nickname" class="form-control" type="text" value=<%=nickname %> readonly required>
+				<input name="nickname" class="form-control" type="text" value=<%=nickname %> <%=editable ? "" : "readonly" %> required>
 				<h5>邮箱: </h5>
 				<input name="mail" class="form-control" type="email" value=<%=mail %> <%=editable ? "" : "readonly" %> required>
 				<h5>头像: </h5>
-				<p>
-					<img alt="avatar" src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=128">
+				<p align="center">
+					<img alt="avatar" src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=150">
 				</p>
+				<br>
+				<%if(editable) { %>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<button class="btn btn-info btn-block btn-sm" type="submit">修改</button>
+						</div>
+					</div>
+				<%} %>
+			</form>
 		</div>
 	</div>
 	<% getInfo.release(); %>

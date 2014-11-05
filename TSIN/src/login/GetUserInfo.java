@@ -71,4 +71,14 @@ public class GetUserInfo {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateInfo(String studentid, String nickname, String mail) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.execute("update user set nickname=\"" + nickname + "\" where num=" + studentid);
+			stmt.execute("update user set mail=\"" + mail + "\" where num=" + studentid);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

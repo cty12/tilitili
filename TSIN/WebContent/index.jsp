@@ -38,7 +38,7 @@
 				<div class="col-md-4" align="left">
 					<form class="navbar-form navbar-left" role="search" action="search.jsp" method="get">
 					    <div class="form-group">
-					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容" required>
 					    </div>
 					    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
