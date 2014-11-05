@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <jsp:useBean id="videoInfo" class="play.VideoInfo" scope="request" />
 <jsp:useBean id="comment" class="video.Comment" scope="request" />
+<jsp:useBean id="like" class="video.Like" scope="request" />
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -108,9 +109,21 @@
 						<h5>视频简介</h5>
 					</div>
 					<div class="col-md-3" align="right">
-						<form class="form" role="praise" action="praise.jsp?<%= videoId%>" method="post">
-							<button type="submit" class="btn btn-default btn-sm"><font face="微软雅黑">点赞</font></button>
-						</form>
+						<%
+							if (session.getAttribute("studentid") != null) {
+								if (like.hasPraised(videoId, session.getAttribute("studentid").toString())) {
+						%>
+								<button type="button" disabled="disabled" class="btn btn-default btn-sm"><font face="微软雅黑">赞过了</font></button>
+						<%
+								} else {
+						%>
+								<form class="form" role="praise" action="user/praise.jsp?id=<%= videoId%>" method="post">
+									<button type="submit" class="btn btn-default btn-sm"><font face="微软雅黑">赞一下</font></button>
+								</form>
+						<%
+								}
+							}
+						%>
 					</div>
 					<div class="col-md-10" align="left">
 							<h6><small>
@@ -120,9 +133,12 @@
 				</div>
 			</div>
 			<hr>
+			<%
+				if (session.getAttribute("studentid") != null) {
+			%>
 			<form role="form" method="post" action="user/newComment.jsp?id=<%= videoId%>">
 				<div class="form-group">
-						<label for="title">发表评论</label>
+						<label for="content">发表评论</label>
 			   		<textarea class="form-control" rows="4" name="content" placeholder="评论限制在200字以内"></textarea>
 				</div>
 				<div class="form-group">
@@ -132,6 +148,13 @@
 				</div>
 			</form>
 			<hr><hr>
+			<%
+				} else {
+			%>
+				<h4><small>评论请先登录</small></h4>
+			<%
+				}
+			%>
 			
 			<table class="table table-condensed table-striped table-hover" frame=void>
 				<%
@@ -196,5 +219,6 @@
 </body>
 <%
 	comment.release();
+	like.release();
 %>
 </html>

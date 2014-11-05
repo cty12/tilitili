@@ -43,7 +43,7 @@ create table comment(
     INDEX(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table like(
+create table praise(
     video int unsigned not null,
     student int unsigned not null,
     INDEX(video),
