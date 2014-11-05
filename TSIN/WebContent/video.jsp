@@ -1,6 +1,7 @@
 <%@ page import="play.VideoInfo"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.util.Enumeration"%>
+<%@ page import="login.GetUserInfo" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -166,7 +167,12 @@
 					<td width="15%">
 						<br>
 						<div class="row" align="center">
-							<img src="img/user.png" id="user_img" alt="icon" />
+							<%
+								GetUserInfo getInfo = new GetUserInfo();
+								String mail = getInfo.getMail(comment.getRs().getString("authorid"));
+								String hash = DigestUtils.md5Hex(mail.trim().toLowerCase());
+							%>
+							<img src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=80" id="user_img" alt="icon" />
 						</div>
 						<div class="row" align="center" >
 							<h5><small>

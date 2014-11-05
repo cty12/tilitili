@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ page import="org.apache.commons.codec.digest.DigestUtils" %>
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -22,7 +24,16 @@
 					</li>
 					<%} else { %>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=session.getAttribute("studentid").toString() %><span class="caret"></span></a>
+						<%
+							String mail = session.getAttribute("mail").toString();
+							String hash = DigestUtils.md5Hex(mail.trim().toLowerCase());
+							String nickname = session.getAttribute("nickname").toString();
+						%>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=24"/>
+							<%=nickname %>
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">个人信息</a>
 							<li class="divider"></li>

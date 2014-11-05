@@ -9,7 +9,8 @@
 <body>
 	<%
 		session.removeAttribute("studentid");
-		// session.removeAttribute("password");
+		session.removeAttribute("mail");
+		session.removeAttribute("nickname");
 		response.sendRedirect(request.getHeader("Referer"));
 	%>
 </body>
