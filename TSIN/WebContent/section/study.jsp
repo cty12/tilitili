@@ -39,7 +39,7 @@
 					    <div class="form-group">
 					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
 					    </div>
-					    <button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
+					    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
 				</div>
 			</nav>

@@ -53,7 +53,7 @@
 					    <div class="form-group">
 					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
 					    </div>
-				    <button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
+				    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</form>
 				</div>
 			</nav>
@@ -84,14 +84,14 @@
 						</strong>
 					</small></h4>
 					<h6><small>
-						<div class="col-md-3">
-							<%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%>
+						<div class="col-md-4">
+							<span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%>
 						</div>
-						<div class="col-md-3">
-							<%= vInfo.getString("click") %>次播放					
+						<div class="col-md-2">
+							<span class="glyphicon glyphicon-facetime-video"></span> <%= vInfo.getString("click") %>				
 						</div>
-						<div class="col-md-3">
-							<%= vInfo.getString("praise") %>次赞
+						<div class="col-md-2">
+							<span class="glyphicon glyphicon-thumbs-up"></span> <%= vInfo.getString("praise") %>
 						</div>	
 					</small></h6>
 				</div>
