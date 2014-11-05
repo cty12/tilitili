@@ -10,7 +10,7 @@
 	<%
 		session.removeAttribute("studentid");
 		// session.removeAttribute("password");
-		response.sendRedirect("../index.jsp");
+		response.sendRedirect(request.getHeader("Referer"));
 	%>
 </body>
 </html>

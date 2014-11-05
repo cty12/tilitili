@@ -22,7 +22,7 @@
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			response.sendRedirect("../index.jsp");
+			response.sendRedirect(request.getHeader("Referer"));
 		}
 	%>
 </body>
