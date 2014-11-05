@@ -14,14 +14,14 @@
 </head>
 <%
 	request.setCharacterEncoding("utf-8");
-	Enumeration<String> paraNames = request.getParameterNames();
-	String exactPara = paraNames.hasMoreElements() ? paraNames.nextElement() : "";
-	if (!exactPara.equals("content")) {
+	String key = request.getParameter("content");
+	if (key == null) {
 		response.setHeader("refresh", "0;index.jsp");
 		return;
 	}
-	String key = request.getParameter("content");
-	ResultSet vlist = videoInfo.findVideoByKey(key);
+	String type = request.getParameter("type");
+	String order = request.getParameter("order");
+	ResultSet vlist = videoInfo.findVideoByKey(key, type, order);
 %>
 <body>
 		<div class="row" align="left">
@@ -45,9 +45,9 @@
 					<div class="col-md-4" align="left">
 						<form class="navbar-form navbar-left" role="search" action="search.jsp" method="get">
 						    <div class="form-group">
-						        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+						        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容" value="<%= key %>">
 						    </div>
-						    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+						    <button type="submit" class="btn btn-primary"><font face="微软雅黑">搜索</font></button>
 						</form>
 					</div>
 				</nav>
@@ -62,6 +62,37 @@
 				%>
 				<h5><small>搜索 </small><%= key %>   <small>    为您找到<%= resultNum %>个结果</small></h5>
 				<hr>
+				<p>视频类型：
+					<a href="search.jsp?content=<%=key%><%=order==null?"":"&order="+order%>">
+						<button type="button" class="btn btn-<%=type==null?"primary":"default"%> btn-xs">全部</button>
+					</a>
+					<a href="?content=<%=key%>&type=news<%=order==null?"":"&order="+order%>">
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("news")?"primary":"default"%> btn-xs">新闻</button>
+					</a>
+					<a href="?content=<%=key%>&type=study<%=order==null?"":"&order="+order%>">
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("study")?"primary":"default"%> btn-xs">学习</button>
+					</a>
+					<a href="?content=<%=key%>&type=life<%=order==null?"":"&order="+order%>">
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("life")?"primary":"default"%> btn-xs">生活</button>
+					</a>
+					<a href="?content=<%=key%>&type=entertainment<%=order==null?"":"&order="+order%>">
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("entertainment")?"primary":"default"%> btn-xs">娱乐</button>
+					</a>
+				</p>
+				<p>排序方式：
+					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>">
+						<button type="button" class="btn btn-<%=order==null||order.equals("time")?"primary":"default"%> btn-xs">发布时间</button>
+					</a>
+					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>&order=click">
+						<button type="button" class="btn btn-<%=order!=null&&order.equals("click")?"primary":"default"%> btn-xs">点击数</button>
+					</a>
+					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>&order=praise">
+						<button type="button" class="btn btn-<%=order!=null&&order.equals("praise")?"primary":"default"%> btn-xs">点赞数</button>
+					</a>
+					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>&order=comment">
+						<button type="button" class="btn btn-<%=order!=null&&order.equals("comment")?"primary":"default"%> btn-xs">评论数</button>
+					</a>
+				</p><br>
 				<h4>相关视频</h4>
 				<%
 					vlist.beforeFirst();
@@ -96,9 +127,9 @@
 							<div class="row">
 								<div class="col-md-10">
 									<h6><small>
-										<div class="col-md-2"><span class="glyphicon glyphicon-facetime-video"></span> <%= vlist.getString("click") %></div> 
-										<div class="col-md-2"><span class="glyphicon glyphicon-thumbs-up"></span> <%= vlist.getString("praise") %></div>
-										<div class="col-md-4"><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vlist.getTimestamp("time")))%></div>
+										<div class="col-md-2"><%= vlist.getString("click") %>次播放</div> 
+										<div class="col-md-2"><%= vlist.getString("praise") %>次赞</div>
+										<div class="col-md-4"><%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vlist.getTimestamp("time")))%></div>
 									</small></h6>
 								</div>
 							</div>
@@ -122,6 +153,9 @@
 				<% } %>
 			</div>
 		</div>
+<%
+	vlist.close();
+%>
 		<%@ include file="topbar.jsp" %>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
