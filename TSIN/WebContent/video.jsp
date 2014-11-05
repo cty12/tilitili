@@ -154,6 +154,7 @@
 			
 			<table class="table table-condensed table-striped table-hover" frame=void>
 				<%
+					GetUserInfo getInfo = new GetUserInfo();
 					comment.getCommentById(videoId);
 					while(comment.getRs().next())
 					{
@@ -163,7 +164,6 @@
 						<br>
 						<div class="row" align="center">
 							<%
-								GetUserInfo getInfo = new GetUserInfo();
 								String mail = getInfo.getMail(comment.getRs().getString("authorid"));
 								String hash = DigestUtils.md5Hex(mail.trim().toLowerCase());
 							%>
@@ -171,11 +171,11 @@
 						</div>
 						<div class="row" align="center" >
 							<h5><small>
-							<div class="text-info">
+							<a href="profile.jsp?studentid=<%=comment.getRs().getString("authorid") %>">
 							<%=
 								comment.getNameByStuNum(comment.getRs().getString("authorid"))
 							%>
-							</div>
+							</a>
 							</small></h5>
 						</div>
 					</td>
@@ -225,5 +225,6 @@
 <%
 	comment.release();
 	like.release();
+	getInfo.release();
 %>
 </html>
