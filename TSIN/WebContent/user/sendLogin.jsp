@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Logging in</title>
+
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/lavish-bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -23,11 +26,33 @@
 				session.setAttribute("nickname", getInfo.getNickname(studentid));
 				session.setAttribute("mail", getInfo.getMail(studentid));
 				getInfo.release();
+				%>
+					<div class="panel panel-success login-panel">
+						<div class="panel-heading">
+							登录成功
+						</div>
+						<div class="panel-body">
+							正在转向指定页面...
+						</div>
+					</div>
+				<%
+			} else {
+				%>
+					<div class="panel panel-primary login-panel">
+						<div class="panel-heading">
+							登录失败
+						</div>
+						<div class="panel-body">
+							正在转向指定页面...
+						</div>
+					</div>
+				<%
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			response.sendRedirect(request.getHeader("Referer"));
+			// response.sendRedirect(request.getHeader("Referer"));
+			response.setHeader("refresh","1;URL=" + request.getHeader("Referer"));
 		}
 	%>
 </body>
