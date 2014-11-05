@@ -32,7 +32,7 @@
 							登录成功
 						</div>
 						<div class="panel-body">
-							正在转向指定页面...
+							<%=studentid %>，欢迎回来！
 						</div>
 					</div>
 				<%

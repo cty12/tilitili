@@ -25,17 +25,18 @@
 					<%} else { %>
 					<li class="dropdown">
 						<%
-							String mail = session.getAttribute("mail").toString();
-							String hash = DigestUtils.md5Hex(mail.trim().toLowerCase());
-							String nickname = session.getAttribute("nickname").toString();
+							String myMail = session.getAttribute("mail").toString();
+							String myHash = DigestUtils.md5Hex(myMail.trim().toLowerCase());
+							String myNickname = session.getAttribute("nickname").toString();
+							String myStudentid = session.getAttribute("studentid").toString();
 						%>
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=24"/>
-							<%=nickname %>
+							<img src="http://www.gravatar.com/avatar/<%=myHash %>?d=retro&s=24"/>
+							<%=myNickname %>
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">个人信息</a>
+							<li><a href="profile.jsp?studentid=<%=myStudentid %>">个人信息</a>
 							<li class="divider"></li>
 							<li><a href="user/sendLogout.jsp">注销</a></li>
 						</ul>

@@ -95,18 +95,10 @@ public class VideoInfo {
 	public ResultSet findVideoByKey(String keys, String type, String order) {
 		try {
 			String reg = String.join("|", keys.split("[ \t]+"));
-			order = order == null ? "time" : order; //System.out.println("type="+type.toString()+"\norder="+order);
 			Statement stmt = conn.createStatement();
-			ResultSet rs;
-			if (type != null) {
-				rs = stmt.executeQuery(
-					"select * from video where title regexp '" + reg + "' and type='" + type + "' order by " + order + " desc"
-				);
-			} else {
-				rs = stmt.executeQuery(
-					"select * from video where title regexp '" + reg + "' order by " + order + " desc"
-				);
-			}
+			ResultSet rs = stmt.executeQuery(
+				"select * from video where title regexp '" + reg + "' and type='" + type + "' order by " + order + " desc"
+			);
 			if (rs.next())
 				return rs;
 			else
