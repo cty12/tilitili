@@ -66,7 +66,7 @@
 				<div class="col-md-7">
 					<h4><small>
 						<strong>
-						<div class="col-md-2 text-primary">
+						<div class="col-md-2 text-info">
 							<%
 							if (vInfo.getString("type").equals("others"))
 								out.print("其他类");
@@ -113,12 +113,12 @@
 							if (session.getAttribute("studentid") != null) {
 								if (like.hasPraised(videoId, session.getAttribute("studentid").toString())) {
 						%>
-								<button type="button" disabled="disabled" class="btn btn-default btn-sm"><font face="微软雅黑">赞过了</font></button>
+								<button type="button" disabled="disabled" class="btn btn-info btn-sm"><font face="微软雅黑">赞过了</font></button>
 						<%
 								} else {
 						%>
 								<form class="form" role="praise" action="user/praise.jsp?id=<%= videoId%>" method="post">
-									<button type="submit" class="btn btn-default btn-sm"><font face="微软雅黑">赞一下</font></button>
+									<button type="submit" class="btn btn-info btn-sm"><font face="微软雅黑">赞一下</font></button>
 								</form>
 						<%
 								}
@@ -168,10 +168,14 @@
 						<div class="row" align="center">
 							<img src="img/user.png" id="user_img" alt="icon" />
 						</div>
-						<div class="row" align="center">
-							<h5><small><%=
+						<div class="row" align="center" >
+							<h5><small>
+							<div class="text-info">
+							<%=
 								comment.getNameByStuNum(comment.getRs().getString("authorid"))
-							%></small></h5>
+							%>
+							</div>
+							</small></h5>
 						</div>
 					</td>
 					<td width="60%">

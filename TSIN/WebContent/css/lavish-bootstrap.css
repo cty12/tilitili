@@ -362,7 +362,7 @@ cite {
   color: #468847;
 }
 .text-info {
-  color: #3a87ad;
+  color: #0ea7df;
 }
 .text-left {
   text-align: left;
@@ -2026,8 +2026,8 @@ fieldset[disabled] .btn-success.active {
 }
 .btn-info {
   color: #ffffff;
-  background-color: #5bc0de;
-  border-color: #46b8da;
+  background-color: #0ea7df;
+  border-color: #0891c3;
 }
 .btn-info:hover,
 .btn-info:focus,
