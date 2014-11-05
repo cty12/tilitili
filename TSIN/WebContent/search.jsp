@@ -126,7 +126,7 @@
 										</span>
 										</div>
 										<div class="col-md-8">
-										<a href="video.jsp?id=<%= vlist.getString("id") %>" target="_blank"><div class="text-info"><%= vlist.getString("title") %></div></a>
+										<a href="video.jsp?id=<%= vlist.getString("id") %>" target="_blank"><div class="text-info"><font face="微软雅黑" ><%= vlist.getString("title") %></font></div></a>
 										</div>
 										</div>
 										</h5>
@@ -146,7 +146,7 @@
 							<div class="row">
 								<div class="col-md-10">
 									<div class="col-md-12">
-										<h6><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></h6>
+										<h6><small><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></small></h6>
 									</div>
 								</div>
 							</div>
@@ -164,7 +164,10 @@
 			</div>
 		</div>
 <%
-	vlist.close();
+	if (vlist != null) {
+		vlist.close();
+	}
+	videoInfo.release();
 %>
 		<%@ include file="topbar.jsp" %>
 		<script src="js/jquery-1.11.1.min.js"></script>

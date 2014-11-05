@@ -171,11 +171,17 @@
 						</div>
 						<div class="row" align="center" >
 							<h5><small>
-							<a href="profile.jsp?studentid=<%=comment.getRs().getString("authorid") %>">
+							
+							<a href="profile.jsp?studentid=<%=comment.getRs().getString("authorid") %>" target="_blank">
+							<div class="text-info">
+							<font face="微软雅黑" >
 							<%=
 								comment.getNameByStuNum(comment.getRs().getString("authorid"))
 							%>
+							</font>
+							</div>
 							</a>
+							
 							</small></h5>
 						</div>
 					</td>
