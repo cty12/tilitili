@@ -27,18 +27,18 @@
 				session.setAttribute("mail", getInfo.getMail(studentid));
 				getInfo.release();
 				%>
-					<div class="panel panel-success login-panel">
+					<div class="panel panel-primary login-panel">
 						<div class="panel-heading">
 							登录成功
 						</div>
 						<div class="panel-body">
-							<%=studentid %>，欢迎回来！
+							正在转向指定页面...
 						</div>
 					</div>
 				<%
 			} else {
 				%>
-					<div class="panel panel-primary login-panel">
+					<div class="panel panel-info login-panel">
 						<div class="panel-heading">
 							登录失败
 						</div>

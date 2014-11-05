@@ -84,15 +84,10 @@
 						</strong>
 					</small></h4>
 					<h6><small>
-						<div class="col-md-4">
-							<span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%>
-						</div>
-						<div class="col-md-2">
-							<span class="glyphicon glyphicon-facetime-video"></span> <%= vInfo.getString("click") %>				
-						</div>
-						<div class="col-md-2">
-							<span class="glyphicon glyphicon-thumbs-up"></span> <%= vInfo.getString("praise") %>
-						</div>	
+						<div class="col-md-2"><span class="glyphicon glyphicon-facetime-video"></span> <%= vInfo.getString("click") %></div> 
+						<div class="col-md-2"><span class="glyphicon glyphicon-thumbs-up"></span> <%= vInfo.getString("praise") %></div>
+						<div class="col-md-2"><span class="glyphicon glyphicon-comment"></span> <%= vInfo.getString("comment") %></div>
+						<div class="col-md-4"><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%></div>
 					</small></h6>
 				</div>
 			</div>
