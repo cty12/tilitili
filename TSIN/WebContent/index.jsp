@@ -49,42 +49,59 @@
 	</div>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1" >
-			<div class="col-md-6" align="center">
-			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-			   <!-- 轮播指标 -->
-			   <ol class="carousel-indicators">
-			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			      <li data-target="#myCarousel" data-slide-to="1"></li>
-			      <li data-target="#myCarousel" data-slide-to="2"></li>
-			   </ol>   
-			   <!-- 轮播项目 -->
-			   <div class="carousel-inner">
-			   <%
-			   		slide.getList();
-			   		slide.getRs().next();
-			   %>				   
-			      <div class="item active" style="width:relative;height:200px;">
-			         <a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="First slide"></a>
-			      </div>
-			   <%
-			   		slide.getRs().next();
-			   %>
-			      <div class="item" style="width:relative;height:200px;">
-			         <a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="Second slide"></a>
-			      </div>
-			   <%
-			   		slide.getRs().next();
-			   %>
-			      <div class="item" style="width:relative;height:200px;">
-					<a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="Third slide"></a>
-			      </div>
-			   </div>
-			   <!-- 轮播导航 -->
-			   <a class="carousel-control left" href="#myCarousel" 
-			      data-slide="prev">&lsaquo;</a>
-			   <a class="carousel-control right" href="#myCarousel" 
-			      data-slide="next">&rsaquo;</a>
+			<div class="col-md-6">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+				   <!-- 轮播指标 -->
+				   <ol class="carousel-indicators">
+				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				      <li data-target="#myCarousel" data-slide-to="1"></li>
+				      <li data-target="#myCarousel" data-slide-to="2"></li>
+				   </ol>   
+				   <!-- 轮播项目 -->
+				   <div class="carousel-inner">
+				   <%
+				   		slide.getList();
+				   		slide.getRs().next();
+				   %>				   
+				      <div class="item active" style="width:relative;height:210px;">
+				         <a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="First slide"></a>
+				      </div>
+				   <%
+				   		slide.getRs().next();
+				   %>
+				      <div class="item" style="width:relative;height:210px;">
+				         <a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="Second slide"></a>
+				      </div>
+				   <%
+				   		slide.getRs().next();
+				   %>
+				      <div class="item" style="width:relative;height:210px;">
+						<a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="Third slide"></a>
+				      </div>
+				   </div>
+				   <!-- 轮播导航 -->
+				   <a class="carousel-control left" href="#myCarousel" 
+				      data-slide="prev">&lsaquo;</a>
+				   <a class="carousel-control right" href="#myCarousel" 
+				      data-slide="next">&rsaquo;</a>
+				</div>
 			</div>
+			<div class="col-md-6">
+			<%
+				videoDisplay.getSixHighRecom();
+				while(videoDisplay.getRs().next())
+				{
+			%>
+				<div class="col-md-4">
+					<div class="recommend">
+					<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
+						<img class="img-rounded" src="<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示" height="102px" width="136px">
+					</a>
+					</div>
+				</div>
+			<%
+				}
+			%>
 			</div>
 		</div>
 	</div>
@@ -107,7 +124,7 @@
 			%>
 			<div class="col-md-2" align="center">
 				<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
-					<img class="img-thumbnail img-sm" src="<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示">
+					<img class="img-rounded" src="<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示" height="108px" width="144px">
 				</a>
 				<div class="row" align="center"><small><b><font face="微软雅黑"><%= videoDisplay.getRs().getString(2) %></font></b></small></div>
 			</div>
