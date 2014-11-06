@@ -60,7 +60,7 @@
 						<p>简介: </p>
 					</div>
 					<div class="col-md-10">
-						<textarea name="introduction" class="form-control" rows="2" required></textarea>
+						<textarea name="introduction" class="form-control" rows="3"></textarea>
 					</div>
 				</div>
 				

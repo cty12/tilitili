@@ -10,6 +10,7 @@
 <%@ page import="org.apache.commons.io.output.*" %>
 <%@ page import="common.Path" %>
 <%@ page import="upload.UploadProgressListener" %>
+<%@ page import="upload.AddVideoRecord" %>
 
 <html>
 <head>
@@ -18,12 +19,20 @@
 </head>
 <body>
 	<%
+	request.setCharacterEncoding("utf-8");
+	String title = "";
+	String type = "";
+	String introduction = "";
+	// System.out.println(title);
+	String videoName = "";
+	String coverName = "";
+	
 	File file;
 	int maxFileSize = 5000000 * 1024;
 	int maxMemSize = 50000 * 1024;
 	String filePath = new String(Path.ORIGINFILEPATH);
 	String coverPath = new String(Path.COVERPATH);
-
+	
 	// 验证上传内容了类型
 	String contentType = request.getContentType();
 	if ((contentType.indexOf("multipart/form-data") >= 0)) {
@@ -59,8 +68,10 @@
 					System.out.println("fileName: " + fileName);
 					if(fileName.endsWith("jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png")) {
 						path = coverPath;
+						coverName = fileName;
 					} else {
 						path = filePath;
+						videoName = fileName;
 					}
 					boolean isInMemory = fi.isInMemory();
 					System.out.println("isInMemory: " + isInMemory);
@@ -77,9 +88,20 @@
 					fi.write(file);
 					out.println("Uploaded Filename: " + path + 
 					fileName + "<br>");
+				} else {
+					String fieldName = fi.getFieldName();
+					String fieldValue = fi.getString();
+					if(fieldName.equals("title")) {
+						title = fieldValue;
+					} else if(fieldName.equals("section")) {
+						type = fieldValue;
+					} else if(fieldName.equals("introduction")) {
+						introduction = fieldValue;
+					}
 				}
-			 }
-
+			}
+			AddVideoRecord addRecord = new AddVideoRecord();
+			addRecord.addVideoRecord(title, Path.VIDEOREPO + videoName, Path.COVERREPO + coverName, type, introduction);
 		} catch(Exception ex) {
 			System.out.println(ex);
 		} finally {
@@ -88,7 +110,8 @@
 	} else {
 		out.println("<p>No file uploaded</p>"); 
 
-	}	
+	}
+	response.setHeader("refresh","2;URL=" + request.getHeader("Referer"));
 	%>
 </body>
 </html>
