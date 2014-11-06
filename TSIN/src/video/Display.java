@@ -21,8 +21,8 @@ public class Display {
 	}
 	
 	/**获取最热的五个视频，用以放在首页展示*/
-	public void getLastFive() {
-		String sql = "select * from video order by recent desc limit 5";
+	public void getLastSixHot() {
+		String sql = "select * from video order by recent desc limit 6";
 		execute(sql);
 	}
 	

@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <jsp:useBean id="videoDisplay" class="video.Display" scope="request" />
+<jsp:useBean id="slide" class="video.Slide" scope="request" />
 <html>
 <head>
 <meta charset="UTF-8">
@@ -47,14 +48,60 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2 col-md-offset-1" >
-			<h3><span class="label label-primary">最热视频</span></h3>
+		<div class="col-md-10 col-md-offset-1" >
+			<div class="col-md-6" align="center">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+			   <!-- 轮播指标 -->
+			   <ol class="carousel-indicators">
+			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			      <li data-target="#myCarousel" data-slide-to="1"></li>
+			      <li data-target="#myCarousel" data-slide-to="2"></li>
+			   </ol>   
+			   <!-- 轮播项目 -->
+			   <div class="carousel-inner">
+			   <%
+			   		slide.getList();
+			   		slide.getRs().next();
+			   %>				   
+			      <div class="item active" style="width:relative;height:200px;">
+			         <a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="First slide"></a>
+			      </div>
+			   <%
+			   		slide.getRs().next();
+			   %>
+			      <div class="item" style="width:relative;height:200px;">
+			         <a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="Second slide"></a>
+			      </div>
+			   <%
+			   		slide.getRs().next();
+			   %>
+			      <div class="item" style="width:relative;height:200px;">
+					<a href="<%out.print(slide.getRs().getString(3)); %>" target="_blank"><img src="<%out.print(slide.getRs().getString(2)); %>" alt="Third slide"></a>
+			      </div>
+			   </div>
+			   <!-- 轮播导航 -->
+			   <a class="carousel-control left" href="#myCarousel" 
+			      data-slide="prev">&lsaquo;</a>
+			   <a class="carousel-control right" href="#myCarousel" 
+			      data-slide="next">&rsaquo;</a>
+			</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-offset-1">
+		<div class="col-md-10 col-md-offset-1" >
+			<br>
+			<div class="col-md-4">
+				<h4>			
+					<span class="glyphicon glyphicon-film text-primary"></span><font face="微软雅黑"> 最热视频</font> 
+				</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
 			<%
-				videoDisplay.getLastFive();
+				videoDisplay.getLastSixHot();
 				while(videoDisplay.getRs().next())
 				{
 			%>
@@ -74,5 +121,6 @@
 </body>
 <%
 	videoDisplay.release();
+	slide.release();
 %>
 </html>

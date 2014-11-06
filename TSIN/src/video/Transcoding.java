@@ -8,17 +8,13 @@ import common.Path;
 
 public class Transcoding {
     
-    private static String inputPath = "";    
-    private static String outputPath = "";    
-    private static String ffmpegPath = "";
-    private static String coverPath ="";
-    
-    public static void main(String[] args) {
-    	transcode("test.mp4", "test", false);
-    }
+    private String inputPath = "";    
+    private String outputPath = "";    
+    private String ffmpegPath = "";
+    private String coverPath ="";
     
     /** 外部调用，用于转码的函数 */
-    public static boolean transcode(String inputName, String outputName, boolean hasCover) {
+    public boolean transcode(String inputName, String outputName, boolean hasCover) {
     	getPath(Path.ORIGINFILEPATH + inputName, Path.TRANSFILEPATH, Path.COVERPATH, outputName);
 
         if (!checkfile(inputPath)) {
@@ -33,7 +29,7 @@ public class Transcoding {
     }
     
     /** 获取使用到的路径 */
-    private static void getPath(String inPath, String outPath, String cPath,String name) { 
+    private void getPath(String inPath, String outPath, String cPath,String name) { 
     	// 先获取当前项目路径，在获得源文件、目标文件、转换器的路径
         File diretory = new File("");
         try {
@@ -59,7 +55,7 @@ public class Transcoding {
     }
     
     /** 进入转码进程*/
-    private static boolean process(boolean hasCover) {
+    private boolean process(boolean hasCover) {
         int type = checkContentType();
         boolean status = false;
         if (type == 0) {
@@ -77,7 +73,7 @@ public class Transcoding {
     }
     
     /** 检查文件是否为可以转码的格式*/
-    private static int checkContentType() {
+    private int checkContentType() {
         String type = inputPath.substring(inputPath.lastIndexOf(".") + 1, inputPath.length())
                 .toLowerCase();
         // ffmpeg能解析的格式：（asx，asf，mpg，wmv，3gp，mp4，mov，avi，flv等）
@@ -105,7 +101,7 @@ public class Transcoding {
     }
 
     /** 检查是待转码文件是否存在*/
-    private static boolean checkfile(String path) {
+    private boolean checkfile(String path) {
         File file = new File(path);
         if (!file.isFile()) {
             return false;
@@ -114,7 +110,7 @@ public class Transcoding {
     }
 
     /** 转换为flv，ffmpeg能解析的格式：（asx，asf，mpg，wmv，3gp，mp4，mov，avi，flv等）*/
-    private static boolean processFLV() {
+    private boolean processFLV() {
         if (!checkfile(inputPath)) {
             System.out.println(inputPath + " is not file");
             return false;
@@ -147,7 +143,7 @@ public class Transcoding {
     }
     
     /** 取视频第一帧为截图 */
-    private static boolean processCover() {
+    private boolean processCover() {
         
         List<String> command = new ArrayList<String>();
         command.add(ffmpegPath);
