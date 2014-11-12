@@ -8,16 +8,15 @@
 <jsp:useBean id="videoInfo" class="play.VideoInfo" scope="request" />
 <jsp:useBean id="comment" class="video.Comment" scope="request" />
 <jsp:useBean id="like" class="video.Like" scope="request" />
+<jsp:useBean id="collect" class="video.Collect" scope="request" />
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Tilitili在线视频播放</title>
 	<link href="css/lavish-bootstrap.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jwplayer.js"></script>
-</head>
 <%
 	request.setCharacterEncoding("utf-8");
 	Enumeration<String> paraNames = request.getParameterNames();
@@ -29,6 +28,8 @@
 	String videoId = request.getParameter("id");
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
+	<title><%= vInfo.getString("title") %></title>
+</head>
 <body>
 	<div class="row" align="left">
 		<div class="col-md-12" >
@@ -51,7 +52,7 @@
 				<div class="col-md-4" align="left">
 					<form class="navbar-form navbar-left" role="search" action="search.jsp" method="get">
 					    <div class="form-group">
-					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容"  required>
 					    </div>
 				    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</form>
@@ -89,6 +90,25 @@
 						<div class="col-md-2"><span class="glyphicon glyphicon-comment"></span> <%= vInfo.getString("comment") %></div>
 						<div class="col-md-4"><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%></div>
 					</small></h6>
+				</div>
+				<div class="col-md-2">
+					<%
+						if (session.getAttribute("studentid") != null) {
+							if (!collect.hasCollected(videoId, session.getAttribute("studentid").toString())) {
+					%>
+					<h6><a href="user/collect.jsp?id=<%= videoId%>">
+						<small><div class="text-info"><font face="微软雅黑"><span class="glyphicon glyphicon-star"></span> 收藏本视频</font></div></small>
+					</a></h6>
+					<%
+							} else {
+					%>
+					<h6>
+						<small><font face="微软雅黑"><span class="glyphicon glyphicon-star"></span> 您已收藏</font></small>
+					</h6>
+					<%
+							}
+						}
+					%>
 				</div>
 			</div>
 			<hr>
@@ -231,6 +251,7 @@
 <%
 	comment.release();
 	like.release();
+	collect.release();
 	getInfo.release();
 %>
 </html>
