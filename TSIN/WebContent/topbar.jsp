@@ -14,15 +14,20 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/TSIN/admin/manage.jsp">管理视频</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
 					<%if(session.getAttribute("studentid") == null) { %>
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li data-toggle="modal" data-target="#loginBox"><a href="#">登录</a></li>
 						</ul>
 					</li>
+				</ul>
 					<%} else { %>
+				<ul class="nav navbar-nav">
+					<li><a href="/TSIN/user/myCollection.jsp">我的收藏</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<%
 							String myMail = session.getAttribute("mail").toString();
@@ -41,8 +46,8 @@
 							<li><a href="user/sendLogout.jsp">注销</a></li>
 						</ul>
 					</li>
-					<%} %>
 				</ul>
+					<%} %>
 			</div>
 		</div>
 	</nav>
