@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="video.Display" %>
+<%@ page import="login.SessionCounter" %>
 
 <!DOCTYPE html>
 <jsp:useBean id="videoDisplay" class="video.Display" scope="request" />
@@ -135,6 +136,10 @@
 	</div>
 
 	<%@ include file="topbar.jsp" %>
+	
+	<div>
+		<p>当前在线人数：<%=SessionCounter.getSessionNum() %></p>
+	</div>
 </body>
 <%
 	videoDisplay.release();

@@ -10,4 +10,8 @@
     <servlet-name>ProgressServlet</servlet-name>
     <url-pattern>/progress</url-pattern>
   </servlet-mapping>
+  
+  <listener>  
+    <listener-class>login.SessionCounter</listener-class>
+  </listener>
 </web-app>
