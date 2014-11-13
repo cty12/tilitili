@@ -19,7 +19,8 @@
 			like.likeIt(video, student, date);
 		}
 		like.release();
-		response.sendRedirect("../video.jsp?id=" + video);
+		System.out.print(video);
+		//response.sendRedirect("../video.jsp?id=" + video);
 	%>
 
 </body>

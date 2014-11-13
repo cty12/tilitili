@@ -91,12 +91,12 @@
 						<div class="col-md-4"><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%></div>
 					</small></h6>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2" id="collectBtn">
 					<%
 						if (session.getAttribute("studentid") != null) {
 							if (!collect.hasCollected(videoId, session.getAttribute("studentid").toString())) {
 					%>
-					<h6><a href="user/collect.jsp?id=<%= videoId%>">
+					<h6><a onclick="collectVideo()">
 						<small><div class="text-info"><font face="微软雅黑"><span class="glyphicon glyphicon-star"></span> 收藏本视频</font></div></small>
 					</a></h6>
 					<%
@@ -124,7 +124,7 @@
 					<div class="col-md-9" align="left">
 						<h5>视频简介</h5>
 					</div>
-					<div class="col-md-3" align="right">
+					<div class="col-md-3" align="right" id="likeBtn"">
 						<%
 							if (session.getAttribute("studentid") != null) {
 								if (like.hasPraised(videoId, session.getAttribute("studentid").toString())) {
@@ -133,9 +133,7 @@
 						<%
 								} else {
 						%>
-								<form class="form" role="praise" action="user/praise.jsp?id=<%= videoId%>" method="post">
-									<button type="submit" class="btn btn-info btn-sm"><font face="微软雅黑">赞一下</font></button>
-								</form>
+								<button class="btn btn-info btn-sm" onclick="likeVideo()"><font face="微软雅黑">赞一下</font></button>
 						<%
 								}
 							}
@@ -244,6 +242,36 @@
 	            size: 320
 	        }
 	    });
+	    
+	    function collectVideo(vId) {
+		    var xmlhttp;
+		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		    	xmlhttp=new XMLHttpRequest();
+		    } else {// code for IE6, IE5
+		    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    document.getElementById("collectBtn").innerHTML="<h6><small><font face=\"微软雅黑\"><span class=\"glyphicon glyphicon-star\"></span> 您已收藏</font></small></h6>";
+		    args = String(document.location).split('?');
+		    if (args[1]) args = args[1];
+		    url = "user/collect.jsp?" + args;
+		    xmlhttp.open("GET",url,true);
+		    xmlhttp.send();
+	    }
+	    
+	    function likeVideo(vId) {
+		    var xmlhttp;
+		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		    	xmlhttp=new XMLHttpRequest();
+		    } else {// code for IE6, IE5
+		    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    document.getElementById("likeBtn").innerHTML="<button type=\"button\" disabled=\"disabled\" class=\"btn btn-info btn-sm\"><font face=\"微软雅黑\">赞过了</font></button>";
+		    args = String(document.location).split('?');
+		    if (args[1]) args = args[1];
+		    url = "user/praise.jsp?" + args;
+		    xmlhttp.open("post",url,true);
+		    xmlhttp.send();
+		}
 	</script>
 	
 	<%@ include file="topbar.jsp" %>

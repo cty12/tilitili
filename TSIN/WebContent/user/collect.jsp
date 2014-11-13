@@ -16,7 +16,7 @@
 			collect.collectIt(video, student);
 		}
 		collect.release();
-		response.sendRedirect("../video.jsp?id=" + video);
+		//response.sendRedirect("../video.jsp?id=" + video);
 	%>
 
 </body>
