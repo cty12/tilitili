@@ -35,8 +35,16 @@ public class AddVideoRecord {
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.execute("insert into video values (0, \"" + title + "\", \"" + path + "\", \"" + icon + "\", \"" + type + 
-					"\", now(), now(), \"" + introduction + "\", 0, 0, 0, 1)");
-			
+					"\", now(), now(), \"" + introduction + "\", 0, 0, 0, 1)");	
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeVideoRecord(String id) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.execute("delete from video where id=" + id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

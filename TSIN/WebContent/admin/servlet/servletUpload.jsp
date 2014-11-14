@@ -112,9 +112,9 @@
 					fi.write(file);
 					out.println("****** UPLOAD SUCCESS ****** <br>");
 					out.println("Uploaded Filename: " + path + fileName + "<br>");
-				} else {
+				} else {	// 是其它项目
 					String fieldName = fi.getFieldName();
-					String fieldValue = fi.getString();
+					String fieldValue = fi.getString("utf-8");
 					if(fieldName.equals("title")) {
 						title = fieldValue;
 					} else if(fieldName.equals("section")) {
@@ -128,6 +128,11 @@
 			Transcoding transcode = new Transcoding();
 			transcode.transcode(videoName, videoName.substring(0, videoName.lastIndexOf(".")), true);
 			System.out.println("transcode ends normally");
+			File originalVideo = new File(Path.ORIGINFILEPATH + videoName);
+			if(originalVideo.isFile() && originalVideo.exists()) {
+				originalVideo.delete();
+				System.out.println("delete original video");
+			}
 			AddVideoRecord addRecord = new AddVideoRecord();
 			addRecord.addVideoRecord(title, Path.VIDEOREPO + videoName.substring(0, videoName.lastIndexOf(".")) + ".flv", Path.COVERREPO + coverName, type, introduction);
 			addRecord.release();
@@ -141,7 +146,7 @@
 	} else {
 		out.println("****** NO FILE UPLOADED ****** <br>"); 
 	}
-	response.setHeader("refresh","4;URL=" + request.getHeader("Referer"));
+	response.setHeader("refresh","3;URL=" + request.getHeader("Referer"));
 %>
 </body>
 </html>
