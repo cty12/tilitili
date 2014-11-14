@@ -24,7 +24,7 @@ public class Transcoding {
         if (!process(hasCover)) {
             return false;
         }
-        System.out.println("ok");
+        System.out.println("transcode done");
         return true;
     }
     
@@ -47,7 +47,8 @@ public class Transcoding {
             else {
             	coverPath = cPath + File.separator + name + ".jpg";
             }
-            ffmpegPath = currPath + File.separator + "bin" + File.separator + "ffmpeg";
+            // ffmpegPath = currPath + File.separator + "bin" + File.separator + "ffmpeg";
+            ffmpegPath = "/usr/local/bin/ffmpeg";
         }
         catch (Exception e) {
             System.out.println("getPath出错");
@@ -118,6 +119,8 @@ public class Transcoding {
         
         List<String> command = new ArrayList<String>();
         command.add(ffmpegPath);
+        // 若存在较旧的则覆盖
+        command.add("-y");
         command.add("-i");
         command.add(inputPath);
         command.add("-ab");

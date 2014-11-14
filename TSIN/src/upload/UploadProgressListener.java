@@ -32,11 +32,17 @@ public class UploadProgressListener implements ProgressListener {
 	}
 
 	public String getMessage() {
+		/*
 		if (theContentLength == -1) {
 			return "" + theBytesRead + " of Unknown-Total bytes read.";
 		} else {
 			return "" + theBytesRead + " of " + theContentLength + " bytes read (" + percentDone + "% done).";
 		}
+		*/
+		if(theContentLength != theBytesRead)
+			return "" + theContentLength + " bytes 中的 " + theBytesRead + " bytes 已读 (" + percentDone + "%)";
+		else
+			return "上传完成，可能正在转码请稍安勿躁";
 	}
 
 	public long getNum100Ks() {

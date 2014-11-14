@@ -110,7 +110,7 @@
 						fileName.substring(fileName.lastIndexOf("\\") + 1));
 					}
 					fi.write(file);
-					out.println("****** UPLOAD SUCCESS ******");
+					out.println("****** UPLOAD SUCCESS ****** <br>");
 					out.println("Uploaded Filename: " + path + fileName + "<br>");
 				} else {
 					String fieldName = fi.getFieldName();
@@ -124,21 +124,24 @@
 					}
 				}
 			}
+			System.out.println("upload ends normally");
 			Transcoding transcode = new Transcoding();
-			System.out.println( transcode.transcode(videoName, videoName.substring(0, videoName.lastIndexOf(".")), true));
+			transcode.transcode(videoName, videoName.substring(0, videoName.lastIndexOf(".")), true);
+			System.out.println("transcode ends normally");
 			AddVideoRecord addRecord = new AddVideoRecord();
 			addRecord.addVideoRecord(title, Path.VIDEOREPO + videoName.substring(0, videoName.lastIndexOf(".")) + ".flv", Path.COVERREPO + coverName, type, introduction);
 			addRecord.release();
+			System.out.println("add database record successfully");
 		} catch(Exception ex) {
-			out.println("****** UPLOAD FAILED ******");
+			out.println("****** UPLOAD FAILED ****** <br>");
 			System.out.println(ex);
 		} finally {
 			session.removeAttribute("uploadProgressListener");
 		}
 	} else {
-		out.println("****** NO FILE UPLOADED ******"); 
+		out.println("****** NO FILE UPLOADED ****** <br>"); 
 	}
-	response.setHeader("refresh","2;URL=" + request.getHeader("Referer"));
+	response.setHeader("refresh","4;URL=" + request.getHeader("Referer"));
 %>
 </body>
 </html>

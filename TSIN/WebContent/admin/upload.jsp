@@ -106,10 +106,8 @@
 	</div>
 
 	<script type="text/javascript">
-		function verify() {
-			
-		}
 		function getSource() {
+			document.getElementById("upload").disabled = true;
 			$("#source").load("../progress");
 			setTimeout(getSource, 500);
 		}

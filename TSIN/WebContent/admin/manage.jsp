@@ -51,15 +51,18 @@
 				videoDisplay.getAll();
 				int cnt = 0;
 				while(videoDisplay.getRs().next()) {
+					ResultSet vInfo = videoDisplay.getRs();
 			%>
 			<tr class="info">
-				<td><%=videoDisplay.getRs().getString(1) %></td>
-				<td><%=videoDisplay.getRs().getString(2) %></td>
-				<td><%=videoDisplay.getRs().getString(3) %></td>
-				<td><%=videoDisplay.getRs().getString(4) %></td>
-				<td><%=videoDisplay.getRs().getString(5) %></td>
-				<td><%=videoDisplay.getRs().getString(6) %></td>
-				<td><%=videoDisplay.getRs().getString(7) %></td>
+				<td><%=vInfo.getString(1) %></td>
+				<td><%=vInfo.getString(2) %></td>
+				<td><%=vInfo.getString(3) %></td>
+				<td><%=vInfo.getString(4) %></td>
+				<td><%=vInfo.getString(5) %></td>
+				<!-- 创建时间 -->
+				<td><%=(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time"))) %></td>
+				<!-- 修改时间 -->
+				<td><%=(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("recent"))) %></td>
 				<td><%=videoDisplay.getRs().getString(8) %></td>
 				<td><input type="checkbox" name="chbox<%=cnt %>" value="<%=videoDisplay.getRs().getString(1) %>" ></td>
 			</tr>

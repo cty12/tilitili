@@ -34,8 +34,6 @@ public class AddVideoRecord {
 			String type, String introduction) {
 		try {
 			Statement stmt = conn.createStatement();
-			System.out.println("insert into video values (0, \"" + title + "\", \"" + path + "\", \"" + icon + "\", \"" + type + 
-					"\", now(), now(), \"" + introduction + "\", 0, 0, 0, 1)");
 			stmt.execute("insert into video values (0, \"" + title + "\", \"" + path + "\", \"" + icon + "\", \"" + type + 
 					"\", now(), now(), \"" + introduction + "\", 0, 0, 0, 1)");
 			
