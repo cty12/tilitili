@@ -185,7 +185,7 @@
 								String mail = getInfo.getMail(comment.getRs().getString("authorid"));
 								String hash = DigestUtils.md5Hex(mail.trim().toLowerCase());
 							%>
-							<img src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=80" id="user_img" alt="icon" />
+							<img src="http://gravatar.com/avatar/<%=hash %>?d=retro&s=80" id="user_img" alt="icon" />
 						</div>
 						<div class="row" align="center" >
 							<h5><small>

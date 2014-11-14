@@ -43,7 +43,7 @@
 				<input name="mail" class="form-control" type="email" value=<%=mail %> <%=editable ? "" : "readonly" %> required>
 				<h5>头像: </h5>
 				<p align="center">
-					<img alt="avatar" src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=150">
+					<img alt="avatar" src="http://gravatar.com/avatar/<%=hash %>?d=retro&s=150">
 				</p>
 				<br>
 				<%if(editable) { %>

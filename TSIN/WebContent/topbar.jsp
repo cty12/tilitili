@@ -36,7 +36,7 @@
 							String myStudentid = session.getAttribute("studentid").toString();
 						%>
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="http://www.gravatar.com/avatar/<%=myHash %>?d=retro&s=24"/>
+							<img src="http://gravatar.com/avatar/<%=myHash %>?d=retro&s=24"/>
 							<%=myNickname %>
 							<span class="caret"></span>
 						</a>
