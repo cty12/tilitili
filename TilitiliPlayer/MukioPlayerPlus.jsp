@@ -44,10 +44,13 @@
             var flashvars = {};
             flashvars.file = "../uploads/Malaysia_Chabor.flv";
             flashvars.type = "video";
+            flashvars.cfile = "comment.xml";
+            flashvars.id = "1";
             var params = {};
             params.quality = "high";
             params.bgcolor = "#FFFFFF";
             params.allowscriptaccess = "sameDomain";
+            params.allowNetworking = "all"; // 允许SWF调用JS函数
             params.allowfullscreen = "true";
             var attributes = {};
             attributes.id = "MukioPlayerPlus";
@@ -85,12 +88,14 @@
                 <param name="quality" value="high" />
                 <param name="bgcolor" value="#000000" />
                 <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowNetworking" value="all" />
                 <param name="allowFullScreen" value="true" />
                 <!--[if !IE]>-->
                 <object type="application/x-shockwave-flash" data="Player/MukioPlayerPlus.swf" width="950" height="445">
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#000000" />
                     <param name="allowScriptAccess" value="sameDomain" />
+                    <param name="allowNetworking" value="all" />
                     <param name="allowFullScreen" value="true" />
                 <!--<![endif]-->
                 <!--[if gte IE 6]>-->
@@ -106,6 +111,11 @@
                 </object>
                 <!--<![endif]-->
             </object>
-        </noscript>     
+        </noscript>
+        <script type="text/javascript">
+        	function getDanmu(data) {
+        		alert(data);
+        	}
+        </script>
    </body>
 </html>
