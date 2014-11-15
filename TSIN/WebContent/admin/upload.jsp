@@ -32,7 +32,7 @@
 						<p>标题: </p>
 					</div>
 					<div class="col-md-10">
-						<input name="title" type="text" class="form-control" placeholder="标题" required autofocus/>
+						<input name="title" type="text" class="form-control" placeholder="至少填点东西" required autofocus/>
 					</div>
 				</div>
 				
@@ -82,7 +82,7 @@
 						<p>封面: </p>
 					</div>
 					<div class="col-md-5 col-md-offset-1">	
-						<input type="file" id="uploadCover" name="cover" size="50" required />
+						<input type="file" id="uploadCover" name="cover" size="50" />
 					</div>
 				</div>
 				
@@ -106,10 +106,8 @@
 	</div>
 
 	<script type="text/javascript">
-		function verify() {
-			
-		}
 		function getSource() {
+			document.getElementById("upload").disabled = true;
 			$("#source").load("../progress");
 			setTimeout(getSource, 500);
 		}

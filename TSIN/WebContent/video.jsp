@@ -8,16 +8,15 @@
 <jsp:useBean id="videoInfo" class="play.VideoInfo" scope="request" />
 <jsp:useBean id="comment" class="video.Comment" scope="request" />
 <jsp:useBean id="like" class="video.Like" scope="request" />
+<jsp:useBean id="collect" class="video.Collect" scope="request" />
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Tilitili在线视频播放</title>
 	<link href="css/lavish-bootstrap.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jwplayer.js"></script>
-</head>
 <%
 	request.setCharacterEncoding("utf-8");
 	Enumeration<String> paraNames = request.getParameterNames();
@@ -29,6 +28,8 @@
 	String videoId = request.getParameter("id");
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
+	<title><%= vInfo.getString("title") %></title>
+</head>
 <body>
 	<div class="row" align="left">
 		<div class="col-md-12" >
@@ -51,7 +52,7 @@
 				<div class="col-md-4" align="left">
 					<form class="navbar-form navbar-left" role="search" action="search.jsp" method="get">
 					    <div class="form-group">
-					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容"  required>
 					    </div>
 				    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</form>
@@ -90,6 +91,25 @@
 						<div class="col-md-4"><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%></div>
 					</small></h6>
 				</div>
+				<div class="col-md-2" id="collectBtn">
+					<%
+						if (session.getAttribute("studentid") != null) {
+							if (!collect.hasCollected(videoId, session.getAttribute("studentid").toString())) {
+					%>
+					<h6><a onclick="collectVideo()">
+						<small><div class="text-info"><font face="微软雅黑"><span class="glyphicon glyphicon-star"></span> 收藏本视频</font></div></small>
+					</a></h6>
+					<%
+							} else {
+					%>
+					<h6>
+						<small><font face="微软雅黑"><span class="glyphicon glyphicon-star"></span> 您已收藏</font></small>
+					</h6>
+					<%
+							}
+						}
+					%>
+				</div>
 			</div>
 			<hr>
 			<div id="player">Loading the player...</div>
@@ -104,7 +124,7 @@
 					<div class="col-md-9" align="left">
 						<h5>视频简介</h5>
 					</div>
-					<div class="col-md-3" align="right">
+					<div class="col-md-3" align="right" id="likeBtn"">
 						<%
 							if (session.getAttribute("studentid") != null) {
 								if (like.hasPraised(videoId, session.getAttribute("studentid").toString())) {
@@ -113,9 +133,7 @@
 						<%
 								} else {
 						%>
-								<form class="form" role="praise" action="user/praise.jsp?id=<%= videoId%>" method="post">
-									<button type="submit" class="btn btn-info btn-sm"><font face="微软雅黑">赞一下</font></button>
-								</form>
+								<button class="btn btn-info btn-sm" onclick="likeVideo()"><font face="微软雅黑">赞一下</font></button>
 						<%
 								}
 							}
@@ -167,7 +185,7 @@
 								String mail = getInfo.getMail(comment.getRs().getString("authorid"));
 								String hash = DigestUtils.md5Hex(mail.trim().toLowerCase());
 							%>
-							<img src="http://www.gravatar.com/avatar/<%=hash %>?d=retro&s=80" id="user_img" alt="icon" />
+							<img src="http://gravatar.com/avatar/<%=hash %>?d=retro&s=80" id="user_img" alt="icon" />
 						</div>
 						<div class="row" align="center" >
 							<h5><small>
@@ -224,6 +242,36 @@
 	            size: 320
 	        }
 	    });
+	    
+	    function collectVideo(vId) {
+		    var xmlhttp;
+		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		    	xmlhttp=new XMLHttpRequest();
+		    } else {// code for IE6, IE5
+		    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    document.getElementById("collectBtn").innerHTML="<h6><small><font face=\"微软雅黑\"><span class=\"glyphicon glyphicon-star\"></span> 您已收藏</font></small></h6>";
+		    args = String(document.location).split('?');
+		    if (args[1]) args = args[1];
+		    url = "user/collect.jsp?" + args;
+		    xmlhttp.open("GET",url,true);
+		    xmlhttp.send();
+	    }
+	    
+	    function likeVideo(vId) {
+		    var xmlhttp;
+		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		    	xmlhttp=new XMLHttpRequest();
+		    } else {// code for IE6, IE5
+		    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    document.getElementById("likeBtn").innerHTML="<button type=\"button\" disabled=\"disabled\" class=\"btn btn-info btn-sm\"><font face=\"微软雅黑\">赞过了</font></button>";
+		    args = String(document.location).split('?');
+		    if (args[1]) args = args[1];
+		    url = "user/praise.jsp?" + args;
+		    xmlhttp.open("post",url,true);
+		    xmlhttp.send();
+		}
 	</script>
 	
 	<%@ include file="topbar.jsp" %>
@@ -231,6 +279,7 @@
 <%
 	comment.release();
 	like.release();
+	collect.release();
 	getInfo.release();
 %>
 </html>

@@ -27,41 +27,47 @@
    	<div class="row">
    	<div class="col-md-10 col-md-offset-1">
    	<hr>
-	<form name="selectVideo" action="manage" method="post" onsubmit="return verify();">
+   	<%
+   		videoDisplay.getAll();
+   		ResultSet rs = videoDisplay.getRs();
+   		rs.last();
+   		int total = rs.getRow();
+   		rs.beforeFirst();
+   	%>
+	<form name="selectVideo" action="servlet/removeVideo.jsp?videoNum=<%=total %>" method="post" onsubmit="return verify();">
 	<p>
 		<button class="btn btn-warning" id="delete" type="submit">删除所选</button>
 	</p>
+	<p>当前共有: <%=total %> 个视频</p>
 	<br>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<tr class="success">
+			<tr class="primary">
 				<th>ID</th>
 				<th>标题</th>
-				<th>路径</th>
-				<th>封面</th>
 				<th>类别</th>
 				<th>创建时间</th>
 				<th>修改时间</th>
-				<th>介绍</th>
 				<th>选中</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%
-				videoDisplay.getAll();
 				int cnt = 0;
-				while(videoDisplay.getRs().next()) {
+				while(rs.next()) {
 			%>
 			<tr class="info">
-				<td><%=videoDisplay.getRs().getString(1) %></td>
-				<td><%=videoDisplay.getRs().getString(2) %></td>
-				<td><%=videoDisplay.getRs().getString(3) %></td>
-				<td><%=videoDisplay.getRs().getString(4) %></td>
-				<td><%=videoDisplay.getRs().getString(5) %></td>
-				<td><%=videoDisplay.getRs().getString(6) %></td>
-				<td><%=videoDisplay.getRs().getString(7) %></td>
-				<td><%=videoDisplay.getRs().getString(8) %></td>
-				<td><input type="checkbox" name="chbox<%=cnt %>" value="<%=videoDisplay.getRs().getString(1) %>" ></td>
+				<!-- 视频ID -->
+				<td><%=rs.getString("id") %></td>
+				<!-- 视频标题 -->
+				<td><%=rs.getString("title") %></td>
+				<!-- 视频类别 -->
+				<td><%=rs.getString("type") %></td>
+				<!-- 创建时间 -->
+				<td><%=(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(rs.getTimestamp("time"))) %></td>
+				<!-- 修改时间 -->
+				<td><%=(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(rs.getTimestamp("recent"))) %></td>
+				<td><input type="checkbox" name="chbox<%=cnt %>" value="<%=rs.getString("id") %>" ></td>
 			</tr>
 			<%
 					cnt ++;

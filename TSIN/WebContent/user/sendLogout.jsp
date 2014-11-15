@@ -15,7 +15,7 @@
 		session.removeAttribute("mail");
 		session.removeAttribute("nickname");
 		%>
-			<div class="panel panel-warning login-panel">
+			<div class="panel panel-primary login-panel">
 				<div class="panel-heading">
 					成功登出
 				</div>

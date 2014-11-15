@@ -293,7 +293,11 @@ img {
   height: auto;
 }
 .img-rounded {
-  border-radius: 6px;
+  border-radius: 3px;
+  border: 1px solid #dddddd;
+  padding: 3px;
+  background-color: #ffffff;
+  max-height: 100%;
 }
 .img-thumbnail {
   padding: 4px;
