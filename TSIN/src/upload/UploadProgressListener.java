@@ -39,10 +39,11 @@ public class UploadProgressListener implements ProgressListener {
 			return "" + theBytesRead + " of " + theContentLength + " bytes read (" + percentDone + "% done).";
 		}
 		*/
-		if(theContentLength != theBytesRead)
-			return "" + theContentLength + " bytes 中的 " + theBytesRead + " bytes 已读 (" + percentDone + "%)";
-		else
-			return "上传完成，可能正在转码请稍安勿躁";
+		if(theContentLength != theBytesRead) {
+			return "" + theContentLength + " B 中的 " + theBytesRead + " B 已读 (" + percentDone + "%)";
+		} else {
+			return "上传完成，正在转码请稍候...";
+		}
 	}
 
 	public long getNum100Ks() {

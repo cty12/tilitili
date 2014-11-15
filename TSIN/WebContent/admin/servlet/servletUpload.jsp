@@ -27,6 +27,7 @@
 	String introduction = "";
 	String videoName = "";
 	String coverName = "";
+	boolean hasCover = false;
 	
 	File file;
 	// 设置文件大小上限
@@ -70,14 +71,21 @@
 
 					String path;
 					if(fieldName.equals("cover")) {		// 这一项是封面
-						if(fileName.endsWith("jpg")
-								|| fileName.endsWith(".jpeg") 
-								|| fileName.endsWith(".png")
-								|| fileName.endsWith(".gif")) {	// 以合法的后缀结尾
+						if(fileName.equals("")) {
+							hasCover = false;
 							path = coverPath;
-							coverName = fileName;
+							coverName = videoName.substring(0, videoName.lastIndexOf(".")) + ".jpg";
 						} else {
-							throw new InvalidExtensionException("not a img");
+							if(fileName.endsWith("jpg")
+									|| fileName.endsWith(".jpeg") 
+									|| fileName.endsWith(".png")
+									|| fileName.endsWith(".gif")) {	// 以合法的后缀结尾
+								hasCover = true;
+								path = coverPath;
+								coverName = fileName;
+							} else {
+								throw new InvalidExtensionException("not a img");
+							}
 						}
 					} else if(fieldName.equals("file")) {	//这一项是文件
 						if(fileName.endsWith(".avi")
@@ -97,21 +105,21 @@
 					} else {
 						throw new InvalidFieldException("invalid field");
 					}
-					boolean isInMemory = fi.isInMemory();
-					// System.out.println("isInMemory: " + isInMemory);
-					long sizeInBytes = fi.getSize();
-					System.out.println("size: " + sizeInBytes);
+					// System.out.println("isInMemory: " + fi.isInMemory());
+					// System.out.println("size: " + fi.getSize());
 					// 写入文件
-					if(fileName.lastIndexOf("\\") >= 0) {
-						file = new File(path, 
-						fileName.substring(fileName.lastIndexOf("\\")));
-					} else {
-						file = new File(path,
-						fileName.substring(fileName.lastIndexOf("\\") + 1));
+					if(! fileName.equals("")) {
+						if(fileName.lastIndexOf("\\") >= 0) {
+							file = new File(path, 
+							fileName.substring(fileName.lastIndexOf("\\")));
+						} else {
+							file = new File(path,
+							fileName.substring(fileName.lastIndexOf("\\") + 1));
+						}
+						fi.write(file);
+						out.println("****** UPLOAD SUCCESS ****** <br>");
+						out.println("Uploaded Filename: " + path + fileName + "<br>");
 					}
-					fi.write(file);
-					out.println("****** UPLOAD SUCCESS ****** <br>");
-					out.println("Uploaded Filename: " + path + fileName + "<br>");
 				} else {	// 是其它项目
 					String fieldName = fi.getFieldName();
 					String fieldValue = fi.getString("utf-8");
@@ -125,14 +133,18 @@
 				}
 			}
 			System.out.println("upload ends normally");
+			
+			// 开始转码
 			Transcoding transcode = new Transcoding();
-			transcode.transcode(videoName, videoName.substring(0, videoName.lastIndexOf(".")), true);
+			transcode.transcode(videoName, videoName.substring(0, videoName.lastIndexOf(".")), hasCover);
 			System.out.println("transcode ends normally");
 			File originalVideo = new File(Path.ORIGINFILEPATH + videoName);
 			if(originalVideo.isFile() && originalVideo.exists()) {
 				originalVideo.delete();
 				System.out.println("delete original video");
 			}
+			
+			// 写入数据库
 			AddVideoRecord addRecord = new AddVideoRecord();
 			addRecord.addVideoRecord(title, Path.VIDEOREPO + videoName.substring(0, videoName.lastIndexOf(".")) + ".flv", Path.COVERREPO + coverName, type, introduction);
 			addRecord.release();

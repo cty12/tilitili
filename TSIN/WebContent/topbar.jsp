@@ -41,9 +41,9 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="profile.jsp?studentid=<%=myStudentid %>">个人信息</a>
+							<li><a href="/TSIN/profile.jsp?studentid=<%=myStudentid %>">个人信息</a>
 							<li class="divider"></li>
-							<li><a href="user/sendLogout.jsp">注销</a></li>
+							<li><a href="/TSIN/user/sendLogout.jsp">注销</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -62,7 +62,7 @@
 				</div>
 
 				<div class="modal-body">
-						<form class="form-signin" role="form" action="user/sendLogin.jsp" method="post">
+						<form class="form-signin" role="form" action="/TSIN/user/sendLogin.jsp" method="post">
 							<input name="studentid" type="number" class="form-control" placeholder="学号" required autofocus>
 							<input name="password" type="password" class="form-control" placeholder="密码" required>
 							<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
