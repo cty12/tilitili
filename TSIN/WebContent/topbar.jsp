@@ -14,6 +14,9 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/TSIN/admin/manage.jsp">管理视频</a></li>
 				</ul>
+				<ul class="nav navbar-nav">
+					<li><a href="/TSIN/admin/website.jsp">网站维护</a></li>
+				</ul>
 					<%if(session.getAttribute("studentid") == null) { %>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
