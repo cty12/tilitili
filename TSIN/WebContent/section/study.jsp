@@ -37,12 +37,40 @@
 				<div class="col-md-4" align="left">
 					<form class="navbar-form navbar-left" role="search" action="../search.jsp" method="get">
 					    <div class="form-group">
-					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容">
+					        <input type="text" class="form-control" id="content" name="content" placeholder="请输入搜索内容" required>
 					    </div>
 					    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
 				</div>
 			</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1" >
+			<br>
+			<div class="col-md-4">
+				<h4>			
+					<span class="glyphicon glyphicon-film text-primary"></span><font face="微软雅黑"> 学习最热</font> 
+				</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<%
+				videoDisplay.getSectionLastSixHot("study");
+				while(videoDisplay.getRs().next())
+				{
+			%>
+			<div class="col-md-2" align="center">
+				<a href="<%= "../video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
+					<img class="img-rounded" src="../<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示" height="108px" width="144px">
+				</a>
+				<div class="row" align="center"><small><b><font face="微软雅黑"><%= videoDisplay.getRs().getString(2) %></font></b></small></div>
+			</div>
+			<%
+				}
+			%>
 		</div>
 	</div>
 	

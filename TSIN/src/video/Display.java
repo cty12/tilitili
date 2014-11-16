@@ -26,6 +26,12 @@ public class Display {
 		execute(sql);
 	}
 	
+	/**获取分页最热的六个视频，用以放在首页展示*/
+	public void getSectionLastSixHot(String section) {
+		String sql = "select * from video where type=\"" + section + "\" order by recent desc limit 6";
+		execute(sql);
+	}
+	
 	/**获取最受欢迎的六个视频，用以放在首页顶栏展示*/
 	public void getSixHighRecom() {
 		String sql = "select * from video where time >= DATE_SUB(CURDATE(),INTERVAL 1 WEEK) order by praise desc limit 6";
