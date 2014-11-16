@@ -24,69 +24,38 @@
 	<div class="panel panel-default file-upload">
 		<div class="panel-heading">上传文件</div>
 		<div class="panel-body">
-			<h5>选择文件来上传</h5>
-			<br>
 			<form action="servlet/servletUpload.jsp" method="post" enctype="multipart/form-data" onsubmit="getSource();">
-				<div class="row">
-					<div class="col-md-2">
-						<p>标题: </p>
-					</div>
-					<div class="col-md-10">
-						<input name="title" type="text" class="form-control" placeholder="至少填点东西" required autofocus/>
-					</div>
+				<!-- 标题 -->
+				<div class="form-group">
+					<label for="title">标题</label>
+					<input name="title" id="title" type="text" class="form-control" placeholder="至少填点东西" required autofocus/>
 				</div>
-				
-				<br>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<p>类别: </p>
-					</div>
-					<div class="col-md-10">
-						<select name="section" class="form-control">
-							<option value="others">其它</option>
-							<option value="news">新闻</option>
-							<option value="study">学习</option>
-							<option value="life">生活</option>
-							<option value="entertainment">娱乐</option>
-						</select>
-					</div>
+				<!-- 分类 -->
+				<div class="form-group">
+					<label for="section">分类</label>
+					<select name="section" id="section" class="form-control">
+						<option value="others">其它</option>
+						<option value="news">新闻</option>
+						<option value="study">学习</option>
+						<option value="life">生活</option>
+						<option value="entertainment">娱乐</option>
+					</select>
 				</div>
-				
-				<br>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<p>简介: </p>
-					</div>
-					<div class="col-md-10">
-						<textarea name="introduction" class="form-control" rows="3"></textarea>
-					</div>
+				<!-- 简介 -->
+				<div class="form-group">
+					<label for="introduction">简介 (可选)</label>
+					<textarea name="introduction" id="introduction" class="form-control" rows="3"></textarea>
 				</div>
-				
-				<br>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<p>视频: </p>
-					</div>
-					<div class="col-md-5 col-md-offset-1">
-						<input type="file" id="uploadFile" name="file" size="50" required />
-					</div>
+				<!-- 视频 -->
+				<div class="form-group">
+					<label for="uploadFile">上传视频</label>
+					<input type="file" id="uploadFile" name="file" onchange="check(this)" required />
 				</div>
-				
-				<br>
-
-				<div class="row">
-					<div class="col-md-2">
-						<p>封面: </p>
-					</div>
-					<div class="col-md-5 col-md-offset-1">	
-						<input type="file" id="uploadCover" name="cover" size="50" />
-					</div>
+				<!-- 封面 -->
+				<div class="form-group">
+					<label for="uploadCover">上传封面 (可选)</label>	
+					<input type="file" id="uploadCover" onchange="check(this)" name="cover"/>
 				</div>
-				
-				<br>
 				
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
@@ -95,17 +64,24 @@
 				</div>
 			</form>
 			<br>
-			<p>上传进度: </p>
-			<textarea class="form-control" rows="1" id="source" readonly>没有上传</textarea>
-			<div class="progress" id="progress" style="visibility:hidden;">
-				<div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-					60%
-				</div>
+			
+			<div class="form-group">
+				<textarea class="form-control" rows="1" id="source" readonly>上传时进度将显示在这里</textarea>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
+		function check(input) {
+			var file = input.files[0];
+			if((file != undefined) && (file.size > 500000 * 1024)) {
+				alert('文件太大咯！');
+				document.getElementById("upload").disabled = true;
+			} else {
+				document.getElementById("upload").disabled = false;
+			}
+		}
+	
 		function getSource() {
 			document.getElementById("upload").disabled = true;
 			$("#source").load("../progress");
