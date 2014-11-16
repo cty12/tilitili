@@ -150,17 +150,15 @@
 			<%
 				if (session.getAttribute("studentid") != null) {
 			%>
-			<form role="form" method="post" action="user/newComment.jsp?id=<%= videoId%>">
-				<div class="form-group">
-						<label for="content">发表评论</label>
-			   		<textarea class="form-control" rows="4" name="content" placeholder="评论限制在200字以内"></textarea>
-				</div>
-				<div class="form-group">
-				    <div class="col-md-2 col-md-offset-10" >
-			       		<button type="submit" class="btn btn-primary btn-block"><font face="微软雅黑">发表</font></button>
-			    	</div>
-				</div>
-			</form>
+			<div class="form-group">
+				<label for="content">发表评论</label>
+		   		<textarea class="form-control" rows="4" name="commentText" id="commentText" placeholder="评论限制在200字以内"></textarea>
+			</div>
+			<div class="form-group">
+			    <div class="col-md-2 col-md-offset-10" >
+		       		<button class="btn btn-primary btn-block" onclick="issueComment()"><font face="微软雅黑">发表</font></button>
+		    	</div>
+			</div>
 			<hr><hr>
 			<%
 				} else {
@@ -170,7 +168,7 @@
 				}
 			%>
 			
-			<table class="table table-condensed table-striped table-hover" frame=void>
+			<table class="table table-condensed table-striped table-hover" frame=void id="forum">
 				<%
 					GetUserInfo getInfo = new GetUserInfo();
 					comment.getCommentById(videoId);
@@ -243,7 +241,7 @@
 	        }
 	    });
 	    
-	    function collectVideo(vId) {
+	    function collectVideo() {
 		    var xmlhttp;
 		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		    	xmlhttp=new XMLHttpRequest();
@@ -258,7 +256,7 @@
 		    xmlhttp.send();
 	    }
 	    
-	    function likeVideo(vId) {
+	    function likeVideo() {
 		    var xmlhttp;
 		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		    	xmlhttp=new XMLHttpRequest();
@@ -271,6 +269,32 @@
 		    url = "user/praise.jsp?" + args;
 		    xmlhttp.open("post",url,true);
 		    xmlhttp.send();
+		}
+	    
+	    function issueComment() {
+		    var xmlhttp;
+		    var postBody = "content="+ document.getElementById("commentText").value;  
+		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		    	xmlhttp=new XMLHttpRequest();
+		    } else {// code for IE6, IE5
+		    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    args = String(document.location).split('?');
+		    if (args[1]) args = args[1];
+		    url = "user/newComment.jsp?" + args;
+		    xmlhttp.open("post",url,true);
+		    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		    xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        document.getElementById("forum").innerHTML = xmlhttp.responseText;
+                    }
+                    else {
+                        alert("Ajax返回错误！");
+                    }
+                }
+            } 
+		    xmlhttp.send(postBody);
 		}
 	</script>
 	
