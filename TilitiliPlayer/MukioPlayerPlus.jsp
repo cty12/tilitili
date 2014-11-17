@@ -114,7 +114,12 @@
         </noscript>
         <script type="text/javascript">
         	function getDanmu(data) {
-        		alert(data);
+        		alert(data.text);
+        		alert(data.stime);
+        		alert(data.date);
+        		alert(data.color);
+        		alert(data.size);
+        		alert(data.mode);
         	}
         </script>
    </body>
