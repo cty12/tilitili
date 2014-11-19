@@ -35,14 +35,20 @@
 		</div>
 		<div class="panel-body">
 			<form role="form" action="user/updateProfile.jsp" method="post">
-				<h5>学号: </h5>
-				<input name="studentid" class="form-control" type="number" value=<%=studentid %> readonly required>
-				<h5>昵称: </h5>
-				<input name="nickname" class="form-control" type="text" value=<%=nickname %> <%=editable ? "" : "readonly" %> required>
-				<h5>邮箱: </h5>
-				<input name="mail" class="form-control" type="email" value=<%=mail %> <%=editable ? "" : "readonly" %> required>
-				<h5>头像: </h5>
-				<p align="center">
+				<div class="form-group">
+					<label for="studentid">学号: </label>
+					<input name="studentid" id="studentid" class="form-control" type="number" value=<%=studentid %> readonly required>
+				</div>
+				<div class="form-group">
+					<label for="nickname">昵称: </label>
+					<input name="nickname" id="nickname" class="form-control" type="text" value=<%=nickname %> <%=editable ? "" : "readonly" %> required>
+				</div>
+				<div class="form-group">
+					<label for="mail">邮箱: </label>
+					<input name="mail" id="mail" class="form-control" type="email" value=<%=mail %> <%=editable ? "" : "readonly" %> required>
+				</div>
+				<label for="avatar">头像: </label>
+				<p align="center" id="avatar">
 					<img alt="avatar" src="http://gravatar.com/avatar/<%=hash %>?d=retro&s=150">
 				</p>
 				<br>

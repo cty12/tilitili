@@ -81,4 +81,21 @@ public class GetUserInfo {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean isAdmin(String studentid) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select num from admin where num=" + studentid);
+			if(rs.next()) {
+				// if rs is not empty, then is admin
+				return true;
+			} else {
+				// rs is empty, this userid is not admin
+				return false;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

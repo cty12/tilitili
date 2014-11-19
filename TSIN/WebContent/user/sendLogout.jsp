@@ -14,6 +14,7 @@
 		session.removeAttribute("studentid");
 		session.removeAttribute("mail");
 		session.removeAttribute("nickname");
+		session.removeAttribute("admin");
 		%>
 			<div class="panel panel-primary login-panel">
 				<div class="panel-heading">

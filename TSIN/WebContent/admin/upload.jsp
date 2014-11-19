@@ -76,9 +76,7 @@
 			var file = input.files[0];
 			if((file != undefined) && (file.size > 500000 * 1024)) {
 				alert('文件太大咯！');
-				document.getElementById("upload").disabled = true;
-			} else {
-				document.getElementById("upload").disabled = false;
+				input.value = "";
 			}
 		}
 	

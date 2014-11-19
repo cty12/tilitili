@@ -22,9 +22,14 @@
 			if(Login.login(studentid, pwd)) {
 				GetUserInfo getInfo = new GetUserInfo();
 				getInfo.addUser(studentid);
+				// studentid
 				session.setAttribute("studentid", studentid);
+				// nickname
 				session.setAttribute("nickname", getInfo.getNickname(studentid));
+				// mail
 				session.setAttribute("mail", getInfo.getMail(studentid));
+				// is admin or not
+				session.setAttribute("admin", getInfo.isAdmin(studentid));
 				getInfo.release();
 				%>
 					<div class="panel panel-primary login-panel">
