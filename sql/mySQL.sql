@@ -91,4 +91,6 @@ insert into user (num, nickname) values (2012011338, '李心田');
 insert into carousel (path, link) values ('img/slide1.jpg', 'http://nozakikun.tv/');
 insert into carousel (path, link) values ('img/slide2.jpg', 'http://nozakikun.tv/onair.html');
 insert into carousel (path, link) values ('img/slide3.jpg', 'http://nozakikun.tv/staff.html');
-insert into broadcast (title, source, start, end, introduction) values ('直播测试', 'rtmp://166.111.17.5/live/testlive', '2014-11-15 20:00', '2014-12-15 20:00', '一个用于测试直播的视频');
+insert into broadcast (title, source, start, end, introduction) values ('直播测试1', 'rtmp://166.111.17.5/live/testlive', '2014-11-15 20:00', '2014-12-15 20:00', '一个用于测试直播的视频');
+insert into broadcast (title, source, start, end, introduction) values ('直播测试2', 'rtmp://166.111.17.5/live/testlive', '2014-11-15 20:00', '2014-12-15 20:00', '一个用于测试直播的视频');
+insert into broadcast (title, source, start, end, introduction) values ('直播测试3', 'rtmp://166.111.17.5/live/testlive', '2014-11-15 20:00', '2014-12-15 20:00', '一个用于测试直播的视频');

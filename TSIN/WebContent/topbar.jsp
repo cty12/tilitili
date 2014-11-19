@@ -12,6 +12,9 @@
 					<li><a href="/TSIN/index.jsp">回到首页</a></li>
 				</ul>
 				<ul class="nav navbar-nav">
+					<li><a href="/TSIN/broadcast.jsp">在线直播</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
 					<li><a href="/TSIN/admin/manage.jsp">管理视频</a></li>
 				</ul>
 				<ul class="nav navbar-nav">
