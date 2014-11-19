@@ -7,7 +7,7 @@ public class Path {
 	
 	public static final String DANMUREPO = "danmu/";
 	
-	public static final String WORKINGDIR = "/Users/cty/Documents/EclipseWebWorkspace/TSIN/WebContent/";
+	public static final String WORKINGDIR = "E:/My Learning Career/Programming/Java EE/TilitiliPlayer/WebContent/";
 	
 	public static final String ORIGINFILEPATH = WORKINGDIR + VIDEOREPO;
 	

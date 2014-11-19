@@ -44,7 +44,7 @@
             var flashvars = {};
             flashvars.file = "../uploads/Malaysia_Chabor.flv";
             flashvars.type = "video";
-            flashvars.cfile = "comment.xml";
+            flashvars.cfile = "danmu/danmu44.xml";
             flashvars.id = "1";
             var params = {};
             params.quality = "high";
@@ -114,12 +114,20 @@
         </noscript>
         <script type="text/javascript">
         	function getDanmu(data) {
-        		alert(data.text);
-        		alert(data.stime);
-        		alert(data.date);
-        		alert(data.color);
-        		alert(data.size);
-        		alert(data.mode);
+        		data.id = "44";
+        		var paramString = "did=" + Math.random();
+        		for (var x in data) {
+        	        paramString += ("&" + x + "=" + data[x]);
+        	    }
+        	    var xmlhttp;
+        	    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        	    	xmlhttp=new XMLHttpRequest();
+        	    } else { // code for IE6, IE5
+        	    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        	    }
+        	    xmlhttp.open("POST","Player/SendDanmu.jsp",true);
+        	    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        	    xmlhttp.send(paramString);
         	}
         </script>
    </body>
