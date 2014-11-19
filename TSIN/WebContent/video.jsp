@@ -16,7 +16,17 @@
 	<link href="css/style.css" rel="stylesheet">
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/jwplayer.js"></script>
+	<style type="text/css" media="screen"> 
+        object:focus { outline:none; }
+        #flashContent { display:none; }
+    </style>
+    
+    <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+    <!-- BEGIN Browser History required section -->
+    <link rel="stylesheet" type="text/css" href="player/history/history.css" />
+    <script type="text/javascript" src="player/history/history.js"></script>
+    <!-- END Browser History required section -->  
+
 <%
 	request.setCharacterEncoding("utf-8");
 	Enumeration<String> paraNames = request.getParameterNames();
@@ -29,6 +39,36 @@
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
 	<title><%= vInfo.getString("title") %></title>
+        
+    <script type="text/javascript" src="player/swfobject.js"></script>
+    <script type="text/javascript">
+        // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+        var swfVersionStr = "11.1.0";
+        // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+        var xiSwfUrlStr = "player/playerProductInstall.swf";
+        var flashvars = {};
+        flashvars.file = <%= vInfo == null ? "\"notexist.flv\"" : "\"../" + vInfo.getString("path") + "\"" %>; // 视频文件路径
+        flashvars.type = "video";
+        flashvars.cfile = "danmu/danmu<%= videoId %>.xml";
+        flashvars.id = "<%= videoId %>";
+        var params = {};
+        params.quality = "high";
+        params.bgcolor = "#FFFFFF";
+        params.allowscriptaccess = "sameDomain";
+        params.allowNetworking = "all"; // 允许SWF调用JS函数
+        params.allowfullscreen = "true";
+        var attributes = {};
+        attributes.id = "MukioPlayerPlus";
+        attributes.name = "MukioPlayerPlus";
+        attributes.align = "middle";
+        swfobject.embedSWF(
+            "player/MukioPlayerPlus.swf", "flashContent", 
+            "100%", "445", 
+            swfVersionStr, xiSwfUrlStr, 
+            flashvars, params, attributes);
+        // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+        swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+    </script>
 </head>
 <body>
 	<div class="row" align="left">
@@ -112,7 +152,17 @@
 				</div>
 			</div>
 			<hr>
-			<div id="player">Loading the player...</div>
+	        <div id="flashContent">
+	            <p>
+	                To view this page ensure that Adobe Flash Player version 
+	                11.1.0 or greater is installed. 
+	            </p>
+	            <script type="text/javascript"> 
+	                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+	                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
+	                                + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+	            </script> 
+	        </div>
 		</div>
 	</div>
 	
@@ -218,28 +268,54 @@
 			</table>
 		</div>
 	</div>
-	
+
+    <noscript>
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="445" id="MukioPlayerPlus">
+            <param name="movie" value="player/MukioPlayerPlus.swf" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#000000" />
+            <param name="allowScriptAccess" value="sameDomain" />
+            <param name="allowNetworking" value="all" />
+            <param name="allowFullScreen" value="true" />
+            <!--[if !IE]>-->
+            <object type="application/x-shockwave-flash" data="player/MukioPlayerPlus.swf" width="100%" height="445">
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="#000000" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowNetworking" value="all" />
+                <param name="allowFullScreen" value="true" />
+            <!--<![endif]-->
+            <!--[if gte IE 6]>-->
+                <p> 
+                    Either scripts and active content are not permitted to run or Adobe Flash Player version
+                    11.1.0 or greater is not installed.
+                </p>
+            <!--<![endif]-->
+                <a href="http://www.adobe.com/go/getflashplayer">
+                    <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                </a>
+            <!--[if !IE]>-->
+            </object>
+            <!--<![endif]-->
+        </object>
+    </noscript>	
 	<script type="text/javascript">
-	    jwplayer("player").setup({
-	    	playlist: [{
-	            sources: [{
-	            	file: <%= vInfo == null ? "\"notexist.flv\"" : "\"" + vInfo.getString("path") + "\"" %>
-	            }],
-	            title: <%= vInfo == null ? "\"该视频不存在\"" : "\"" + vInfo.getString("title") + "\"" %>,
-		        <% if (vInfo != null) {
-					String intro = vInfo.getString("introduction"); %>
-	            description: <%= "\"" + (intro == null ? "" : intro) + "\"" %>,
-	            image: <%= "\"" + vInfo.getString("icon") + "\"" %>
-	        	<% } %>
-	        }],
-	        width: "100%",
-	        aspectratio: "16:9",
-	        skin: "Player/skins/five.xml",
-	        listbar: {
-	            position: 'right',
-	            size: 320
-	        }
-	    });
+		function getDanmu(data) {
+			data.id = "<%= videoId %>";
+			var paramString = "did=" + Math.random();
+			for (var x in data) {
+		        paramString += ("&" + x + "=" + data[x]);
+		    }
+		    var xmlhttp;
+		    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+		    	xmlhttp=new XMLHttpRequest();
+		    } else { // code for IE6, IE5
+		    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    xmlhttp.open("POST","player/SendDanmu.jsp",true);
+		    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		    xmlhttp.send(paramString);
+		}
 	    
 	    function collectVideo() {
 		    var xmlhttp;
@@ -293,7 +369,7 @@
                         alert("Ajax返回错误！");
                     }
                 }
-            } 
+            }
 		    xmlhttp.send(postBody);
 		}
 	</script>
