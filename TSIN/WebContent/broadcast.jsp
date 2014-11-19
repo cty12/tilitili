@@ -78,7 +78,6 @@
 					</small></h4>
 					<h6><small>
 						<div class="col-md-3">开始时间：<%=(new java.text.SimpleDateFormat("MM-dd HH:mm").format(broadcast.getRs().getTimestamp("start"))) %></div>
-						<div class="col-md-3">结束时间：<%=(new java.text.SimpleDateFormat("MM-dd HH:mm").format(broadcast.getRs().getTimestamp("end"))) %></div>
 					</small></h6>
 				</div>
 			</div>
