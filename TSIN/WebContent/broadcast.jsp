@@ -40,7 +40,6 @@
 							System.out.print(videoId);
 							if (broadcast.getRs().getString("id").equals(videoId))
 							{
-								System.out.print("yes");
 								%><li class="active"><%
 							}
 							else

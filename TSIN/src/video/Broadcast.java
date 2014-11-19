@@ -36,6 +36,34 @@ public class Broadcast {
 		execute(sql);
 	}
 	
+	/**删除直播视频*/
+	public void deleteBroadcast(String video) {
+		try
+		{
+			PreparedStatement pstmt = conn.prepareStatement("delete from broadcast where id = ?"); 
+			pstmt.setString(1, video);  
+			pstmt.executeUpdate(); 
+			pstmt.close();
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	/**添加直播视频*/
+	public void newBroadcast(String title, String source, String date, String introduction) {
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("insert into broadcast (title, source, start, introduction) values (?,?,?,?)"); 
+			pstmt.setString(1, title);
+			pstmt.setString(2, source);
+			pstmt.setString(3, date);
+			pstmt.setString(4, introduction);
+			pstmt.executeUpdate();
+			pstmt.close();
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
 	/**获取查找到的结果集合*/
 	public ResultSet getRs() {
 		return rs;
