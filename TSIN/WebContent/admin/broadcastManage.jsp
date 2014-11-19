@@ -97,7 +97,7 @@
 				<!-- 标题 -->
 				<div class="form-group">
 					<label for="title">标题</label>
-					<input name="title" id="title" type="text" class="form-control" placeholder="限20字符" required autofocus/>
+					<input name="title" id="title" type="text" class="form-control" placeholder="限20字符" required/>
 				</div>
 				<!-- 视频源 -->
 				<div class="form-group">
