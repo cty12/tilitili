@@ -88,34 +88,32 @@
 					<div id="broadcast"><%=broadcast.getRs().getString("source") %></div>
 				</div>
 			</div>
+
+			<script type="text/javascript">
+			    jwplayer("broadcast").setup({
+			        playlist: [{
+			          sources: [{
+			              file: '<%=broadcast.getRs().getString("source") %>'
+			          }],
+			          title: "<%=broadcast.getRs().getString("title") %>"//,
+			          //description: "This example shows a binary HD and Closed Captions Buttons.",
+			          //image: 'http://content.jwplatform.com/thumbs/bkaovAYt-640.jpg'
+			        }],
+			        listbar: {
+			            position: 'right',
+			            size: 320
+			        },
+			        skin: "player/skins/tilitili.xml",
+			        aspectratio: "16:9",
+			        width: "100%"
+			    });
+			</script>
 		<%	
 			}
 		%>
 		</div>
 	</div>
 	
-	<% if(videoId != null)  { %>
-	<script type="text/javascript">
-	    jwplayer("broadcast").setup({
-	        playlist: [{
-	          sources: [{
-	              file: '<%=broadcast.getRs().getString("source") %>'
-	          }],
-	          title: "<%=broadcast.getRs().getString("title") %>"//,
-	          //description: "This example shows a binary HD and Closed Captions Buttons.",
-	          //image: 'http://content.jwplatform.com/thumbs/bkaovAYt-640.jpg'
-	        }],
-	        listbar: {
-	            position: 'right',
-	            size: 320
-	        },
-	        skin: "player/skins/tilitili.xml",
-	        aspectratio: "16:9",
-	        width: "100%"
-	    });
-	</script>
-	<% } %>
-
 	<%@ include file="topbar.jsp" %>
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
