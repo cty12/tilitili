@@ -11,6 +11,7 @@
 <title>在线直播</title>
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<script src="js/jwplayer.js"></script>
 </head>
 
 <body>
@@ -83,15 +84,35 @@
 			</div>
 			<br>
 			<div class="row">
-			<div class="col-md-12">
-			<%=broadcast.getRs().getString("source") %>
-			</div>
+				<div class="col-md-12">
+					<div id="broadcast"><%=broadcast.getRs().getString("source") %></div>
+				</div>
 			</div>
 		<%	
 			}
 		%>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	    jwplayer("broadcast").setup({
+	        playlist: [{
+	          sources: [{
+	              file: '<%=broadcast.getRs().getString("source") %>'
+	          }],
+	          title: "<%=broadcast.getRs().getString("title") %>"//,
+	          //description: "This example shows a binary HD and Closed Captions Buttons.",
+	          //image: 'http://content.jwplatform.com/thumbs/bkaovAYt-640.jpg'
+	        }],
+	        listbar: {
+	            position: 'right',
+	            size: 320
+	        },
+	        skin: "player/skins/tilitili.xml",
+	        aspectratio: "16:9",
+	        width: "100%"
+	    });
+	</script>
 
 	<%@ include file="topbar.jsp" %>
 	<script src="js/jquery-1.11.1.min.js"></script>
