@@ -99,10 +99,6 @@
 			          //description: "This example shows a binary HD and Closed Captions Buttons.",
 			          //image: 'http://content.jwplatform.com/thumbs/bkaovAYt-640.jpg'
 			        }],
-			        listbar: {
-			            position: 'right',
-			            size: 320
-			        },
 			        skin: "player/skins/tilitili.xml",
 			        aspectratio: "16:9",
 			        width: "100%"
