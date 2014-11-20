@@ -18,7 +18,7 @@ public class VideoInfo {
 	private Connection conn = null;
 
 	/**
-	 * ¹¹Ôìº¯Êı£¬½¨Á¢ÓëÊı¾İ¿âµÄÁ¬½Ó
+	 * æ„é€ å‡½æ•°ï¼Œå»ºç«‹ä¸æ•°æ®åº“çš„è¿æ¥
 	 */
 	public VideoInfo() {
 		try {
@@ -34,7 +34,7 @@ public class VideoInfo {
 	}
 
 	/**
-	 * ¶Ï¿ªÓëÊı¾İ¿âµÄÁ¬½Ó
+	 * æ–­å¼€ä¸æ•°æ®åº“çš„è¿æ¥
 	 */
 	public void release() {
 		try {
@@ -47,9 +47,9 @@ public class VideoInfo {
 	}
 	
 	/**
-	 * »ñÈ¡ÊÓÆµµÄÏà¹ØĞÅÏ¢
-	 * @param videoId ÊÓÆµID
-	 * @return °üº¬ÏàÓ¦ÊÓÆµĞÅÏ¢µÄResultSet
+	 * è·å–è§†é¢‘çš„ç›¸å…³ä¿¡æ¯
+	 * @param videoId è§†é¢‘ID
+	 * @return åŒ…å«ç›¸åº”è§†é¢‘ä¿¡æ¯çš„ResultSet
 	 */
 	public ResultSet getVideoInfoById(String videoId) {
 		try {
@@ -66,9 +66,9 @@ public class VideoInfo {
 	}
 	
 	/**
-	 * Í¨¹ı¹Ø¼ü´ÊËÑË÷È«²¿ÀàĞÍÊÓÆµ£¬Ä¬ÈÏ°´´´½¨Ê±¼äÅÅĞò
-	 * @param keys ¹Ø¼ü×Ö
-	 * @return ±êÌâº¬ÓĞ¸Ã¹Ø¼ü×ÖµÄResultSet
+	 * é€šè¿‡å…³é”®è¯æœç´¢å…¨éƒ¨ç±»å‹è§†é¢‘ï¼Œé»˜è®¤æŒ‰åˆ›å»ºæ—¶é—´æ’åº
+	 * @param keys å…³é”®å­—
+	 * @return æ ‡é¢˜å«æœ‰è¯¥å…³é”®å­—çš„ResultSet
 	 */
 	public ResultSet findVideoByKey(String keys) {
 		try {
@@ -86,10 +86,10 @@ public class VideoInfo {
 	}
 	
 	/**
-	 * Í¨¹ı¹Ø¼ü´ÊËÑË÷Ö¸¶¨ÀàĞÍÊÓÆµ£¬°´Ö¸¶¨·½Ê½ÅÅĞò
-	 * @param keys ¹Ø¼ü×Ö
-	 * @param type ÀàĞÍ
-	 * @param order ÅÅĞò·½Ê½
+	 * é€šè¿‡å…³é”®è¯æœç´¢æŒ‡å®šç±»å‹è§†é¢‘ï¼ŒæŒ‰æŒ‡å®šæ–¹å¼æ’åº
+	 * @param keys å…³é”®å­—
+	 * @param type ç±»å‹
+	 * @param order æ’åºæ–¹å¼
 	 * @return
 	 */
 	public ResultSet findVideoByKey(String keys, String type, String order) {
