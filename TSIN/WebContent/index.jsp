@@ -104,8 +104,9 @@
 										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
 										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
 										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
-										<br><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%> 
-										">
+										<br><div class='pull-left'><img class='media-object' src=<%= videoDisplay.getRs().getString("icon")%> alt='...' height='60px' width='80px'></div>
+										<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%></small>
+										<br>">
 									<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
 								</a>
 							</div>
@@ -143,8 +144,9 @@
 						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
 						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
 						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
-						<br><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%> 
-						">
+						<br><div class='pull-left'><img class='media-object' src=<%= videoDisplay.getRs().getString("icon")%> alt='...' height='60px' width='80px'></div>
+						<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%></small>
+						<br>">
 						<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
 					</a>
 				</div>

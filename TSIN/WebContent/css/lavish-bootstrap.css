@@ -4538,6 +4538,7 @@ a.thumbnail:focus {
 }
 .media-object {
   display: block;
+  border: 5px solid #ffffff;
 }
 .media-heading {
   margin: 0 0 5px;
@@ -5087,7 +5088,7 @@ body.modal-open,
   z-index: 1010;
   display: none;
   width: 276px;
-  min-height:100px;
+  min-height:125px;
   padding: 1px;
   text-align: left;
   background-color: #ffffff;
