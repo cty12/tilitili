@@ -2,6 +2,8 @@
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.util.Enumeration"%>
 <%@ page import="login.GetUserInfo" %>
+<%@ page import="java.io.File" %>
+<%@ page import="common.Path" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -36,6 +38,8 @@
 		return;
 	}
 	String videoId = request.getParameter("id");
+	String danmuPath = Path.DANMUREPO + "danmu" + videoId + ".xml";
+	boolean isDanmuExisting = new File(Path.WORKINGDIR + danmuPath).exists();
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
 	<title><%= vInfo.getString("title") %></title>
@@ -49,7 +53,9 @@
         var flashvars = {};
         flashvars.file = <%= vInfo == null ? "\"notexist.flv\"" : "\"../" + vInfo.getString("path") + "\"" %>; // 视频文件路径
         flashvars.type = "video";
-        flashvars.cfile = "danmu/danmu<%= videoId %>.xml";
+        <% if (isDanmuExisting) { %>
+        flashvars.cfile = "<%= danmuPath %>";
+        <% } %>
         flashvars.id = "<%= videoId %>";
         var params = {};
         params.quality = "high";
