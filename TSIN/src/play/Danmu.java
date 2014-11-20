@@ -33,40 +33,40 @@ public class Danmu {
 	private String chatId;
 
 	/**
-	 * ¹¹Ôìº¯Êı£¬Ê²Ã´¶¼²»×ö
+	 * æ„é€ å‡½æ•°ï¼Œä»€ä¹ˆéƒ½ä¸åš
 	 */
 	public Danmu() {}
 	
 	/**
-	 * ´¢´æĞÂ»ñÈ¡µÄµ¯Ä»ĞÅÏ¢
-	 * @param videoId ¸ÃÌõµ¯Ä»ËùÊôµÄÊÓÆµid
-	 * @param params µ¯Ä»ÌõÄ¿µÄ²ÎÊı
+	 * å‚¨å­˜æ–°è·å–çš„å¼¹å¹•ä¿¡æ¯
+	 * @param videoId è¯¥æ¡å¼¹å¹•æ‰€å±çš„è§†é¢‘id
+	 * @param params å¼¹å¹•æ¡ç›®çš„å‚æ•°
 	 */
 	public void saveDanmuInfoById(String videoId, String [] params) {
 		chatId = videoId;
 		String attrOfP = this.getAttributeStrOfP(params);
 		String text = params[5];
-		//´´½¨DOMÊµÀı
+		//åˆ›å»ºDOMå®ä¾‹
 		filename = "danmu" + videoId + ".xml";
 		File xml = new File(PATH + filename);
 		System.out.println(xml);
 		Document document = getDOM(xml);
 		this.writeDanmuXML(xml, document);
-		//Ìí¼ÓĞÂµÄµ¯Ä»ÌõÄ¿±êÇ©
+		//æ·»åŠ æ–°çš„å¼¹å¹•æ¡ç›®æ ‡ç­¾
 		document.getDocumentElement();
 		Node nodeI = document.getElementsByTagName("i").item(0);
 		Element elemD = document.createElement("d");
 		elemD.setAttribute("p", attrOfP);
 		elemD.setTextContent(text);
 		nodeI.appendChild(elemD);
-		//½«ÎÄµµÊ÷Ğ´Èëxml
+		//å°†æ–‡æ¡£æ ‘å†™å…¥xml
 		this.writeDanmuXML(xml, document);
 	}
 
 	/**
-	 * ½«µ¯Ä»ĞÅÏ¢×ª»»Îª·ûºÏµ¯Ä»xmlÖĞÊôĞÔp¸ñÊ½µÄ×Ö·û´®
-	 * @param params µ¯Ä»ĞÅÏ¢
-	 * @return ·ûºÏ¸ñÊ½µÄ×Ö·û´®
+	 * å°†å¼¹å¹•ä¿¡æ¯è½¬æ¢ä¸ºç¬¦åˆå¼¹å¹•xmlä¸­å±æ€§pæ ¼å¼çš„å­—ç¬¦ä¸²
+	 * @param params å¼¹å¹•ä¿¡æ¯
+	 * @return ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²
 	 */
 	private String getAttributeStrOfP(String [] params) {
 		String attrOfP = "";
@@ -74,7 +74,7 @@ public class Danmu {
 			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(params[4]);
 			for (int i = 0; i != params.length - 2; i ++)
 				attrOfP += (params[i] + ",");
-			attrOfP += Long.toString(date.getTime());
+			attrOfP += Long.toString(date.getTime() / 1000);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -82,9 +82,9 @@ public class Danmu {
 	}
 
 	/**
-	 * »ñÈ¡DOMÊµÀı
-	 * @param videoId ÊÓÆµµÄID
-	 * @return ÎÄµµÊ÷µÄ¸ù
+	 * è·å–DOMå®ä¾‹
+	 * @param videoId è§†é¢‘çš„ID
+	 * @return æ–‡æ¡£æ ‘çš„æ ¹
 	 */
 	private Document getDOM(File xml) {
 		if (xml.exists())
@@ -94,9 +94,9 @@ public class Danmu {
 	}
 
 	/**
-	 * ÒÀ¾İÒÑÓĞµÄxmlÎÄµµ´´½¨ÎÄµµÊ÷
-	 * @param xml ÎÄ¼şÂ·¾¶
-	 * @return ÖØ½¨µÄÎÄµµÊ÷
+	 * ä¾æ®å·²æœ‰çš„xmlæ–‡æ¡£åˆ›å»ºæ–‡æ¡£æ ‘
+	 * @param xml æ–‡ä»¶è·¯å¾„
+	 * @return é‡å»ºçš„æ–‡æ¡£æ ‘
 	 */
 	private Document rebuildDOM(File xml) {
 		try {
@@ -116,30 +116,30 @@ public class Danmu {
 	}
 	
 	/**
-	 * ´´½¨ĞÂµÄxmlÎÄµµÊ÷
-	 * @param xml ÎÄ¼şÂ·¾¶
-	 * @return ĞÂ½¨µÄÎÄµµÊ÷
+	 * åˆ›å»ºæ–°çš„xmlæ–‡æ¡£æ ‘
+	 * @param xml æ–‡ä»¶è·¯å¾„
+	 * @return æ–°å»ºçš„æ–‡æ¡£æ ‘
 	 */
 	private Document createNewDOM(File xml) {
 		try {
 			xml.createNewFile();
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = builder.newDocument();
-			// ½¨Á¢±êÇ©i
+			// å»ºç«‹æ ‡ç­¾i
 			Element elemI = document.createElement("i");
-			// Ìí¼Óchatserver±êÇ©
+			// æ·»åŠ chatserveræ ‡ç­¾
 			Element chatserver = document.createElement("chatserver");
 			chatserver.setTextContent("chat.tilitili.tv");
 			elemI.appendChild(chatserver);
-			// Ìí¼Óchatid±êÇ©
+			// æ·»åŠ chatidæ ‡ç­¾
 			Element chatid = document.createElement("chatid");
 			chatid.setTextContent(chatId);
 			elemI.appendChild(chatid);
-			//Ìí¼Ómission±êÇ©
+			//æ·»åŠ missionæ ‡ç­¾
 			Element mission = document.createElement("mission");
 			mission.setTextContent("0");
 			elemI.appendChild(mission);
-			//Ìí¼Ósource±êÇ©
+			//æ·»åŠ sourceæ ‡ç­¾
 			Element source = document.createElement("source");
 			source.setTextContent("k-v");
 			elemI.appendChild(source);
