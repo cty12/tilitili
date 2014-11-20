@@ -94,6 +94,7 @@
 		</div>
 	</div>
 	
+	<% if(videoId != null)  { %>
 	<script type="text/javascript">
 	    jwplayer("broadcast").setup({
 	        playlist: [{
@@ -113,6 +114,7 @@
 	        width: "100%"
 	    });
 	</script>
+	<% } %>
 
 	<%@ include file="topbar.jsp" %>
 	<script src="js/jquery-1.11.1.min.js"></script>
