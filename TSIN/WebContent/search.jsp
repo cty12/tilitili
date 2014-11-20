@@ -154,7 +154,9 @@
 			</div>
 		</div>
 <%
-	vlist.close();
+	if (vlist != null) {
+		vlist.close();
+	}
 %>
 		<%@ include file="topbar.jsp" %>
 		<script src="js/jquery-1.11.1.min.js"></script>
