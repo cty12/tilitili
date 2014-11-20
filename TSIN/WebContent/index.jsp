@@ -50,7 +50,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1" >
-			<div class="col-md-6">
+			<div class="col-xs-6">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 				   <!-- 轮播指标 -->
 				   <ol class="carousel-indicators">
@@ -87,22 +87,33 @@
 				      data-slide="next">&rsaquo;</a>
 				</div>
 			</div>
-			<div class="col-md-6">
-			<%
-				videoDisplay.getSixHighRecom();
-				while(videoDisplay.getRs().next())
-				{
-			%>
-				<div class="col-md-4">
-					<div class="recommend">
-					<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
-						<img class="img-rounded" src="<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示" height="102px" width="136px">
-					</a>
+			<div class="col-xs-6">
+				<div class="row"> 
+				<%
+					videoDisplay.getSixHighRecom();
+					while(videoDisplay.getRs().next())
+					{
+				%>
+					<div class="col-xs-4">
+							<div class="row"> 
+								<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+									<img class="img-rounded" src="<%= videoDisplay.getRs().getString("icon") %>" alt="图片无法显示" 
+										title="<%= videoDisplay.getRs().getString("title") %>" data-container="body" data-toggle="popover" 
+										data-placement="top" data-trigger="hover" data-html="true" data-content="
+										<span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%>
+										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
+										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
+										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
+										<br><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%> 
+										">
+									<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
+								</a>
+							</div>
 					</div>
+				<%
+					}
+				%>
 				</div>
-			<%
-				}
-			%>
 			</div>
 		</div>
 	</div>
@@ -123,17 +134,30 @@
 				while(videoDisplay.getRs().next())
 				{
 			%>
-			<div class="col-md-2" align="center">
-				<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
-					<img class="img-rounded" src="<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示" height="108px" width="144px">
-				</a>
-				<div class="row" align="center"><small><b><font face="微软雅黑"><%= videoDisplay.getRs().getString(2) %></font></b></small></div>
+			<div class="col-xs-2" align="center">
+				<div class="row"> 
+					<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+						<img class="img-rounded" src="<%= videoDisplay.getRs().getString("icon") %>" alt="图片无法显示"title="<%= videoDisplay.getRs().getString("title") %>" data-container="body" data-toggle="popover" 
+						data-placement="top" data-trigger="hover" data-html="true" data-content="
+						<span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%>
+						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
+						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
+						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
+						<br><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%> 
+						">
+						<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
+					</a>
+				</div>
 			</div>
 			<%
 				}
 			%>
 		</div>
 	</div>
+
+	<script>
+			$(function () { $("[data-toggle='popover']").popover(); });
+   </script>
 
 	<%@ include file="topbar.jsp" %>
 	
