@@ -42,7 +42,6 @@
 	String danmuPath = Path.DANMUREPO + "danmu" + videoId + ".xml";
 	videoDisplay.newClick(videoId);
 	boolean isDanmuExisting = new File(Path.WORKINGDIR + danmuPath).exists();
-	
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
 	<title><%= vInfo.getString("title") %></title>

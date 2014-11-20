@@ -20,7 +20,7 @@ public class Display {
 		}
 	}
 	
-	/**发表新评论*/
+	/**增加点击*/
 	public void newClick(String id)
 	{
 		try
