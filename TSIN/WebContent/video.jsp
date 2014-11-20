@@ -364,6 +364,7 @@
                 if (xmlhttp.readyState == 4) {
                     if (xmlhttp.status == 200) {
                         document.getElementById("forum").innerHTML = xmlhttp.responseText;
+                        document.getElementById("commentText").value = "";
                     }
                     else {
                         alert("Ajax返回错误！");
