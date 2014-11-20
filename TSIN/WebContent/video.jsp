@@ -11,6 +11,7 @@
 <jsp:useBean id="comment" class="video.Comment" scope="request" />
 <jsp:useBean id="like" class="video.Like" scope="request" />
 <jsp:useBean id="collect" class="video.Collect" scope="request" />
+<jsp:useBean id="videoDisplay" class="video.Display" scope="request" />
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,7 +40,9 @@
 	}
 	String videoId = request.getParameter("id");
 	String danmuPath = Path.DANMUREPO + "danmu" + videoId + ".xml";
+	videoDisplay.newClick(videoId);
 	boolean isDanmuExisting = new File(Path.WORKINGDIR + danmuPath).exists();
+	
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
 	<title><%= vInfo.getString("title") %></title>
@@ -388,5 +391,6 @@
 	like.release();
 	collect.release();
 	getInfo.release();
+	videoDisplay.release();
 %>
 </html>

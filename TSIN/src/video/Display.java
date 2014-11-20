@@ -20,6 +20,26 @@ public class Display {
 		}
 	}
 	
+	/**发表新评论*/
+	public void newClick(String id)
+	{
+		try
+		{
+			String sql = "select * from video where id=" + id;
+			execute(sql);
+			rs.next();
+			int click = rs.getInt("click");
+			click ++;
+			PreparedStatement pstmt = conn.prepareStatement("update video set click=? where id=?");
+			pstmt.setInt(1, click);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+			pstmt.close();
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
 	/**获取最热的六个视频，用以放在首页展示*/
 	public void getLastSixHot() {
 		String sql = "select * from video order by recent desc limit 6";
