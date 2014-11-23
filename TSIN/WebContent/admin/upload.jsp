@@ -13,7 +13,7 @@
 
 <style type=text/css>
 	body {
-		background: url(../resources/background/illustration01_0.jpeg);
+		background: url(../img/resources/illustration01_0.jpeg);
 		background-size: auto;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -65,8 +65,9 @@
 			</form>
 			<br>
 			
-			<div class="form-group">
+			<div align="center" style="display:none" id="progress">
 				<textarea class="form-control" rows="1" id="source" readonly>上传时进度将显示在这里</textarea>
+				<img src="../img/resources/spinner.gif" id="spinner" alt="spinner">
 			</div>
 		</div>
 	</div>
@@ -81,7 +82,9 @@
 		}
 	
 		function getSource() {
-			document.getElementById("upload").disabled = true;
+			document.getElementById("upload").style.display = 'none';
+			document.getElementById("progress").style.display = 'block';
+			
 			$("#source").load("../progress");
 			setTimeout(getSource, 500);
 		}
