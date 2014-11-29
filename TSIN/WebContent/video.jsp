@@ -42,6 +42,7 @@
 	String danmuPath = Path.DANMUREPO + "danmu" + videoId + ".xml";
 	videoDisplay.newClick(videoId);
 	boolean isDanmuExisting = new File(Path.WORKINGDIR + danmuPath).exists();
+	
 	ResultSet vInfo = videoInfo.getVideoInfoById(videoId);
 %>
 	<title><%= vInfo.getString("title") %></title>
@@ -357,7 +358,7 @@
 	    
 	    function issueComment() {
 		    var xmlhttp;
-		    var postBody = "content="+ document.getElementById("commentText").value;  
+		    var postBody = "content="+ document.getElementById("commentText").value.replace(/<[^>]+>/g,"");  
 		    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		    	xmlhttp=new XMLHttpRequest();
 		    } else {// code for IE6, IE5
