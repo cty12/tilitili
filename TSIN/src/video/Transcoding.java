@@ -48,7 +48,7 @@ public class Transcoding {
             	coverPath = cPath + File.separator + name + ".jpg";
             }
             // ffmpegPath = currPath + File.separator + "bin" + File.separator + "ffmpeg";
-            ffmpegPath = "/usr/local/bin/ffmpeg";
+            ffmpegPath = Path.FFMPEGPATH;
         }
         catch (Exception e) {
             System.out.println("getPath出错");

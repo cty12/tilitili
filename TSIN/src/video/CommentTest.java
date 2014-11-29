@@ -1,4 +1,4 @@
-package test;
+package video;
 
 import static org.junit.Assert.*;
 import video.Comment;

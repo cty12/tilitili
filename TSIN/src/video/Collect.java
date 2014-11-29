@@ -84,6 +84,20 @@ public class Collect {
 		}
 	}
 	
+	/**
+	 * @author cty
+	 * @param videoId
+	 * 删除 video 相关的收藏
+	 */
+	public void purgeCollectById(String videoId) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.execute("delete from collect where video=" + videoId);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**得到结果集合*/
 	public ResultSet getRs() {
 		return rs;

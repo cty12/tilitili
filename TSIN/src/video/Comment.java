@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Comment {
 	
-	private ResultSet rs;
-	private	Connection conn;
-	private Statement stm;
+	ResultSet rs;
+	Connection conn;
+	Statement stm;
 	
 	/**类初始化，连接数据库*/
 	public Comment() {
@@ -73,6 +73,20 @@ public class Comment {
 			}
 		}
 		return "";
+	}
+	
+	/**
+	 * @author cty
+	 * @param id
+	 * 删除 video 相关的所有评论
+	 */
+	public void purgeCommentById(String id) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.execute("delete from comment where id=" + id);
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
 	}
 	
 	public void getCommentById(String id)

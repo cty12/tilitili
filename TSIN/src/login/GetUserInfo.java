@@ -5,7 +5,7 @@ import java.sql.*;
 public class GetUserInfo {
 	private static String URL = "jdbc:mysql://localhost:3306/";
 	private static String DATABASENAME = "tilitili";
-	private Connection conn = null;
+	Connection conn = null;
 	
 	public GetUserInfo() {
 		try {

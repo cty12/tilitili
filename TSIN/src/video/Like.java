@@ -60,6 +60,20 @@ public class Like {
 		}
 	}
 	
+	/**
+	 * @author cty
+	 * @param videoId
+	 * 删除 video 相关的点赞
+	 */
+	public void purgeLikeById(String videoId) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.execute("delete from praise where video=" + videoId);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**得到结果集合*/
 	public ResultSet getRs() {
 		return rs;
