@@ -2,15 +2,9 @@ package play;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class VideoInfo {
 	private static String URL = "jdbc:mysql://localhost:3306/";
@@ -72,6 +66,7 @@ public class VideoInfo {
 	 */
 	public ResultSet findVideoByKey(String keys) {
 		try {
+			keys = keys.replaceAll("[\"';|.]", "");							//新的添加：防止注入
 			String reg = String.join("|", keys.split("[ \t]+"));
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from video where title regexp '" + reg + "' order by time desc");
@@ -94,8 +89,12 @@ public class VideoInfo {
 	 */
 	public ResultSet findVideoByKey(String keys, String type, String order) {
 		try {
+			keys = keys.replaceAll("[\"';|.]", "");							//新的添加：防止注入
 			String reg = String.join("|", keys.split("[ \t]+"));
 			order = order == null ? "time" : order; //System.out.println("type="+type.toString()+"\norder="+order);
+			order = order.replaceAll("[\"';|. \t]", "");
+			type = type == null ? null : type.replaceAll("[\"';|. \t]", "");
+			
 			Statement stmt = conn.createStatement();
 			ResultSet rs;
 			if (type != null) {
