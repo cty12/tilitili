@@ -59,7 +59,7 @@ public class VideoInfoTest {
 		rs1.beforeFirst();
 		int sum = 0;
 		while (rs1.next()) {
-			assertEquals(true, rs1.getString("title").contains(key)); //所有搜索结果标题必须包含相应关键字
+			assertTrue(rs1.getString("title").contains(key)); //所有搜索结果标题必须包含相应关键字
 			sum ++;
 		}
 		assertEquals(8, sum);
@@ -71,7 +71,7 @@ public class VideoInfoTest {
 		rs2.beforeFirst();
 		sum = 0;
 		while (rs2.next()) {
-			assertEquals(true, rs2.getString("title").contains("4") |
+			assertTrue(rs2.getString("title").contains("4") |
 					rs2.getString("title").contains("7")); //所有搜索结果标题必须包含相应关键字
 			sum ++;
 		}
@@ -106,7 +106,7 @@ public class VideoInfoTest {
 		int formerClick = rs2.getInt("click");
 		while (rs2.next()) {
 			int temp = rs2.getInt("click");
-			assertEquals(true, formerClick >= temp);
+			assertTrue(formerClick >= temp);
 			formerClick = temp;
 		}
 		rs2.close();
