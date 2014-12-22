@@ -158,7 +158,7 @@
 	} else {
 		out.println("****** NO FILE UPLOADED ****** <br>"); 
 	}
-	response.setHeader("refresh","3;URL=" + request.getHeader("Referer"));
+	response.setHeader("refresh","1;URL=" + request.getHeader("Referer"));
 %>
 </body>
 </html>

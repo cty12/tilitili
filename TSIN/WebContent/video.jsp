@@ -182,7 +182,17 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 
-					<div class="col-md-3" align="left" id="likeBtn"">
+					<div class="jiathis_style_32x32" align="left">
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_weixin"></a>
+						<a class="jiathis_button_renren"></a>
+						<a class="jiathis_button_twitter"></a>
+						<a class="jiathis_button_fb"></a>
+						<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					</div>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1393944171655516" charset="utf-8"></script>
+
+					<div class="col-md-3" align="right" id="likeBtn">
 						<%
 							if (session.getAttribute("studentid") != null) {
 								if (like.hasPraised(videoId, session.getAttribute("studentid").toString())) {
@@ -197,18 +207,7 @@
 							}
 						%>
 					</div>
-					
-					<!-- JiaThis Button BEGIN -->
-					<div class="jiathis_style_32x32" align="right">
-						<a class="jiathis_button_tsina"></a>
-						<a class="jiathis_button_weixin"></a>
-						<a class="jiathis_button_renren"></a>
-						<a class="jiathis_button_twitter"></a>
-						<a class="jiathis_button_fb"></a>
-						<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-					</div>
-					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1393944171655516" charset="utf-8"></script>
-					
+
 					<div class="col-md-9" align="left">
 						<h5><font face="微软雅黑">视频简介</font></h5>
 					</div>
