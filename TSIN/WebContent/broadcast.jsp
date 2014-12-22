@@ -11,6 +11,7 @@
 <title>在线直播</title>
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 <script src="js/jwplayer.js"></script>
 </head>
 
@@ -29,7 +30,7 @@
 		<div class="col-md-3">
 			<div class="panel panel-default">
 		   		<div class="panel-body">
-		   			<h3>直播列表</h3>
+		   			<h3><font face="微软雅黑">直播列表</font></h3>
 		   			<br>
 					<ul class="nav nav-pills nav-stacked">
 					<%
@@ -48,7 +49,7 @@
 								%><li><%
 							}
 					%>
-						<a href="broadcast.jsp?id=<%= broadcast.getRs().getString("id")%>"><%= broadcast.getRs().getString("title")%></a></li>
+						<a href="broadcast.jsp?id=<%= broadcast.getRs().getString("id")%>"><font face="微软雅黑"><%= broadcast.getRs().getString("title")%></font></a></li>
 				   <%
 						}
 				   %>
@@ -63,7 +64,7 @@
 			if (videoId == null)
 			{
 		%>
-			请选择直播视频
+			<p><font face="微软雅黑">请选择直播视频</font></p>
 		<%
 			}
 			else
@@ -72,14 +73,14 @@
 		%>
 			<div class="row">
 				<div class="col-md-12">
-					<h4><small>
+					
 					<div class="col-md-2 text-info">
-						<%=broadcast.getRs().getString("title") %>
+						<h5><font face="微软雅黑"><%=broadcast.getRs().getString("title") %></font></h5>
 					</div>
-					</small></h4>
-					<h6><small>
-						<div class="col-md-3">开始时间：<%=(new java.text.SimpleDateFormat("MM-dd HH:mm").format(broadcast.getRs().getTimestamp("start"))) %></div>
-					</small></h6>
+					
+					<div class="col-md-3">
+						<h5><font face="微软雅黑">开始时间：<%=(new java.text.SimpleDateFormat("MM-dd HH:mm").format(broadcast.getRs().getTimestamp("start"))) %></font></h5>
+					</div>
 				</div>
 			</div>
 			<br>

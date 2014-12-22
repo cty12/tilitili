@@ -11,6 +11,7 @@
 	<title>搜索结果</title>
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/lavish-bootstrap.css" rel="stylesheet">
+	<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 </head>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -60,40 +61,40 @@
 					int resultNum = vlist.getRow(); //得到当前行号，也就是记录数  
 					vlist.beforeFirst();
 				%>
-				<h5><small>搜索 </small><%= key %>   <small>    为您找到<%= resultNum %>个结果</small></h5>
+				<h5><font face="微软雅黑"><small>搜索 </small><%= key %>   <small>    为您找到<%= resultNum %>个结果</small></font></h5>
 				<hr>
-				<p>视频类型：
+				<p><font face="微软雅黑">视频类型：</font>
 					<a href="search.jsp?content=<%=key%><%=order==null?"":"&order="+order%>">
-						<button type="button" class="btn btn-<%=type==null?"info":"default"%> btn-xs">全部</button>
+						<button type="button" class="btn btn-<%=type==null?"info":"default"%> btn-xs"><font face="微软雅黑">全部</font></button>
 					</a>
 					<a href="?content=<%=key%>&type=news<%=order==null?"":"&order="+order%>">
-						<button type="button" class="btn btn-<%=type!=null&&type.equals("news")?"info":"default"%> btn-xs">新闻</button>
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("news")?"info":"default"%> btn-xs"><font face="微软雅黑">新闻</font></button>
 					</a>
 					<a href="?content=<%=key%>&type=study<%=order==null?"":"&order="+order%>">
-						<button type="button" class="btn btn-<%=type!=null&&type.equals("study")?"info":"default"%> btn-xs">学习</button>
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("study")?"info":"default"%> btn-xs"><font face="微软雅黑">学习</font></button>
 					</a>
 					<a href="?content=<%=key%>&type=life<%=order==null?"":"&order="+order%>">
-						<button type="button" class="btn btn-<%=type!=null&&type.equals("life")?"info":"default"%> btn-xs">生活</button>
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("life")?"info":"default"%> btn-xs"><font face="微软雅黑">生活</font></button>
 					</a>
 					<a href="?content=<%=key%>&type=entertainment<%=order==null?"":"&order="+order%>">
-						<button type="button" class="btn btn-<%=type!=null&&type.equals("entertainment")?"info":"default"%> btn-xs">娱乐</button>
+						<button type="button" class="btn btn-<%=type!=null&&type.equals("entertainment")?"info":"default"%> btn-xs"><font face="微软雅黑">娱乐</font></button>
 					</a>
 				</p>
-				<p>排序方式：
+				<p><font face="微软雅黑">排序方式：</font>
 					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>">
-						<button type="button" class="btn btn-<%=order==null||order.equals("time")?"info":"default"%> btn-xs">发布时间</button>
+						<button type="button" class="btn btn-<%=order==null||order.equals("time")?"info":"default"%> btn-xs"><font face="微软雅黑">发布时间</font></button>
 					</a>
 					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>&order=click">
-						<button type="button" class="btn btn-<%=order!=null&&order.equals("click")?"info":"default"%> btn-xs">点击数</button>
+						<button type="button" class="btn btn-<%=order!=null&&order.equals("click")?"info":"default"%> btn-xs"><font face="微软雅黑">点击数</font></button>
 					</a>
 					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>&order=praise">
-						<button type="button" class="btn btn-<%=order!=null&&order.equals("praise")?"info":"default"%> btn-xs">点赞数</button>
+						<button type="button" class="btn btn-<%=order!=null&&order.equals("praise")?"info":"default"%> btn-xs"><font face="微软雅黑">点赞数</font></button>
 					</a>
 					<a href="?content=<%=key%><%=type==null?"":"&type="+type%>&order=comment">
-						<button type="button" class="btn btn-<%=order!=null&&order.equals("comment")?"info":"default"%> btn-xs">评论数</button>
+						<button type="button" class="btn btn-<%=order!=null&&order.equals("comment")?"info":"default"%> btn-xs"><font face="微软雅黑">评论数</font></button>
 					</a>
 				</p><br>
-				<h4>相关视频</h4>
+				<h4><font face="微软雅黑">相关视频</font></h4>
 				<%
 					vlist.beforeFirst();
 					while (vlist.next()) {
@@ -111,6 +112,7 @@
 										<div class="row">
 										<div class="col-md-1">
 										<span class="label label-info">
+										<font face="微软雅黑">
 										<%
 											if (vlist.getString("type").equals("others"))
 												out.print("其他");
@@ -123,6 +125,7 @@
 											else if (vlist.getString("type").equals("life"))
 												out.print("生活");
 										%>
+										</font>
 										</span>
 										</div>
 										<div class="col-md-8">
@@ -146,7 +149,7 @@
 							<div class="row">
 								<div class="col-md-10">
 									<div class="col-md-12">
-										<h6><small><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></small></h6>
+										<h6><small><font face="微软雅黑"><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></font></small></h6>
 									</div>
 								</div>
 							</div>
@@ -157,7 +160,7 @@
 				   } else if (!key.equals("") && vlist == null) { %>
 				<center>
 					<h4>
-						<small>未搜索到与</small>&nbsp<%=key%>&nbsp<small>相关的视频</small>
+						<font face="微软雅黑"><small>未搜索到与</small>&nbsp<%=key%>&nbsp<small>相关的视频</small></font>
 					</h4>
 				</center>
 				<% } %>

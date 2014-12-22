@@ -17,6 +17,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="css/lavish-bootstrap.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<style type="text/css" media="screen"> 
@@ -112,33 +113,33 @@
 	<!-- <center></center> -->
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<h2><%= vInfo == null ? "该视频不存在" : vInfo.getString("title") %></h2>
+			<h2><font face="微软雅黑"><%= vInfo == null ? "该视频不存在" : vInfo.getString("title") %></font></h2>
 			<div class="row">
 				<div class="col-md-7">
-					<h4><small>
-						<strong>
-						<div class="col-md-2 text-info">
-							<%
-							if (vInfo.getString("type").equals("others"))
-								out.print("其他类");
-							else if (vInfo.getString("type").equals("news"))
-								out.print("新闻类");
-							else if (vInfo.getString("type").equals("study"))
-								out.print("学习类");
-							else if (vInfo.getString("type").equals("entertainment"))
-								out.print("娱乐类");
-							else if (vInfo.getString("type").equals("life"))
-								out.print("生活类");
-							%>
+					<div class="col-md-2">
+						<h4><small>
+						<div class="text-info">
+						<font face="微软雅黑">
+						<%
+						if (vInfo.getString("type").equals("others"))
+							out.print("其他类");
+						else if (vInfo.getString("type").equals("news"))
+							out.print("新闻类");
+						else if (vInfo.getString("type").equals("study"))
+							out.print("学习类");
+						else if (vInfo.getString("type").equals("entertainment"))
+							out.print("娱乐类");
+						else if (vInfo.getString("type").equals("life"))
+							out.print("生活类");
+						%>
+						</font>
 						</div>
-						</strong>
-					</small></h4>
-					<h6><small>
-						<div class="col-md-2"><span class="glyphicon glyphicon-facetime-video"></span> <%= vInfo.getString("click") %></div> 
-						<div class="col-md-2"><span class="glyphicon glyphicon-thumbs-up"></span> <%= vInfo.getString("praise") %></div>
-						<div class="col-md-2"><span class="glyphicon glyphicon-comment"></span> <%= vInfo.getString("comment") %></div>
-						<div class="col-md-4"><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%></div>
-					</small></h6>
+						</small></h4>
+					</div>
+					<div class="col-md-2"><h6><small><span class="glyphicon glyphicon-facetime-video"></span> <%= vInfo.getString("click") %></small></h6></div> 
+					<div class="col-md-2"><h6><small><span class="glyphicon glyphicon-thumbs-up"></span> <%= vInfo.getString("praise") %></small></h6></div>
+					<div class="col-md-2"><h6><small><span class="glyphicon glyphicon-comment"></span> <%= vInfo.getString("comment") %></small></h6></div>
+					<div class="col-md-4"><h6><small><span class="glyphicon glyphicon-time"></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(vInfo.getTimestamp("time")))%></small></h6></div>
 				</div>
 				<div class="col-md-2" id="collectBtn">
 					<%
@@ -180,10 +181,8 @@
 			<br>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<div class="col-md-9" align="left">
-						<h5>视频简介</h5>
-					</div>
-					<div class="col-md-3" align="right" id="likeBtn"">
+
+					<div class="col-md-3" align="left" id="likeBtn"">
 						<%
 							if (session.getAttribute("studentid") != null) {
 								if (like.hasPraised(videoId, session.getAttribute("studentid").toString())) {
@@ -198,9 +197,26 @@
 							}
 						%>
 					</div>
+					
+					<!-- JiaThis Button BEGIN -->
+					<div class="jiathis_style_32x32" align="right">
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_weixin"></a>
+						<a class="jiathis_button_renren"></a>
+						<a class="jiathis_button_twitter"></a>
+						<a class="jiathis_button_fb"></a>
+						<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					</div>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1393944171655516" charset="utf-8"></script>
+					
+					<div class="col-md-9" align="left">
+						<h5><font face="微软雅黑">视频简介</font></h5>
+					</div>
 					<div class="col-md-10" align="left">
 							<h6><small>
+								<font face="微软雅黑">
 								<%= vInfo.getString("introduction") == null? "这家伙什么也没说" : vInfo.getString("introduction") %>
+								</font>
 							</small></h6>
 					</div>
 				</div>
@@ -210,7 +226,7 @@
 				if (session.getAttribute("studentid") != null) {
 			%>
 			<div class="form-group">
-				<label for="content">发表评论</label>
+				<label for="content"><font face="微软雅黑">发表评论</font></label>
 		   		<textarea class="form-control" rows="4" name="commentText" id="commentText" placeholder="评论限制在200字以内"></textarea>
 			</div>
 			<div class="form-group">
@@ -222,7 +238,7 @@
 			<%
 				} else {
 			%>
-				<h4><small>评论请先登录</small></h4>
+				<h4><small><font face="微软雅黑">评论请先登录</font></small></h4>
 			<%
 				}
 			%>
@@ -392,5 +408,6 @@
 	collect.release();
 	getInfo.release();
 	videoDisplay.release();
+	videoInfo.release();
 %>
 </html>

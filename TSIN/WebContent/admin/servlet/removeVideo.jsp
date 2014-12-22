@@ -1,5 +1,6 @@
 <%@ page import="upload.AddVideoRecord" %>
 <%@ page import="play.VideoInfo" %>
+<%@ page import="video.*" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="common.Path" %>
 <%@ page import="java.io.*" %>
@@ -18,28 +19,57 @@
 	
 	AddVideoRecord addVideoRecord = new AddVideoRecord();
 	VideoInfo vInfo = new VideoInfo();
+	Comment comment = new Comment();
+	Collect collect = new Collect();
+	Like like = new Like();
 	
-	out.println("共有视频: " + videoNum + "个 <br>");
 	for(int i = 0; i < videoNum; i ++) {
 		out.println(request.getParameter("chbox" + i) + "<br>");
 		String videoId = request.getParameter("chbox" + i);
 		if(videoId != null) {
+			/**** purging video by video id ****/
+			
 			ResultSet rs = vInfo.getVideoInfoById(videoId);
+			// 删除视频在数据库中的记录
 			addVideoRecord.removeVideoRecord(videoId);
-			out.println("to remove: " + rs.getString("id") + "; " + rs.getString("title") + "<br>");
+			// 删除视频评论
+			comment.purgeCommentById(videoId);
+			// 删除相关视频收藏
+			collect.purgeCollectById(videoId);
+			// 删除相关视频点赞
+			like.purgeLikeById(videoId);
+			
+			// for debug
+			// out.println("to remove: " + rs.getString("id") + "; " + rs.getString("title") + "<br>");
+			// 删除文件系统中的视频
 			File video = new File(Path.WORKINGDIR + rs.getString("path"));
 			if(video.isFile() && video.exists()) {
 				System.out.println("delete video: " + video.delete());
+			} else {
+				System.out.println("video remove failed: file not exist");
 			}
+			// 删除文件系统中的封面
 			File cover = new File(Path.WORKINGDIR + rs.getString("icon"));
 			if(cover.isFile() && cover.exists()) {
 				System.out.println("delete cover: " + cover.delete());
+			} else {
+				System.out.println("cover remove fail: file not exist");
+			}
+			// 删除文件系统中的弹幕
+			File danmu = new File(Path.WORKINGDIR + Path.DANMUREPO + "danmu" + rs.getString("id") + ".xml");
+			if(danmu.isFile() && danmu.exists()) {
+				System.out.println("delete danmu: " + danmu.delete());
+			} else {
+				System.out.println("danmu remove fail: file not exist");
 			}
 		}
 	}
 	
 	addVideoRecord.release();
 	vInfo.release();
+	comment.release();
+	collect.release();
+	like.release();
 	
 	response.sendRedirect("../manage.jsp");
 %>

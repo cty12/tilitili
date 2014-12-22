@@ -14,6 +14,7 @@
 
 <link href="css/style.css" rel="stylesheet">
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
@@ -218,11 +219,11 @@
 							<td width="5%">
 								<%= cnt%>
 							</td>
-							<td width="70%">
+							<td width="60%">
 								<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
 									<%= videoDisplay.getRs().getString("title") %>
 								</a>
-							</td>
+							</td width="35%">
 							<td class="text-info" width="25%">
 								<small><span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%></small>
 							</td>
@@ -248,7 +249,7 @@
 	<%@ include file="topbar.jsp" %>
 	
 	<div>
-		<p>当前在线人数：<%=SessionCounter.getSessionNum() %></p>
+		<p><font face="微软雅黑">当前在线人数：<%=SessionCounter.getSessionNum() %></font></p>
 	</div>
 </body>
 <%

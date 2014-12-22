@@ -12,6 +12,7 @@
 
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 
 </head>
 <body>

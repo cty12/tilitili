@@ -26,6 +26,6 @@
 	String [] params = {stime, mode, size, color, date, text};
 	danmu.saveDanmuInfoById(videoId, params);
 %>
-	<script type="text/javascript">window.close()</script>
+	
 </body>
 </html>

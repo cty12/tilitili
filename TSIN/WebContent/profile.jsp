@@ -24,6 +24,7 @@
 
 <link href="css/style.css" rel="stylesheet">
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
@@ -31,23 +32,23 @@
 	
 	<div class="panel panel-default profile-panel">
 		<div class="panel-heading">
-			<%=studentid %>的个人资料
+			<font face="微软雅黑"><%=studentid %>的个人资料</font>
 		</div>
 		<div class="panel-body">
 			<form role="form" action="user/updateProfile.jsp" method="post">
 				<div class="form-group">
-					<label for="studentid">学号: </label>
+					<label for="studentid"><font face="微软雅黑">学号: </font></label>
 					<input name="studentid" id="studentid" class="form-control" type="number" value=<%=studentid %> readonly required>
 				</div>
 				<div class="form-group">
-					<label for="nickname">昵称: </label>
+					<label for="nickname"><font face="微软雅黑">昵称: </font></label>
 					<input name="nickname" id="nickname" class="form-control" type="text" value=<%=nickname %> <%=editable ? "" : "readonly" %> required>
 				</div>
 				<div class="form-group">
-					<label for="mail">邮箱: </label>
+					<label for="mail"><font face="微软雅黑">邮箱: </font></label>
 					<input name="mail" id="mail" class="form-control" type="email" value=<%=mail %> <%=editable ? "" : "readonly" %> required>
 				</div>
-				<label for="avatar">头像: </label>
+				<label for="avatar"><font face="微软雅黑">头像: </font></label>
 				<p align="center" id="avatar">
 					<img alt="avatar" src="http://gravatar.com/avatar/<%=hash %>?d=retro&s=150">
 				</p>
@@ -55,7 +56,7 @@
 				<%if(editable) { %>
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3">
-							<button class="btn btn-info btn-block btn-sm" type="submit">修改</button>
+							<button class="btn btn-info btn-block btn-sm" type="submit"><font face="微软雅黑">修改</font></button>
 						</div>
 					</div>
 				<%} %>

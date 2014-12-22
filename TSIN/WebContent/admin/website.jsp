@@ -11,6 +11,7 @@
 <title>管理视频</title>
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 	<div class="panel panel-default">
    	<div class="panel-body">
    	<div align="center">
-   		<h1>网站维护</h1>
+   		<h1><font face="微软雅黑">网站维护</font></h1>
    	</div>
    	<br>
    	<div class="row">
@@ -68,4 +69,7 @@
 	<script src="../js/jquery-1.11.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>
+<%
+	videoDisplay.release();
+%>
 </html>

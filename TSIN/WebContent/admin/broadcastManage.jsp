@@ -11,6 +11,7 @@
 <title>管理视频</title>
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 
 </head>
 
@@ -38,7 +39,7 @@
    	<div class="panel-body">
    	<br>
    	<div align="center">
-   		<h2>管理直播视频</h2>
+   		<h2><font face="微软雅黑">管理直播视频</font></h2>
    	</div>
    	<div class="row">
    	<div class="col-md-10 col-md-offset-1">
@@ -52,18 +53,18 @@
    	%>
 	<form name="selectVideo" action="servlet/removeBroadcast.jsp?videoNum=<%=total %>" method="post" onsubmit="return verify();">
 	<p>
-		<button class="btn btn-warning" id="delete" type="submit">删除所选</button>
+		<button class="btn btn-warning" id="delete" type="submit"><font face="微软雅黑">删除所选</font></button>
 	</p>
-	<p>当前共有: <%=total %> 个视频</p>
+	<p><font face="微软雅黑">当前共有: <%=total %> 个视频</font></p>
 	<br>
 	<table class="table table-condensed table-hover">
 		<thead>
 			<tr class="primary">
-				<th>ID</th>
-				<th>标题</th>
-				<th>视频源</th>
-				<th>开始时间</th>
-				<th>选中</th>
+				<th><font face="微软雅黑">ID</font></th>
+				<th><font face="微软雅黑">标题</font></th>
+				<th><font face="微软雅黑">视频源</font></th>
+				<th><font face="微软雅黑">开始时间</font></th>
+				<th><font face="微软雅黑">选中</font></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -73,13 +74,13 @@
 			%>
 			<tr class="info">
 				<!-- 视频ID -->
-				<td><%=rs.getString("id") %></td>
+				<td><font face="微软雅黑"><%=rs.getString("id") %></font></td>
 				<!-- 视频标题 -->
-				<td><%=rs.getString("title") %></td>
+				<td><font face="微软雅黑"><%=rs.getString("title") %></font></td>
 				<!-- 视频源 -->
-				<td><%=rs.getString("source") %></td>
+				<td><font face="微软雅黑"><%=rs.getString("source") %></font></td>
 				<!-- 开始时间 -->
-				<td><%=(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(rs.getTimestamp("start"))) %></td>
+				<td><font face="微软雅黑"><%=(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(rs.getTimestamp("start"))) %></font></td>
 				<td><input type="checkbox" name="chbox<%=cnt %>" value="<%=rs.getString("id") %>" ></td>
 			</tr>
 			<%
@@ -96,20 +97,20 @@
 			<form action="servlet/newBroadcast.jsp" method="post">
 				<!-- 标题 -->
 				<div class="form-group">
-					<label for="title">标题</label>
+					<label for="title"><font face="微软雅黑">标题</font></label>
 					<input name="title" id="title" type="text" class="form-control" placeholder="限20字符" required/>
 				</div>
 				<!-- 视频源 -->
 				<div class="form-group">
-					<label for="title">视频源</label>
+					<label for="title"><font face="微软雅黑">视频源</font></label>
 					<input name="source" id="source" type="text" class="form-control" placeholder="限200字符" required/>
 				</div>
 				<!-- 简介 -->
 				<div class="form-group">
-					<label for="introduction">简介 (可选)</label>
+					<label for="introduction"><font face="微软雅黑">简介 (可选)</font></label>
 					<textarea name="introduction" id="introduction" class="form-control" rows="3" placeholder="限500字符" ></textarea>
 				</div>
-				<button class="btn btn-primary" type="submit">添加直播</button>
+				<button class="btn btn-primary" type="submit"><font face="微软雅黑">添加直播</font></button>
 			</form>
 		</div>
 	</div>
@@ -143,5 +144,9 @@
 	<%@ include file="../topbar.jsp" %>
 	<script src="../js/jquery-1.11.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+
 </body>
+	<%
+		broadcast.release();
+	%>
 </html>

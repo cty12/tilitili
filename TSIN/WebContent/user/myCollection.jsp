@@ -11,6 +11,7 @@
 <title>我的收藏</title>
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 	<div class="panel panel-default">
 	   	<div class="panel-body">
 		   	<div align="center">
-		   		<h1>我的收藏</h1>
+		   		<h1><font face="微软雅黑">我的收藏</font></h1>
 		   	</div>
 		   	<div class="row">
 			   	<div class="col-md-10 col-md-offset-1">
@@ -35,7 +36,7 @@
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<a class="pull-left" href="../video.jsp?id=<%= vlist.getString("id") %>" target="_blank">
-									<img class="media-object" src=<%= "../" + vlist.getString("icon")%> alt="..." height="120px" width="160px">
+									<img class="media-object" src="<%= "../" + vlist.getString("icon")%>" alt="..." height="120px" width="160px">
 								</a>
 								<div class="media-body">
 									<div class="row">
@@ -45,6 +46,7 @@
 												<div class="row">
 													<div class="col-md-1">
 														<span class="label label-info">
+														<font face="微软雅黑">
 														<%
 															if (vlist.getString("type").equals("others"))
 																out.print("其他");
@@ -57,6 +59,7 @@
 															else if (vlist.getString("type").equals("life"))
 																out.print("生活");
 														%>
+														</font>
 														</span>
 													</div>
 													<div class="col-md-8">
@@ -83,7 +86,7 @@
 									<div class="row">
 										<div class="col-md-10">
 											<div class="col-md-12">
-												<h6><small><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></small></h6>
+												<h6><small><font face="微软雅黑"><%= vlist.getString("introduction") == null? "这家伙什么也没说" : vlist.getString("introduction") %></font></small></h6>
 											</div>
 										</div>
 									</div>

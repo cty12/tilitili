@@ -12,16 +12,15 @@
 </head>
 <body>
 <%
-	String s = "testvideo/[MAD]刀剑神域——No pain,No game.flv";
-	out.println(s.replaceAll(" ", "\\\\ "));
-	String str = "NULL";
+	String str = "hello@badger.com";
 	String hash = DigestUtils.md5Hex(str.trim().toLowerCase());
 	// System.out.println("URL: http://www.gravatar.com/avatar/" + hash);
 %>
 	<p>mail: <%=session.getAttribute("mail") %></p>
 	<p>nickname: <%=session.getAttribute("nickname") %></p>
 	<p>studentid: <%=session.getAttribute("studentid") %></p>
-	<img src="http://www.gravatar.com/avatar/<%=hash %>?d=retro"/>
+	<p>admin: <%=session.getAttribute("admin") %></p>
+	<img src="http://gravatar.com/avatar/<%=hash %>?d=retro"/>
 	<p><%=SessionCounter.getSessionNum() %></p>
 </body>
 </html>

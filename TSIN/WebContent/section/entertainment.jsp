@@ -12,6 +12,7 @@
 
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/lavish-bootstrap.css" rel="stylesheet">
+<link rel="icon shortcut" href="/TSIN/img/resources/favicon.ico" />
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 
