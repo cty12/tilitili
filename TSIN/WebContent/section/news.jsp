@@ -45,34 +45,103 @@
 			</nav>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1" >
-			<br>
+			<div class="col-md-8">	
+					<br>
+					<h4>			
+						&nbsp&nbsp<span class="glyphicon glyphicon-thumbs-up text-primary"></span><font face="微软雅黑"> 新闻推荐</font> 
+					</h4>
+					<%
+						videoDisplay.getSectionEightHighRecom("news");
+						while(videoDisplay.getRs().next())
+						{
+					%>
+					<div class="col-xs-3" align="center">
+						<div class="row"> 
+							<a href="<%= "../video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+								<img class="img-rounded" src="<%= "../"+videoDisplay.getRs().getString("icon") %>" alt="图片无法显示"title="<%= videoDisplay.getRs().getString("title") %>" data-container="body" data-toggle="popover" 
+								data-placement="top" data-trigger="hover" data-html="true" data-content="
+								<span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
+								<br><div class='pull-left'><img class='media-object' src='<%= videoDisplay.getRs().getString("icon")%>' alt='...' height='60px' width='80px'></div>
+								<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction").substring(0, 53)%></small>
+								<br>">
+								<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
+							</a>
+						</div>
+					</div>
+					<%
+						}
+					%>
+					<div class="row"> 
+					<br>
+					</div>
+					<h4>			
+						&nbsp&nbsp<span class="glyphicon glyphicon-repeat text-primary"></span><font face="微软雅黑"> 新闻动态</font> 
+					</h4>
+					<%
+						videoDisplay.getSectionLastFourHot("news");
+						while(videoDisplay.getRs().next())
+						{
+					%>
+					<div class="col-xs-3" align="center">
+						<div class="row"> 
+							<a href="<%= "../video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+								<img class="img-rounded" src="<%= "../"+videoDisplay.getRs().getString("icon") %>" alt="图片无法显示"title="<%= videoDisplay.getRs().getString("title") %>" data-container="body" data-toggle="popover" 
+								data-placement="top" data-trigger="hover" data-html="true" data-content="
+								<span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
+								<br><div class='pull-left'><img class='media-object' src='<%= videoDisplay.getRs().getString("icon")%>' alt='...' height='60px' width='80px'></div>
+								<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction").substring(0, 53)%></small>
+								<br>">
+								<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
+							</a>
+						</div>
+					</div>
+					<%
+						}
+					%>
+			</div>
 			<div class="col-md-4">
+				<br>
 				<h4>			
-					<span class="glyphicon glyphicon-film text-primary"></span><font face="微软雅黑"> 新闻最热</font> 
+					<font face="微软雅黑"> 新闻排行</font> 
 				</h4>
+				<table class="table table-hover table-striped">
+				<%
+					videoDisplay.getSectionTenHighClick("news");
+					int cnt = 1;
+					while(videoDisplay.getRs().next())
+					{
+				%>
+					<tr class="success">
+						<td width="5%">
+							<%= cnt%>
+						</td>
+						<td width="70%">
+							<a href="<%= "../video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+								<%= videoDisplay.getRs().getString("title") %>
+							</a>
+						</td>
+						<td class="text-info" width="25%">
+							<small><span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%></small>
+						</td>
+					</tr>
+				<%
+						cnt ++;
+					}
+				%>
+				</table>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<%
-				videoDisplay.getSectionLastSixHot("news");
-				while(videoDisplay.getRs().next())
-				{
-			%>
-			<div class="col-md-2" align="center">
-				<a href="<%= "../video.jsp?id="+videoDisplay.getRs().getString(1) %>" target="_blank">
-					<img class="img-rounded" src="../<%= videoDisplay.getRs().getString(4) %>" alt="图片无法显示" height="108px" width="144px">
-				</a>
-				<div class="row" align="center"><small><b><font face="微软雅黑"><%= videoDisplay.getRs().getString(2) %></font></b></small></div>
-			</div>
-			<%
-				}
-			%>
-		</div>
-	</div>
+	</div>		
+	
 	
 	<%@ include file="../topbar.jsp" %>
 	<script src="../js/jquery-1.11.1.min.js"></script>

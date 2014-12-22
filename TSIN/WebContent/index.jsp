@@ -105,7 +105,7 @@
 										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
 										&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
 										<br><div class='pull-left'><img class='media-object' src='<%= videoDisplay.getRs().getString("icon")%>' alt='...' height='60px' width='80px'></div>
-										<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%></small>
+										<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction").substring(0, 53)%></small>
 										<br>">
 									<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
 								</a>
@@ -123,7 +123,7 @@
 			<br>
 			<div class="col-md-4">
 				<h4>			
-					<span class="glyphicon glyphicon-film text-primary"></span><font face="微软雅黑"> 最热视频</font> 
+					<span class="glyphicon glyphicon-film text-primary"></span><font face="微软雅黑"> 最新动态</font> 
 				</h4>
 			</div>
 		</div>
@@ -145,7 +145,7 @@
 						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
 						&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
 						<br><div class='pull-left'><img class='media-object' src='<%= videoDisplay.getRs().getString("icon")%>' alt='...' height='60px' width='80px'></div>
-						<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction")%></small>
+						<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction").substring(0, 53)%></small>
 						<br>">
 						<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
 					</a>
@@ -157,6 +157,90 @@
 		</div>
 	</div>
 
+	<%
+		String temtype[] = {"entertainment", "news", "life", "study", "others"};
+		String temname[] = {"娱乐", "新闻", "生活", "学习", "其他"};
+		String glyphi[] = {"eye-open", "file", "home", "book", "globe"};
+		for (int i = 0; i < 5; i ++)
+		{
+	%>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1" >
+			<br>
+			<div class="row">
+				<div class="col-md-8">
+					<h4>			
+						&nbsp&nbsp<span class="glyphicon glyphicon-<%=glyphi[i]%> text-primary"></span><font face="微软雅黑"> <%=temname[i]%>动态</font> 
+					</h4>
+				</div>
+				<div class="col-md-4">
+					<h4>			
+						<font face="微软雅黑"> <%=temname[i]%>排行</font> 
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">	
+					<%
+						videoDisplay.getSectionLastFourHot(temtype[i]);
+						while(videoDisplay.getRs().next())
+						{
+					%>
+					<div class="col-xs-3" align="center">
+						<div class="row"> 
+							<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+								<img class="img-rounded" src="<%= videoDisplay.getRs().getString("icon") %>" alt="图片无法显示"title="<%= videoDisplay.getRs().getString("title") %>" data-container="body" data-toggle="popover" 
+								data-placement="top" data-trigger="hover" data-html="true" data-content="
+								<span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-thumbs-up'></span> <%= videoDisplay.getRs().getString("praise") %>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-comment'></span> <%= videoDisplay.getRs().getString("comment") %>
+								&nbsp&nbsp&nbsp<span class= 'glyphicon glyphicon-time'></span> <%= (new java.text.SimpleDateFormat("yyyy-MM-dd").format(videoDisplay.getRs().getTimestamp("time")))%>
+								<br><div class='pull-left'><img class='media-object' src='<%= videoDisplay.getRs().getString("icon")%>' alt='...' height='60px' width='80px'></div>
+								<small><%= videoDisplay.getRs().getString("introduction") == null? "这家伙什么也没说" :videoDisplay.getRs().getString("introduction").substring(0, 53)%></small>
+								<br>">
+								<div class="img-content"><small><font face="微软雅黑"><%= videoDisplay.getRs().getString("title") %></font></small></div>
+							</a>
+						</div>
+					</div>
+					<%
+						}
+					%>
+				</div>
+				<div class="col-md-4">
+					<table class="table table-hover table-striped">
+					<%
+						videoDisplay.getSectionThreeHighClick(temtype[i]);
+						int cnt = 1;
+						while(videoDisplay.getRs().next())
+						{
+					%>
+						<tr class="success">
+							<td width="5%">
+								<%= cnt%>
+							</td>
+							<td width="70%">
+								<a href="<%= "video.jsp?id="+videoDisplay.getRs().getString("id") %>" target="_blank">
+									<%= videoDisplay.getRs().getString("title") %>
+								</a>
+							</td>
+							<td class="text-info" width="25%">
+								<small><span class= 'glyphicon glyphicon-facetime-video'></span> <%= videoDisplay.getRs().getString("click")%></small>
+							</td>
+						</tr>
+					<%
+							cnt ++;
+						}
+					%>
+					</table>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<%
+		}
+	%>
+	
+	
 	<script>
 			$(function () { $("[data-toggle='popover']").popover(); });
    </script>

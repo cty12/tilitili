@@ -1395,14 +1395,14 @@ table th[class*="col-"] {
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  background-color: #F8F8F8;
+  border-color: #F1F1F1;
 }
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td {
-  background-color: #d0e9c6;
-  border-color: #c9e2b3;
+  background-color: #F1F1F1;
+  border-color: #F1F1F1;
 }
 .table > thead > tr > td.danger,
 .table > tbody > tr > td.danger,

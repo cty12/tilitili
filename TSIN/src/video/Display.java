@@ -20,7 +20,7 @@ public class Display {
 		}
 	}
 	
-	/**增加点击*/
+	/**发表新评论*/
 	public void newClick(String id)
 	{
 		try
@@ -46,15 +46,33 @@ public class Display {
 		execute(sql);
 	}
 	
-	/**获取分页最热的六个视频，用以放在首页展示*/
-	public void getSectionLastSixHot(String section) {
-		String sql = "select * from video where type=\"" + section + "\" order by recent desc limit 6";
+	/**获取分页最热的四个视频，用以放在首页展示*/
+	public void getSectionLastFourHot(String section) {
+		String sql = "select * from video where type=\"" + section + "\" order by recent desc limit 4";
 		execute(sql);
 	}
 	
 	/**获取最受欢迎的六个视频，用以放在首页顶栏展示*/
 	public void getSixHighRecom() {
 		String sql = "select * from video where time >= DATE_SUB(CURDATE(),INTERVAL 1 WEEK) order by praise desc limit 6";
+		execute(sql);
+	}
+	
+	/**获取分区最受欢迎的八个视频，用以在分页展示*/
+	public void getSectionEightHighRecom(String section) {
+		String sql = "select * from video where time >= DATE_SUB(CURDATE(),INTERVAL 1 WEEK) and type=\"" + section + "\" order by praise desc limit 8";
+		execute(sql);
+	}
+	
+	/**获取分区点击最高的三个视频，用以在首页展示*/
+	public void getSectionThreeHighClick(String section) {
+		String sql = "select * from video where time >= DATE_SUB(CURDATE(),INTERVAL 1 WEEK) and type=\"" + section + "\" order by click desc limit 3";
+		execute(sql);
+	}
+	
+	/**获取分区点击最高的十个视频，用以在分页展示*/
+	public void getSectionTenHighClick(String section) {
+		String sql = "select * from video where time >= DATE_SUB(CURDATE(),INTERVAL 1 WEEK) and type=\"" + section + "\" order by click desc limit 10";
 		execute(sql);
 	}
 	
