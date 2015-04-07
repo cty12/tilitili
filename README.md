@@ -1,4 +1,4 @@
-# Tilitili - The Danmaku Website of Tsinghua
+# Tilitili - Yet Another Danmaku Website
 
 ------
 
