@@ -18,7 +18,7 @@ Index:
 
 Video:
 
-![video](/sreenshots/video.jpg)
+![video](/screenshots/video.jpg)
 
 Upload:
 
